@@ -20,15 +20,13 @@ import MessageList from './components/MessageList.vue';
 <style lang="scss">
 .chat-layout {
   width: 100%;
-  height: calc(100dvh - 8px);
-  margin-top: 4px;
-  margin-right: 4px;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   max-height: 100dvh;
   overflow-y: auto;
-  background-color: #181818;
-  border-radius: 24px 0 0 24px;
+  background-color: #131313;
+  border-left: 1px solid #242424;
 }
 
 @media screen and (max-width: 768px) {

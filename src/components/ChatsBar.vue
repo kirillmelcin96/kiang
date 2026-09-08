@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useChatStore } from '../stores/chatStore'
 import CloseIcon from '../icons/Close.vue'
+// import SettingsIcon from '../icons/Settings.vue'
 import EditLine from '../icons/EditLine.vue'
 
 const store = useChatStore()
@@ -12,9 +13,9 @@ onMounted(() => {
     store.updateChatsList()
 })
 
-function changeChatInstanceUrl() {
-    store.changeChatUrl(chatInstanceUrl.value)
-}
+// function changeChatInstanceUrl() {
+//     store.changeChatUrl(chatInstanceUrl.value)
+// }
 
 function newChat() {
     store.newChat()
@@ -33,36 +34,41 @@ function deleteChat(id: number) {
 <template>
     <div class="chats-bar">
         <div>
-        <h3 class="title">webllama</h3>
-        <div 
-            class="chats-bar-button"
-            @click="newChat"
-        >
-            <EditLine class="chats-bar-button__icon" />New chat
-        </div>
-        <p class="subtitle">Your chats</p>
-        <div
-            v-for="chat in store.chatsList"
-            @click="selectChat(chat.id)"
-            class="chats-bar-button"
-            :class="{ 'chats-bar-button__active': store.chatId == chat.id }"
-        >
-            <span class="chats-bar-button__text">{{ chat.title }}</span>
+            <h2 class="title">webllama</h2>
             <div 
-                @click="deleteChat(chat.id)"
-                class="chats-bar-button__close"
+                class="chats-bar-button"
+                @click="newChat"
             >
-                <CloseIcon />
+                <EditLine class="chats-bar-button__icon" />New chat
+            </div>
+            <!-- <div 
+                class="chats-bar-button"
+            >
+                <SettingsIcon class="chats-bar-button__icon" />Settings
+            </div> -->
+            <p class="subtitle">Your chats</p>
+            <div
+                v-for="chat in store.chatsList"
+                @click="selectChat(chat.id)"
+                class="chats-bar-button"
+                :class="{ 'chats-bar-button__active': store.chatId == chat.id }"
+            >
+                <span class="chats-bar-button__text">{{ chat.title }}</span>
+                <div 
+                    @click="deleteChat(chat.id)"
+                    class="chats-bar-button__close"
+                >
+                    <CloseIcon />
+                </div>
             </div>
         </div>
-        </div>
-        <input
+        <!-- <input
             v-model="chatInstanceUrl"
             class="chat-instance-input" 
             type="text" 
             autocomplete="off" 
             @focusout="changeChatInstanceUrl"
-        />
+        /> -->
     </div>
 </template>
 
@@ -79,7 +85,10 @@ function deleteChat(id: number) {
 }
 
 .title {
-    text-align: center;
+    // text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+    margin-top: 0;
+    margin-left: 8px;
 }
 
 .subtitle {
@@ -134,7 +143,7 @@ function deleteChat(id: number) {
         cursor: pointer;
 
         &:hover {
-            background-color: #ffffff10;
+            background-color: #ffffff15;
         }
 
         svg {
@@ -144,7 +153,7 @@ function deleteChat(id: number) {
     }
 
     &:hover {
-        background-color: #2f2f2f;
+        background-color: #272727;
 
         .chats-bar-button__close {
             width: 25px;
@@ -154,7 +163,7 @@ function deleteChat(id: number) {
 
     &__active {
         cursor: default;
-        background-color: #2f2f2f;
+        background-color: #272727;
     }
 }
 

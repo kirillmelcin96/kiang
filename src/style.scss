@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -42,6 +42,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "Roboto Condensed", sans-serif;
   margin: 12px 0;
   font-weight: 500;
 }
@@ -70,17 +71,44 @@ h6 {
   font-size: 16px;
 }
 
-b {
+b, strong {
   font-weight: 500;
 }
 
 hr {
-  color: #454545;
+  color: #303030;
 }
 
 ul, ol {
   padding-left: 20px;
 }
+
+//tables
+
+table {
+  border-collapse: collapse; 
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+th {
+  border-bottom: 1px solid #242424;
+  padding: 8px 0;
+  text-align: left;
+}
+
+td {
+  border-bottom: 1px solid #ffffff08;
+  padding: 12px 20px 12px 0;
+}
+
+tr:last-child {
+  td {
+    border: none;
+  }
+}
+
+// Code
 
 pre {
   padding: 12px 16px;
@@ -92,6 +120,11 @@ pre {
 
 code {
   font-size: 15px;
+}
+
+// Katex
+math {
+  margin: 24px 0;
 }
 
 li::marker {
@@ -133,7 +166,7 @@ button:focus-visible {
 }
 
 .muted {
-  opacity: .6;
+  color: #ffffff60;
 }
 
 code.hljs {

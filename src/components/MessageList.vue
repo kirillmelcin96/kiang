@@ -2,6 +2,7 @@
 import { onMounted, nextTick, onUpdated } from 'vue';
 import { useChatStore } from '../stores/chatStore';
 import MessageBubble from './MessageBubble.vue';
+import ChatMetadata from './ChatMetadata.vue';
 import RandomGreeting from './RandomGreeting.vue';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css' // любой стиль
@@ -24,13 +25,14 @@ const store = useChatStore()
         <RandomGreeting />
     </template>
     <template v-else>
+        <ChatMetadata />
         <MessageBubble 
             v-for="msg in store.messages"
             :content="msg.content"
             :role="msg.role"
         />
         <div v-if="store.isLoading && store.streamingMessage == ''" class="muted">
-            Loading...
+            Generating response...
         </div>
         <div v-if="store.isError" class="error-text">
             Error while making the request. Please, try again
@@ -50,7 +52,7 @@ const store = useChatStore()
 }
 
 .scroll-spacer {
-  height: 48px;
+  height: 86px;
   flex-shrink: 0;
 }
 </style>

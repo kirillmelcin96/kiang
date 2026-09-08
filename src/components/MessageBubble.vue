@@ -2,11 +2,20 @@
 import { computed } from 'vue';
 import type { roles } from '../types/messages';
 import { marked } from 'marked';
+import markedKatex from 'marked-katex-extension';
 
 const props = defineProps<{
     role: roles,
     content: string,
 }>()
+
+marked.use({
+  gfm: true,
+  breaks: true,
+  pedantic: false,
+}, markedKatex({
+    throwOnError: false
+}));
 
 const parsedOutput = computed(() => {
     return marked.parse(props.content)
@@ -24,7 +33,7 @@ const parsedOutput = computed(() => {
     border-radius: 16px 16px 4px 16px;
     max-width: 450px;
     padding: 10px 16px;
-    background-color: #333;
+    background-color: #224998;
     margin: 0 0 32px auto;
 }
 

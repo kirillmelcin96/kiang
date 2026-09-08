@@ -3,6 +3,8 @@ import { defineStore } from 'pinia'
 import type { chatMessage, roles, Chat } from '../types/messages'
 import { deleteChatIDB, loadAllChatsIDB, loadOneChatIDB, saveChatIDB, updateChatIDB } from '../database'
 
+let controller: AbortController;
+
 // State types
 interface State {
     chatsList: Chat[],
@@ -14,6 +16,7 @@ interface State {
     streamingMessage: string,
     isLoading: boolean,
     isError: boolean,
+    thinkMode: boolean,
 }
 
 export const useChatStore = defineStore('chat', {
@@ -27,6 +30,7 @@ export const useChatStore = defineStore('chat', {
     streamingMessage: '',
     isLoading: false,
     isError: false,
+    thinkMode: false,
   }),
   getters: {
     // Empty
@@ -46,6 +50,13 @@ export const useChatStore = defineStore('chat', {
 
         const isNewChat = this.messages.length == 1
 
+        if (controller) {
+            controller.abort(); 
+        }
+
+        controller = new AbortController();
+        const signal = controller.signal;
+
         if (isNewChat) {
             let title = 'Untitled'
 
@@ -55,9 +66,11 @@ export const useChatStore = defineStore('chat', {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         model: this.model,
-                        prompt: `Write a one-sentence title for the next user message: "${content}". Response without quotation marks. Max sentence length is 30 symbols. Try to be as concise as possible.`,
+                        prompt: `Write a one-sentence title for the next user message: "${content}". Response without quotation marks. Max sentence length is 30 symbols. Try to be as concise as possible. Use the same language as in the message`,
                         stream: false,
+                        think: false
                     }),
+                    signal: signal // Token of cancel (AbortController)
                 })
 
                 const generatedTitle = await res.json();
@@ -82,7 +95,9 @@ export const useChatStore = defineStore('chat', {
                     model: this.model,
                     messages: this.messages,
                     stream: true,
+                    think: this.thinkMode
                 }),
+                signal: signal // Token of cancel (AbortController)
             })
 
             const reader = res.body!.getReader()
@@ -119,7 +134,13 @@ export const useChatStore = defineStore('chat', {
             // Showing error
             this.isLoading = false
             this.isError = true
+
+            // TODO: Different error info if user cancelled the request
+            // if (error.name === 'AbortError') {}
         }
+    },
+    breakMessage() {
+        controller.abort();
     },
     addUserMessage(content: string) {
       this.messages.push({ role: "user", content })
@@ -152,7 +173,7 @@ export const useChatStore = defineStore('chat', {
         this.chatId = null
         this.messages = []
         this.streamingMessage = ''
-        this.isLoading =false
+        this.isLoading = false
         this.isError = false
     },
     async selectChat(id: number) {
@@ -170,6 +191,16 @@ export const useChatStore = defineStore('chat', {
             this.newChat()
         }
         await this.updateChatsList()
+    },
+    async getChatMetadata(id: number) {
+        // if (id === null) return {}
+
+        const chat = await loadOneChatIDB(id) as Chat
+
+        return chat
+    },
+    switchThinkMode() {
+        this.thinkMode = !this.thinkMode
     }
   },
 })
