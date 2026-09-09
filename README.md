@@ -5,10 +5,11 @@
 
 ## Key features
 
-- 🚀 **Instant setup without Docker:** Just clone the repository and run the app right in your browser. No complicated containers needed!
-- ✈︎ **Works offline:** Fully standalone interaction with models that works even without an internet connection.
-- 🧠 **Automatic model detection:** The app automatically finds and uses models already installed on your local Ollama system.
-- 💬 **Chat history storage:** All your conversations are securely stored right in your browser (IndexedDB).
+- 🚀 **Instant setup:** Just clone the repository and run the app right in your browser.
+- ✈︎ **Works offline:** Fully standalone interaction with local models.
+- 🔒 **Private:** All conversations remain yours. Zero telemetry. Zero tracking.
+- 🧠 **Automatic model detection:** The app automatically finds and uses models already installed with your local Ollama instance.
+- 💬 **Chat history storage:** All your conversations are stored directly in your browser (IndexedDB).
 - 🤫 **“Incognito Mode”:** This allows you to have private, temporary chats without saving your history.
 - 📄 **Rich output format:** Supports Markdown formatting, code, and complex LaTeX formulas for structured responses.
 - 💡 **“Thinking Mode”:** Enable this mode for more detailed and thoughtful responses from the AI.
@@ -43,9 +44,9 @@ Files will be available from the `/dist` directory
 ## Features to be added
 
 - Search in chats
-- Mobile version of the chat history
+- Export/Import chat history
 - Text-to-speech button
-- More themes
+- Custome themes
 - System prompts and personal settings
-- Temporary chats (incognito mode)
+- ✅ ~~Temporary chats (incognito mode)~~
 
