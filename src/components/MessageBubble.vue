@@ -3,6 +3,9 @@ import { computed } from 'vue';
 import type { roles } from '../types/messages';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
+import { useChatStore } from '../stores/chatStore';
+
+const store = useChatStore()
 
 const props = defineProps<{
     role: roles,
@@ -24,7 +27,7 @@ const parsedOutput = computed(() => {
 
 <template>
     <div v-if="role === 'assistant'" v-html="parsedOutput" class="assistant-message" />
-    <div v-else class="chat-bubble">{{ props.content }}</div>
+    <div v-else class="chat-bubble" :class="{'chat-bubble--incognito': store.incognitoMode}">{{ props.content }}</div>
 </template>
 
 <style lang="scss" scoped>
@@ -35,6 +38,11 @@ const parsedOutput = computed(() => {
     padding: 10px 16px;
     background-color: #224998;
     margin: 0 0 32px auto;
+
+    &--incognito {
+        background-color: transparent;
+        border: 2px dashed #ffffff30;
+    }
 }
 
 .assistant-message {

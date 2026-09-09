@@ -55,7 +55,7 @@ function switchSelector() {
     padding: 8px 12px;
     color: #3d7eff;
     background-color: #262f40;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     user-select: none;
     font-weight: 500;
@@ -70,13 +70,15 @@ function switchSelector() {
     position: absolute;
     margin-top: 10px;
     padding: 4px 4px;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: #1a1a1a;
+    border: 1px solid #ffffff10;
+    box-shadow: 0 -1px 24px -8px rgba(0, 0, 0, 0.7);
 
     &__item {
         cursor: pointer;
         padding: 8px 10px;
-        border-radius: 6px;
+        border-radius: 8px;
 
         &:hover {
             background-color: #212121;

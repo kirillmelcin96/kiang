@@ -45,6 +45,10 @@ h6 {
   font-family: "Roboto Condensed", sans-serif;
   margin: 12px 0;
   font-weight: 500;
+
+  code {
+    font-size: inherit;
+  }
 }
 
 h1 {

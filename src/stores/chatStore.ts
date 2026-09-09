@@ -17,6 +17,7 @@ interface State {
     isLoading: boolean,
     isError: boolean,
     thinkMode: boolean,
+    incognitoMode: boolean,
 }
 
 export const useChatStore = defineStore('chat', {
@@ -31,6 +32,7 @@ export const useChatStore = defineStore('chat', {
     isLoading: false,
     isError: false,
     thinkMode: false,
+    incognitoMode: false,
   }),
   getters: {
     // Empty
@@ -57,7 +59,7 @@ export const useChatStore = defineStore('chat', {
         controller = new AbortController();
         const signal = controller.signal;
 
-        if (isNewChat) {
+        if (isNewChat && !this.incognitoMode) {
             let title = 'Untitled'
 
             try {
@@ -122,7 +124,7 @@ export const useChatStore = defineStore('chat', {
                         this.streamingMessage = ''
                         this.isLoading = false
 
-                        if (this.chatId) {
+                        if (this.chatId && !this.incognitoMode) {
                             await updateChatIDB(toRaw(this.chatId), toRaw(this.messages))
                             await this.updateChatsList()
                         }
@@ -173,6 +175,7 @@ export const useChatStore = defineStore('chat', {
         this.chatId = null
         this.messages = []
         this.streamingMessage = ''
+        this.incognitoMode = false
         this.isLoading = false
         this.isError = false
     },
@@ -181,6 +184,7 @@ export const useChatStore = defineStore('chat', {
 
         if (!chat) return
 
+        this.incognitoMode = false
         this.chatId = chat.id
         this.messages = chat.messages
         this.model = chat.model
@@ -201,6 +205,9 @@ export const useChatStore = defineStore('chat', {
     },
     switchThinkMode() {
         this.thinkMode = !this.thinkMode
-    }
+    },
+    switchIncognitoMode() {
+        this.incognitoMode = !this.incognitoMode
+    },
   },
 })

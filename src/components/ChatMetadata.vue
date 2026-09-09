@@ -2,6 +2,7 @@
 import { onMounted, ref, watch } from 'vue'
 import { useChatStore } from '../stores/chatStore';
 import DateTimeFormat from './utils/DateTimeFormat.vue';
+import IncognitoFillIcon from '../icons/IncognitoFill.vue'
 import type { Chat } from '../types/messages'
 
 const store = useChatStore()
@@ -32,6 +33,9 @@ watch(
         <DateTimeFormat class="muted" :timestamp="metadata.createdAt" style="user-select: all;"/>
         <div class="model-bubble">{{ metadata.model }}</div>
     </div>
+    <div v-if="store.incognitoMode" class="incognito-mode-warning">
+        <b><IncognitoFillIcon />Incognito Mode Enabled</b>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -42,6 +46,22 @@ watch(
     text-align: center;
     font-size: 14px;
     margin-bottom: 32px;
+}
+
+.incognito-mode-warning{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #ffc72c;
+
+    svg {
+        width: 17px;
+        height: 17px;
+        margin-bottom: -3px;
+        margin-right: 4px;
+    }
 }
 
 .model-bubble {

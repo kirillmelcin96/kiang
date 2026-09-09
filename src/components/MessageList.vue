@@ -4,6 +4,8 @@ import { useChatStore } from '../stores/chatStore';
 import MessageBubble from './MessageBubble.vue';
 import ChatMetadata from './ChatMetadata.vue';
 import RandomGreeting from './RandomGreeting.vue';
+import IncognitoIcon from '../icons/Incognito.vue'
+import IncognitoFillIcon from '../icons/IncognitoFill.vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css' // любой стиль
 
@@ -18,10 +20,18 @@ onMounted(highlight)
 onUpdated(highlight)
 
 const store = useChatStore()
+
+function incognitoButtonHandle() {
+    store.switchIncognitoMode()
+}
 </script>
 
 <template>
     <template v-if="store.messages.length === 0">
+        <div class="incognito-button" @click="incognitoButtonHandle">
+            <IncognitoIcon v-show="!store.incognitoMode" />
+            <IncognitoFillIcon v-show="store.incognitoMode" />
+        </div>
         <RandomGreeting />
     </template>
     <template v-else>
@@ -54,5 +64,17 @@ const store = useChatStore()
 .scroll-spacer {
   height: 86px;
   flex-shrink: 0;
+}
+
+.incognito-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 </style>

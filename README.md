@@ -1,7 +1,7 @@
+![Demo image](https://github.com/kirillmelcin96/webllama/blob/main/demo.png)
+
 # Webllama
 **Webllama** - is a selfhosted offline AI platform providing access to ollama models using API. Written in Vue.js
-
-![Demo image](https://github.com/kirillmelcin96/webllama/blob/main/demo.png)
 
 ## Key features
 
@@ -9,6 +9,7 @@
 - ✈︎ **Works offline:** Fully standalone interaction with models that works even without an internet connection.
 - 🧠 **Automatic model detection:** The app automatically finds and uses models already installed on your local Ollama system.
 - 💬 **Chat history storage:** All your conversations are securely stored right in your browser (IndexedDB).
+- 🤫 **“Incognito Mode”:** This allows you to have private, temporary chats without saving your history.
 - 📄 **Rich output format:** Supports Markdown formatting, code, and complex LaTeX formulas for structured responses.
 - 💡 **“Thinking Mode”:** Enable this mode for more detailed and thoughtful responses from the AI.
 
