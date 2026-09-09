@@ -158,9 +158,11 @@ export const useChatStore = defineStore('chat', {
             })
 
             const modelsList = await res.json();
-            this.availableModels = modelsList.models.map((m: any) => m.name)
+            this.availableModels = modelsList.models.map((m: any) => m.name).sort()
             // Set default model
-            if (this.availableModels.length) {
+            if (this.model && this.availableModels.includes(this.model)) {
+                // Don't change the last model if the model is available
+            } else if (this.availableModels.length) {
                 this.model = this.availableModels[0]!
             } else {
                 this.model = ''
