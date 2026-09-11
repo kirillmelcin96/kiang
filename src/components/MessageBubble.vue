@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { roles } from '../types/messages';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
 import { useChatStore } from '../stores/chatStore';
 import hljs from 'highlight.js'
+import CopyIcon from '../icons/CopyInBuffer.vue'
+import CheckIcon from '../icons/Check.vue'
 
 const store = useChatStore()
 
@@ -12,6 +14,8 @@ const props = defineProps<{
     role: roles,
     content: string,
 }>()
+
+const messageCopied = ref(false)
 
 marked.use(
     {
@@ -69,17 +73,43 @@ const copyCode = async (event: Event) => {
         button.textContent = 'Copy'
     }, 1500)
 }
+
+async function copyMessage() {
+    if (messageCopied.value) return
+
+    messageCopied.value = true
+
+    await navigator.clipboard.writeText(props.content ?? '')
+
+    setTimeout(() => {
+        messageCopied.value = false
+    }, 1500)
+}
 </script>
 
 <template>
+    <!-- TODO: Create separate components for assistant and user messages -->
+    <template v-if="role === 'assistant'">
+        <div 
+            v-html="parsedOutput"
+            class="assistant-message"
+            ref="messageContent"
+            @click="copyCode"
+        />
+        <div class="assistant-message__footer">
+            <div class="assistant-message__footer-button" @click="copyMessage">
+                <CopyIcon v-show="!messageCopied" />
+                <CheckIcon v-show="messageCopied"/>
+            </div>
+        </div>
+    </template>
     <div 
-        v-if="role === 'assistant'"
-        v-html="parsedOutput"
-        class="assistant-message"
-        ref="messageContent"
-        @click="copyCode"
-    />
-    <div v-else class="chat-bubble" :class="{'chat-bubble--incognito': store.incognitoMode}">{{ props.content }}</div>
+        v-else
+        class="chat-bubble"
+        :class="{'chat-bubble--incognito': store.incognitoMode}"
+    >
+        {{ props.content }}
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -98,6 +128,26 @@ const copyCode = async (event: Event) => {
 }
 
 .assistant-message {
-    margin: 0 0 32px 0;
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        margin: 0 0 32px 0;
+
+        &-button {
+            cursor: pointer;
+            opacity: .8;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
 }
 </style>
