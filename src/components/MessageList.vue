@@ -1,23 +1,12 @@
 <script lang="ts" setup>
-import { onMounted, nextTick, onUpdated } from 'vue';
 import { useChatStore } from '../stores/chatStore';
 import MessageBubble from './MessageBubble.vue';
 import ChatMetadata from './ChatMetadata.vue';
 import RandomGreeting from './RandomGreeting.vue';
 import IncognitoIcon from '../icons/Incognito.vue'
 import IncognitoFillIcon from '../icons/IncognitoFill.vue'
-import hljs from 'highlight.js'
+import LoadingIcon from '../icons/Loading.vue'
 import 'highlight.js/styles/github-dark.css' // любой стиль
-
-const highlight = async () => {
-  await nextTick()
-  document.querySelectorAll<HTMLElement>('pre code').forEach(block => {
-    hljs.highlightElement(block)
-  })
-}
-
-onMounted(highlight)
-onUpdated(highlight)
 
 const store = useChatStore()
 
@@ -42,6 +31,7 @@ function incognitoButtonHandle() {
             :role="msg.role"
         />
         <div v-if="store.isLoading && store.streamingMessage == ''" class="muted">
+            <LoadingIcon class="loading-icon" />
             Generating response...
         </div>
         <div v-if="store.isError" class="error-text">
@@ -76,5 +66,20 @@ function incognitoButtonHandle() {
         width: 20px;
         height: 20px;
     }
+}
+
+.loading-icon {
+    animation: loading-rotate 2s infinite linear;
+    margin-bottom: -1px;
+
+    svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+@keyframes loading-rotate {
+    from { transform: rotateZ(0deg); }
+    to { transform: rotateZ(360deg); }
 }
 </style>
