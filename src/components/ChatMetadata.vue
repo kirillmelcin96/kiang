@@ -40,21 +40,20 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-.timestamp {
+.timestamp,
+.incognito-mode-warning {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    // margin-bottom: 16px;
+}
+
+.timestamp {
     font-size: 14px;
-    margin-bottom: 32px;
 }
 
 .incognito-mode-warning{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 32px;
     color: #ffc72c;
 
     svg {

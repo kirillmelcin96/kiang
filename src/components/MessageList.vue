@@ -31,6 +31,7 @@ function incognitoButtonHandle() {
             :role="msg.role"
         />
         <div v-if="store.isLoading && store.streamingMessage == ''" class="muted">
+            <!-- TODO: Add mini-games while waiting -->
             <LoadingIcon class="loading-icon" />
             Generating response...
         </div>
@@ -52,7 +53,7 @@ function incognitoButtonHandle() {
 }
 
 .scroll-spacer {
-  height: 86px;
+  height: 132px;
   flex-shrink: 0;
 }
 

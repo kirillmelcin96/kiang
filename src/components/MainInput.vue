@@ -9,6 +9,7 @@ const store = useChatStore()
 const request = ref('')
 const ta = useTemplateRef<HTMLTextAreaElement>('ta')
 
+// AI-GENERATED (ChatGPT): Asked to write resize function for <textarea>
 const resize = async () => {
   await nextTick()
 

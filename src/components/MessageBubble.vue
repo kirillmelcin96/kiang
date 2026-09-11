@@ -96,7 +96,7 @@ async function copyMessage() {
             ref="messageContent"
             @click="copyCode"
         />
-        <div class="assistant-message__footer">
+        <div class="assistant-message__footer" v-show="!store.isLoading">
             <div class="assistant-message__footer-button" @click="copyMessage">
                 <CopyIcon v-show="!messageCopied" />
                 <CheckIcon v-show="messageCopied"/>
@@ -119,7 +119,8 @@ async function copyMessage() {
     max-width: 450px;
     padding: 10px 16px;
     background-color: #224998;
-    margin: 0 0 32px auto;
+    margin: 32px 0 0 auto;
+    white-space: pre-wrap;
 
     &--incognito {
         background-color: transparent;
@@ -128,14 +129,17 @@ async function copyMessage() {
 }
 
 .assistant-message {
+    margin: 32px 0 0 0;
+
     &__footer {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 8px;
-        margin: 0 0 32px 0;
 
         &-button {
+            width: 20px;
+            height: 20px;
             cursor: pointer;
             opacity: .8;
 
