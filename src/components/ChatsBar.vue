@@ -1,12 +1,25 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useChatStore } from '../stores/chatStore'
+import type { ChatsBarMenuButton } from '../types/menu.ts'
 import CloseIcon from '../icons/Close.vue'
-// import SettingsIcon from '../icons/Settings.vue'
 import EditLine from '../icons/EditLine.vue'
-
+import SettingsIcon from '../icons/Settings.vue'
+git commit -m "feat(settings): added settings button + type"
 const store = useChatStore()
 const chatInstanceUrl = ref('')
+const menuButtons = ref<ChatsBarMenuButton[]>([
+    {
+        title: 'New chat',
+        icon: EditLine,
+        handler: newChat,
+    },
+    {
+        title: 'Settings',
+        icon: SettingsIcon,
+        handler: openSettings,
+    },
+])
 
 onMounted(() => {
     chatInstanceUrl.value = store.url
@@ -19,6 +32,10 @@ onMounted(() => {
 
 function newChat() {
     store.newChat()
+}
+
+function openSettings() {
+    console.log('ok')
 }
 
 function selectChat(id: number) {
@@ -35,17 +52,17 @@ function deleteChat(id: number) {
     <div class="chats-bar">
         <div>
             <h2 class="title">webllama</h2>
-            <div 
-                class="chats-bar-button"
-                @click="newChat"
-            >
-                <EditLine class="chats-bar-button__icon" />New chat
+            <div class="chat-bar-menu">
+                <div 
+                    v-for="(button, index) in menuButtons"
+                    class="chats-bar-button"
+                    @click="button.handler"
+                    :key="index"
+                >
+                    <component :is="button.icon" class="chats-bar-button__icon"></component>
+                    {{ button.title }}
+                </div>
             </div>
-            <!-- <div 
-                class="chats-bar-button"
-            >
-                <SettingsIcon class="chats-bar-button__icon" />Settings
-            </div> -->
             <p class="subtitle">Your chats</p>
             <div
                 v-for="chat in store.chatsList"
