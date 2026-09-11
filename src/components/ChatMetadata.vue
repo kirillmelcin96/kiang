@@ -9,6 +9,7 @@ const store = useChatStore()
 const metadata = ref<Chat>()
 
 async function requestMetadata() {
+    if (store.isLoading === true) return
     const result = await store.getChatMetadata(store.chatId || 0);
     metadata.value = result;
 }
@@ -18,7 +19,7 @@ onMounted(() => {
 });
 
 watch(
-    () => store.chatId,
+    [() => store.chatId, () => store.isLoading],
     () => requestMetadata()
 )
 </script>

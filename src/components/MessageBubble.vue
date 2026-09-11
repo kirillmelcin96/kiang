@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import type { roles } from '../types/messages';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
