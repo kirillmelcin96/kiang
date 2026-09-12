@@ -12,7 +12,7 @@ const props = defineProps<{
 }>()
 
 const settingValue = computed(() => {
-    return settingsStore[props.setting].trim()
+    return settingsStore[props.setting]
 })
 
 const isBeingEdited = ref(false)
@@ -45,6 +45,8 @@ function saveSetting() {
                 maxlength="30" 
                 autocomplete="off"
                 autocorrect="off"
+                autocapitalize="off" 
+                spellcheck="false"
                 @keyup.enter="saveSetting"
                 @keyup.esc="isBeingEdited = false"
                 ref="inputRef"

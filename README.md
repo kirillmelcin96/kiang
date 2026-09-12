@@ -41,12 +41,15 @@ Files will be available from the `/dist` directory
 
 4. Open `/dist/index.html` file using your browser and that's it!
 
-## Features to be added
+## Features to be added soon
 
 - Search in chats
+- Folders (Projects)
+- Hot keys
+- Ability to unload models from memory
 - Export/Import chat history
 - Text-to-speech button
 - Custome themes
-- System prompts and personal settings
-- ✅ ~~Temporary chats (incognito mode)~~
+- (WIP) System prompts and personal settings
+- (DONE) ~~Temporary chats (incognito mode)~~
 

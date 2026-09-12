@@ -48,6 +48,7 @@ onMounted(() => {
             <span v-if="!ollamaResponse.length" class="muted">
                 No models
             </span>
+            <!-- TODO: Create a button to unload model from memory -->
             <div v-else v-for="model in ollamaResponse as Object" class="model-name">
                 {{ model.name }}
             </div>

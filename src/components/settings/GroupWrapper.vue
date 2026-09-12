@@ -24,12 +24,22 @@ const props = defineProps<SettingsGroup>()
                 </div>
             </div>
         </div>
+
+        <div v-else-if="props.type === 'textarea'" class="settings-group-container">
+            <template v-for="parameter in props.parameters">
+                <component :is="parameter.component" v-bind="parameter.props"></component>
+            </template>
+        </div>
+
+        <div v-if="props.footer" class="settings-group__footer muted">
+            {{ props.footer }}
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .settings-group {
-    margin-top: 32px;
+    margin-top: 24px;
 
     &:first-of-type {
         margin-top: 0;
@@ -43,13 +53,20 @@ const props = defineProps<SettingsGroup>()
         padding-left: 16px;
         font-weight: 500;
     }
+
+    &__footer {
+        padding: 0 16px;
+        font-size: 14px;
+    }
 }
 
 .settings-group-container {
-    margin: 4px 0;
+    width: 100%;
+    margin: 4px 0 12px;
     border-radius: 16px;
     border: 1px solid #3a3a3a;
     background-color: #272727;
+    box-shadow: 0 -1px 24px -8px rgba(0,0,0,0.7);
 
     .settings-group-parameter:last-child {
         border-bottom: 0;

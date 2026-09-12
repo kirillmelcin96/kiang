@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 // State types
 export interface Settings {
     ollamaApiUrl: string,
+    systemPrompt: string,
 }
 
 export type SettingsKey = keyof Settings
@@ -10,6 +11,7 @@ export type SettingsKey = keyof Settings
 export const useSettingsStore = defineStore('settings', {
   state: (): Settings => ({
     ollamaApiUrl: localStorage.getItem('settings/ollamaApiUrl') || 'http://localhost:11434',
+    systemPrompt: localStorage.getItem('settings/systemPrompt') || '',
   }),
   getters: {
     // Empty

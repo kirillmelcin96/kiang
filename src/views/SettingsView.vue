@@ -8,11 +8,12 @@ import { ref } from 'vue'
 import OllamaStatus from '../components/settings/ollama/Status.vue'
 import OllamaInformation from '../components/settings/ollama/Information.vue'
 import EditInput from '../components/settings/EditInput.vue'
+import EditTextarea from '../components/settings/EditTextarea.vue'
 
 const settingsGroups = ref<SettingsGroup[]>([
     {
         id: 'ollama-status',
-        title: 'Ollama Instance',
+        title: 'Ollama instance',
         type: 'group',
         parameters: [
             {
@@ -57,18 +58,23 @@ const settingsGroups = ref<SettingsGroup[]>([
                     setting: 'ollamaApiUrl'
                 }
             }
-        ],
+        ]
     },
-    // {
-    //     id: 'customization',
-    //     title: 'Customization',
-    //     type: 'textarea',
-    //     parameters: [
-    //         {
-    //             title: 'Type',
-    //         }
-    //     ],
-    // }
+    {
+        id: 'system-prompt',
+        title: 'System prompt',
+        type: 'textarea',
+        parameters: [
+            {
+                title: 'Enter system prompt here',
+                component: EditTextarea,
+                props: {
+                    setting: 'systemPrompt'
+                }
+            }
+        ],
+        footer: 'Use system prompt to define role, behavior, tone, constraints, and output format of your model.'
+    }
 ])
 </script>
 
@@ -77,10 +83,7 @@ const settingsGroups = ref<SettingsGroup[]>([
         <h1><SettingsIcon />Settings</h1>
         <GroupWrapper 
             v-for="group in settingsGroups"
-            :id="group.id"
-            :title="group.title"
-            :type="group.type"
-            :parameters="group.parameters"
+            v-bind="group"
         />
     </div>
 </template>

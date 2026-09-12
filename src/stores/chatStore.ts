@@ -44,11 +44,13 @@ export const useChatStore = defineStore('chat', {
     },
     async sendMessage(content: string) {
         if (!this.model) return
+
         this.addUserMessage(content)
         this.isLoading = true
 
         const isNewChat = this.messages.length == 1
 
+        // Handling generation interrupts
         if (controller) {
             controller.abort(); 
         }
@@ -86,6 +88,18 @@ export const useChatStore = defineStore('chat', {
             await this.updateChatsList()
         }
 
+        // Adding system prompt if provided
+        const history = [...this.messages]
+
+        if (settingsStore.systemPrompt.length) {
+            const systemPromptMessage: chatMessage = {
+                "role": "system",
+                "content": settingsStore.systemPrompt
+            }
+
+            history.unshift(systemPromptMessage)
+        }
+
         try {
             // Try to get response from apy
             this.isError = false
@@ -95,7 +109,7 @@ export const useChatStore = defineStore('chat', {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     model: this.model,
-                    messages: this.messages,
+                    messages: history,
                     stream: true,
                     think: this.thinkMode
                 }),
