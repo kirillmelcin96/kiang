@@ -1,5 +1,6 @@
 import { toRaw } from 'vue'
 import { defineStore } from 'pinia'
+import { useSettingsStore } from './settingsStore.ts'
 import type { chatMessage, roles, Chat } from '../types/messages'
 import { deleteChatIDB, loadAllChatsIDB, loadOneChatIDB, saveChatIDB, updateChatIDB } from '../database'
 
@@ -12,7 +13,6 @@ interface State {
     chatId: null | number,
     model: string,
     availableModels: string[],
-    url: string,
     messages: chatMessage[],
     streamingMessage: string,
     isLoading: boolean,
@@ -28,7 +28,6 @@ export const useChatStore = defineStore('chat', {
     chatId: null,
     model: '',
     availableModels: [],
-    url: localStorage.getItem('chat/url') || 'http://localhost:11434',
     messages: [] as chatMessage[],
     streamingMessage: '',
     isLoading: false,
@@ -40,10 +39,6 @@ export const useChatStore = defineStore('chat', {
     // Empty
   },
   actions: {
-    changeChatUrl(newUrl: string) {
-        localStorage.setItem('chat/url', newUrl)
-        this.url = newUrl
-    },
     async updateChatsList() {
         this.chatsList = await loadAllChatsIDB()
     },
@@ -61,11 +56,14 @@ export const useChatStore = defineStore('chat', {
         controller = new AbortController();
         const signal = controller.signal;
 
+        // Adding info from settings
+        const settingsStore = useSettingsStore()
+
         if (isNewChat && !this.incognitoMode) {
             let title = 'Untitled'
 
             try {
-                const res = await fetch(this.url + '/api/generate', {
+                const res = await fetch(settingsStore.ollamaApiUrl + '/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -92,7 +90,7 @@ export const useChatStore = defineStore('chat', {
             // Try to get response from apy
             this.isError = false
 
-            const res = await fetch(this.url + '/api/chat', {
+            const res = await fetch(settingsStore.ollamaApiUrl + '/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -153,8 +151,11 @@ export const useChatStore = defineStore('chat', {
       this.messages.push({ role, content })
     },
     async getLocalModels() {
+        // Adding info from settings
+        const settingsStore = useSettingsStore()
+
         try {
-            const res = await fetch(this.url + '/api/tags', {
+            const res = await fetch(settingsStore.ollamaApiUrl + '/api/tags', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -177,6 +178,15 @@ export const useChatStore = defineStore('chat', {
     },
     newChat() {
         this.view = 'chat'
+        this.chatId = null
+        this.messages = []
+        this.streamingMessage = ''
+        this.incognitoMode = false
+        this.isLoading = false
+        this.isError = false
+    },
+    openSettings() {
+        this.view = 'settings'
         this.chatId = null
         this.messages = []
         this.streamingMessage = ''

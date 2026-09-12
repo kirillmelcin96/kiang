@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useChatStore } from '../stores/chatStore';
 import ChevronDown from '../icons/ChevronDown.vue';
 
@@ -9,13 +9,6 @@ const isSelectorOpened = ref(false)
 onMounted(() => {
     store.getLocalModels()
 })
-
-watch(
-    () => store.url, 
-    () => {
-        store.getLocalModels()
-    }
-)
 
 function changeModel(model: string) {
     isSelectorOpened.value = false

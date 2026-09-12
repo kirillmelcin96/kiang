@@ -7,7 +7,7 @@ import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
 
 const store = useChatStore()
-const chatInstanceUrl = ref('')
+
 const menuButtons = ref<ChatsBarMenuButton[]>([
     {
         title: 'New chat',
@@ -22,20 +22,15 @@ const menuButtons = ref<ChatsBarMenuButton[]>([
 ])
 
 onMounted(() => {
-    chatInstanceUrl.value = store.url
     store.updateChatsList()
 })
-
-// function changeChatInstanceUrl() {
-//     store.changeChatUrl(chatInstanceUrl.value)
-// }
 
 function newChat() {
     store.newChat()
 }
 
 function openSettings() {
-    store.view = 'settings'
+    store.openSettings()
 }
 
 function selectChat(id: number) {
@@ -79,13 +74,6 @@ function deleteChat(id: number) {
                 </div>
             </div>
         </div>
-        <!-- <input
-            v-model="chatInstanceUrl"
-            class="chat-instance-input" 
-            type="text" 
-            autocomplete="off" 
-            @focusout="changeChatInstanceUrl"
-        /> -->
     </div>
 </template>
 
