@@ -7,6 +7,7 @@ let controller: AbortController;
 
 // State types
 interface State {
+    view: 'chat' | 'settings',
     chatsList: Chat[],
     chatId: null | number,
     model: string,
@@ -21,7 +22,8 @@ interface State {
 }
 
 export const useChatStore = defineStore('chat', {
-  state: (): State => ({ 
+  state: (): State => ({
+    view: 'chat',
     chatsList: [],
     chatId: null,
     model: '',
@@ -174,6 +176,7 @@ export const useChatStore = defineStore('chat', {
         }
     },
     newChat() {
+        this.view = 'chat'
         this.chatId = null
         this.messages = []
         this.streamingMessage = ''
@@ -186,6 +189,7 @@ export const useChatStore = defineStore('chat', {
 
         if (!chat) return
 
+        this.view = 'chat'
         this.incognitoMode = false
         this.chatId = chat.id
         this.messages = chat.messages

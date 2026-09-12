@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useChatStore } from '../stores/chatStore'
-import type { ChatsBarMenuButton } from '../types/menu.ts'
+import type { ChatsBarMenuButton } from '../types/menues.ts'
 import CloseIcon from '../icons/Close.vue'
 import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
-git commit -m "feat(settings): added settings button + type"
+
 const store = useChatStore()
 const chatInstanceUrl = ref('')
 const menuButtons = ref<ChatsBarMenuButton[]>([
@@ -35,7 +35,7 @@ function newChat() {
 }
 
 function openSettings() {
-    console.log('ok')
+    store.view = 'settings'
 }
 
 function selectChat(id: number) {
