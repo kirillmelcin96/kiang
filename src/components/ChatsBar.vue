@@ -34,7 +34,7 @@ function openSettings() {
 }
 
 function selectChat(id: number) {
-    if (id === store.chatId) return
+    if (id === store.chatId && store.view === 'chat') return
     store.selectChat(id)
 }
 
@@ -63,7 +63,7 @@ function deleteChat(id: number) {
                 v-for="chat in store.chatsList"
                 @click="selectChat(chat.id)"
                 class="chats-bar-button"
-                :class="{ 'chats-bar-button__active': store.chatId == chat.id }"
+                :class="{ 'chats-bar-button__active': store.chatId == chat.id && store.view === 'chat' }"
             >
                 <span class="chats-bar-button__text">{{ chat.title }}</span>
                 <div 

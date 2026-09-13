@@ -201,12 +201,6 @@ export const useChatStore = defineStore('chat', {
     },
     openSettings() {
         this.view = 'settings'
-        this.chatId = null
-        this.messages = []
-        this.streamingMessage = ''
-        this.incognitoMode = false
-        this.isLoading = false
-        this.isError = false
     },
     async selectChat(id: number) {
         const chat = await loadOneChatIDB(id)
