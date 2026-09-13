@@ -5,3 +5,7 @@ export interface ChatsBarMenuButton {
     icon: Component
     handler: () => void
 }
+
+export interface ChatsBarContextMenuButton extends ChatsBarMenuButton {
+    isDelete?: boolean,
+}

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+import { computed, ref } from 'vue';
+import { useFloating, offset, shift } from '@floating-ui/vue';
 import { useChatStore } from '../stores/chatStore'
-import CloseIcon from '../icons/Close.vue'
+import DotsIcon from '../icons/Dots.vue'
+import ChatsBarContextMenu from './overlays/ChatsBarContextMenu.vue';
 
 const store = useChatStore()
 
@@ -9,13 +12,33 @@ const props = defineProps<{
     title: string,
 }>()
 
+const contextMenuOpened = ref(false)
+const contextMenuChatId = ref<number | null>(null)
+const reference = ref<HTMLDivElement>();
+const floating = ref<HTMLDivElement>();
+
+const { floatingStyles } = useFloating(reference, floating, {
+  placement: 'right-start',
+  middleware: [offset(5), shift()],
+});
+
+const isButtonActive = computed(() => {
+    return (store.chatId == props.id || contextMenuOpened.value) && store.view === 'chat'
+})
+
 function selectChat(id: number) {
     if (id === store.chatId && store.view === 'chat') return
     store.selectChat(id)
 }
 
-function deleteChat(id: number) {
-    store.deleteChat(id)
+function openContextMenu(id: number) {
+    contextMenuOpened.value = true
+    contextMenuChatId.value = id
+}
+
+function closeContextMenu() {
+    contextMenuOpened.value = false
+    contextMenuChatId.value = null
 }
 </script>
 
@@ -23,16 +46,24 @@ function deleteChat(id: number) {
     <div
         @click="selectChat(props.id)"
         class="chats-bar-button"
-        :class="{ 'chats-bar-button__active': store.chatId == props.id && store.view === 'chat' }"
+        :class="{ 'chats-bar-button__active': isButtonActive }"
+        ref="reference"
     >
         <span class="chats-bar-button__text">{{ props.title }}</span>
         <div 
-            @click="deleteChat(props.id)"
-            class="chats-bar-button__close"
+            @click.stop="openContextMenu(props.id)"
+            class="chats-bar-button__dots"
         >
-            <CloseIcon />
+            <DotsIcon />
         </div>
     </div>
+    <ChatsBarContextMenu 
+        v-if="contextMenuOpened" 
+        ref="floating" 
+        :style="floatingStyles"
+        :id="contextMenuChatId"
+        @close-context-menu="closeContextMenu"
+    />
 </template>
 
 <style lang="scss" scoped>
@@ -41,10 +72,9 @@ function deleteChat(id: number) {
     display: flex;
     gap: 4px;
     padding: 6px 8px;
-    margin-bottom: 4px;
+    margin-bottom: 1px;
     border-radius: 12px;
     font-size: 15px;
-    // font-weight: 500;
     background-color: #0e0e0e;
     max-width: 100%;
     overflow: hidden;
@@ -67,7 +97,7 @@ function deleteChat(id: number) {
         margin-top: 2px;
     }
 
-    &__close {
+    &__dots {
         opacity: 0;
         display: flex;
         flex-grow: 1;
@@ -77,6 +107,7 @@ function deleteChat(id: number) {
         height: 22px;
         border-radius: 6px;
         transition: .15s;
+        z-index: 9;
         cursor: pointer;
 
         &:hover {
@@ -92,7 +123,7 @@ function deleteChat(id: number) {
     &:hover {
         background-color: #272727;
 
-        .chats-bar-button__close {
+        .chats-bar-button__dots {
             width: 25px;
             opacity: 1;
         }

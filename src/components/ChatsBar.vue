@@ -94,7 +94,6 @@ function openSettings() {
     margin-bottom: 4px;
     border-radius: 12px;
     font-size: 15px;
-    // font-weight: 500;
     background-color: #0e0e0e;
     max-width: 100%;
     overflow: hidden;
@@ -117,35 +116,8 @@ function openSettings() {
         margin-top: 2px;
     }
 
-    &__close {
-        opacity: 0;
-        display: flex;
-        flex-grow: 1;
-        align-items: center;
-        justify-content: center;
-        width: 0px;
-        height: 22px;
-        border-radius: 6px;
-        transition: .15s;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #ffffff15;
-        }
-
-        svg {
-            width: 12px;
-            height: 12px;
-        }
-    }
-
     &:hover {
         background-color: #272727;
-
-        .chats-bar-button__close {
-            width: 25px;
-            opacity: 1;
-        }
     }
 
     &__active {
