@@ -9,7 +9,7 @@ const emit = defineEmits(['confirm', 'cancel'])
 <template>
     <Teleport to="body">
         <div 
-            @click="emit('cancel')" 
+            @click.self="emit('cancel')" 
             class="confirm-modal-overlay"
         >
             <div class="confirm-modal">
@@ -52,6 +52,7 @@ const emit = defineEmits(['confirm', 'cancel'])
     width: 380px;
     padding: 12px 16px;
     z-index: 9999;
+    user-select: none;
 
     h3 {
         margin: 0;
