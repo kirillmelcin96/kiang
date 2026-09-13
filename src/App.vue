@@ -2,19 +2,31 @@
 import ChatsBar from './components/ChatsBar.vue';
 import ChatView from './views/ChatView.vue';
 import SettingsView from './views/SettingsView.vue';
+import ConfirmModal from './components/overlays/ConfirmModal.vue'
 import { useChatStore } from './stores/chatStore.ts'
+import { useConfirmStore } from './stores/ui/confirm.ts'
 
 const store = useChatStore()
+const uiConfirm = useConfirmStore()
 </script>
 
 <template>
-  <div class="main-layout">
-    <ChatsBar />
-    <div class="chat-layout">
-      <ChatView v-if="store.view === 'chat'" />
-      <SettingsView v-else-if="store.view === 'settings'" />
-    </div>
-  </div>
+	<div class="main-layout">
+		<ChatsBar />
+		<div class="chat-layout">
+			<ChatView v-if="store.view === 'chat'" />
+			<SettingsView v-else-if="store.view === 'settings'" />
+		</div>
+	</div>
+
+	<ConfirmModal
+		v-if="uiConfirm.isOpen"
+		:title="uiConfirm.title"
+		:message="uiConfirm.message"
+		:confirm-text="uiConfirm.confirmText"
+		@confirm="uiConfirm.resolve(true)"
+		@cancel="uiConfirm.resolve(false)"
+	/>
 </template>
 
 <style lang="scss">

@@ -2,9 +2,9 @@
 import { onMounted, ref } from 'vue'
 import { useChatStore } from '../stores/chatStore'
 import type { ChatsBarMenuButton } from '../types/menues.ts'
-import CloseIcon from '../icons/Close.vue'
 import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
+import ChatsBarButton from './ChatsBarButton.vue'
 
 const store = useChatStore()
 
@@ -32,15 +32,6 @@ function newChat() {
 function openSettings() {
     store.openSettings()
 }
-
-function selectChat(id: number) {
-    if (id === store.chatId && store.view === 'chat') return
-    store.selectChat(id)
-}
-
-function deleteChat(id: number) {
-    store.deleteChat(id)
-}
 </script>
 
 <template>
@@ -59,20 +50,11 @@ function deleteChat(id: number) {
                 </div>
             </div>
             <p class="subtitle">Your chats</p>
-            <div
+            <ChatsBarButton 
                 v-for="chat in store.chatsList"
-                @click="selectChat(chat.id)"
-                class="chats-bar-button"
-                :class="{ 'chats-bar-button__active': store.chatId == chat.id && store.view === 'chat' }"
-            >
-                <span class="chats-bar-button__text">{{ chat.title }}</span>
-                <div 
-                    @click="deleteChat(chat.id)"
-                    class="chats-bar-button__close"
-                >
-                    <CloseIcon />
-                </div>
-            </div>
+                :id="chat.id"
+                :title="chat.title"
+            />
         </div>
     </div>
 </template>
@@ -112,7 +94,6 @@ function deleteChat(id: number) {
     margin-bottom: 4px;
     border-radius: 12px;
     font-size: 15px;
-    // font-weight: 500;
     background-color: #0e0e0e;
     max-width: 100%;
     overflow: hidden;
@@ -135,35 +116,8 @@ function deleteChat(id: number) {
         margin-top: 2px;
     }
 
-    &__close {
-        opacity: 0;
-        display: flex;
-        flex-grow: 1;
-        align-items: center;
-        justify-content: center;
-        width: 0px;
-        height: 22px;
-        border-radius: 6px;
-        transition: .15s;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #ffffff15;
-        }
-
-        svg {
-            width: 12px;
-            height: 12px;
-        }
-    }
-
     &:hover {
         background-color: #272727;
-
-        .chats-bar-button__close {
-            width: 25px;
-            opacity: 1;
-        }
     }
 
     &__active {

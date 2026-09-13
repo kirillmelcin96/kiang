@@ -99,7 +99,7 @@ onMounted(resize)
     bottom: 24px;
     width: 100%;
     max-width: 776px;
-    z-index: 1000;
+    z-index: 10;
     border-radius: 22px;
     border: 1px solid #3a3a3a;
     padding: 8px 16px;
@@ -188,7 +188,7 @@ onMounted(resize)
         transition: .25s;
 
         &--break {
-            color: #ff2020;
+            color: #ff4e4e;
             background-color: #ff202030;
         }
 

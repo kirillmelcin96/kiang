@@ -38,6 +38,10 @@ async function updateChatIDB(id: number, messages: chatMessage[]) {
     await db.chats.update(id, { messages })
 }
 
+async function updateChatTitleIDB(id: number, title: string) {
+    await db.chats.update(id, { title })
+}
+
 async function deleteChatIDB(id: number) {
     await db.chats.delete(id)
 }
@@ -48,4 +52,5 @@ export {
     saveChatIDB,
     updateChatIDB,
     deleteChatIDB,
+    updateChatTitleIDB,
 };
