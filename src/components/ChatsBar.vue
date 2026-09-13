@@ -2,9 +2,9 @@
 import { onMounted, ref } from 'vue'
 import { useChatStore } from '../stores/chatStore'
 import type { ChatsBarMenuButton } from '../types/menues.ts'
-import CloseIcon from '../icons/Close.vue'
 import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
+import ChatsBarButton from './ChatsBarButton.vue'
 
 const store = useChatStore()
 
@@ -32,15 +32,6 @@ function newChat() {
 function openSettings() {
     store.openSettings()
 }
-
-function selectChat(id: number) {
-    if (id === store.chatId && store.view === 'chat') return
-    store.selectChat(id)
-}
-
-function deleteChat(id: number) {
-    store.deleteChat(id)
-}
 </script>
 
 <template>
@@ -59,20 +50,11 @@ function deleteChat(id: number) {
                 </div>
             </div>
             <p class="subtitle">Your chats</p>
-            <div
+            <ChatsBarButton 
                 v-for="chat in store.chatsList"
-                @click="selectChat(chat.id)"
-                class="chats-bar-button"
-                :class="{ 'chats-bar-button__active': store.chatId == chat.id && store.view === 'chat' }"
-            >
-                <span class="chats-bar-button__text">{{ chat.title }}</span>
-                <div 
-                    @click="deleteChat(chat.id)"
-                    class="chats-bar-button__close"
-                >
-                    <CloseIcon />
-                </div>
-            </div>
+                :id="chat.id"
+                :title="chat.title"
+            />
         </div>
     </div>
 </template>
