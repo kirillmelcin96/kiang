@@ -7,7 +7,7 @@ import type { ChatsBarContextMenuButton } from '../../types/menues.ts';
 const props = defineProps<{
     id: number | null
 }>()
-const emit = defineEmits(['close-context-menu'])
+const emit = defineEmits(['close-context-menu', 'edit-title'])
 
 const contextMenuButtons: ChatsBarContextMenuButton[] = [
     {
@@ -29,7 +29,7 @@ const contextMenuButtons: ChatsBarContextMenuButton[] = [
 ]
 
 function editTitle() {
-    console.log('ok')
+    emit('edit-title')
 }
 
 function exportJSON() {

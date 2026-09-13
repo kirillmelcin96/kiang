@@ -2,7 +2,14 @@ import { toRaw } from 'vue'
 import { defineStore } from 'pinia'
 import { useSettingsStore } from './settingsStore.ts'
 import type { chatMessage, roles, Chat } from '../types/messages'
-import { deleteChatIDB, loadAllChatsIDB, loadOneChatIDB, saveChatIDB, updateChatIDB } from '../database'
+import { 
+    deleteChatIDB, 
+    loadAllChatsIDB, 
+    loadOneChatIDB, 
+    saveChatIDB, 
+    updateChatIDB,
+    updateChatTitleIDB,
+} from '../database'
 
 let controller: AbortController;
 
@@ -218,6 +225,10 @@ export const useChatStore = defineStore('chat', {
         if (id == this.chatId) {
             this.newChat()
         }
+        await this.updateChatsList()
+    },
+    async updateChatTitle(id: number, newTitle: string) {
+        await updateChatTitleIDB(id, newTitle)
         await this.updateChatsList()
     },
     async getChatMetadata(id: number) {
