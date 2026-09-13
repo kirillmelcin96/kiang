@@ -68,19 +68,4 @@ function incognitoButtonHandle() {
         height: 20px;
     }
 }
-
-.loading-icon {
-    animation: loading-rotate 2s infinite linear;
-    margin-bottom: -1px;
-
-    svg {
-        width: 17px;
-        height: 17px;
-    }
-}
-
-@keyframes loading-rotate {
-    from { transform: rotateZ(0deg); }
-    to { transform: rotateZ(360deg); }
-}
 </style>

@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import ChatsBar from './components/ChatsBar.vue';
-import MainInput from './components/MainInput.vue';
-import MessageList from './components/MessageList.vue';
+import ChatView from './views/ChatView.vue';
+import SettingsView from './views/SettingsView.vue';
+import { useChatStore } from './stores/chatStore.ts'
 
+const store = useChatStore()
 </script>
 
 <template>
   <div class="main-layout">
     <ChatsBar />
     <div class="chat-layout">
-      <div class="chat-list-container">
-        <MessageList />
-        <MainInput />
-      </div>
+      <ChatView v-if="store.view === 'chat'" />
+      <SettingsView v-else-if="store.view === 'settings'" />
     </div>
   </div>
 </template>
@@ -36,14 +36,5 @@ import MessageList from './components/MessageList.vue';
     margin: 0;
     border-radius: 0;
   }
-}
-
-.chat-list-container {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 24px 12px 24px 12px;
 }
 </style>

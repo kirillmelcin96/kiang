@@ -1,5 +1,6 @@
 import { toRaw } from 'vue'
 import { defineStore } from 'pinia'
+import { useSettingsStore } from './settingsStore.ts'
 import type { chatMessage, roles, Chat } from '../types/messages'
 import { deleteChatIDB, loadAllChatsIDB, loadOneChatIDB, saveChatIDB, updateChatIDB } from '../database'
 
@@ -7,11 +8,11 @@ let controller: AbortController;
 
 // State types
 interface State {
+    view: 'chat' | 'settings',
     chatsList: Chat[],
     chatId: null | number,
     model: string,
     availableModels: string[],
-    url: string,
     messages: chatMessage[],
     streamingMessage: string,
     isLoading: boolean,
@@ -21,12 +22,12 @@ interface State {
 }
 
 export const useChatStore = defineStore('chat', {
-  state: (): State => ({ 
+  state: (): State => ({
+    view: 'chat',
     chatsList: [],
     chatId: null,
     model: '',
     availableModels: [],
-    url: localStorage.getItem('chat/url') || 'http://localhost:11434',
     messages: [] as chatMessage[],
     streamingMessage: '',
     isLoading: false,
@@ -38,20 +39,18 @@ export const useChatStore = defineStore('chat', {
     // Empty
   },
   actions: {
-    changeChatUrl(newUrl: string) {
-        localStorage.setItem('chat/url', newUrl)
-        this.url = newUrl
-    },
     async updateChatsList() {
         this.chatsList = await loadAllChatsIDB()
     },
     async sendMessage(content: string) {
         if (!this.model) return
+
         this.addUserMessage(content)
         this.isLoading = true
 
         const isNewChat = this.messages.length == 1
 
+        // Handling generation interrupts
         if (controller) {
             controller.abort(); 
         }
@@ -59,11 +58,14 @@ export const useChatStore = defineStore('chat', {
         controller = new AbortController();
         const signal = controller.signal;
 
+        // Adding info from settings
+        const settingsStore = useSettingsStore()
+
         if (isNewChat && !this.incognitoMode) {
             let title = 'Untitled'
 
             try {
-                const res = await fetch(this.url + '/api/generate', {
+                const res = await fetch(settingsStore.ollamaApiUrl + '/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -86,16 +88,28 @@ export const useChatStore = defineStore('chat', {
             await this.updateChatsList()
         }
 
+        // Adding system prompt if provided
+        const history = [...this.messages]
+
+        if (settingsStore.systemPrompt.length) {
+            const systemPromptMessage: chatMessage = {
+                "role": "system",
+                "content": settingsStore.systemPrompt
+            }
+
+            history.unshift(systemPromptMessage)
+        }
+
         try {
             // Try to get response from apy
             this.isError = false
 
-            const res = await fetch(this.url + '/api/chat', {
+            const res = await fetch(settingsStore.ollamaApiUrl + '/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     model: this.model,
-                    messages: this.messages,
+                    messages: history,
                     stream: true,
                     think: this.thinkMode
                 }),
@@ -151,8 +165,11 @@ export const useChatStore = defineStore('chat', {
       this.messages.push({ role, content })
     },
     async getLocalModels() {
+        // Adding info from settings
+        const settingsStore = useSettingsStore()
+
         try {
-            const res = await fetch(this.url + '/api/tags', {
+            const res = await fetch(settingsStore.ollamaApiUrl + '/api/tags', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -174,6 +191,7 @@ export const useChatStore = defineStore('chat', {
         }
     },
     newChat() {
+        this.view = 'chat'
         this.chatId = null
         this.messages = []
         this.streamingMessage = ''
@@ -181,11 +199,15 @@ export const useChatStore = defineStore('chat', {
         this.isLoading = false
         this.isError = false
     },
+    openSettings() {
+        this.view = 'settings'
+    },
     async selectChat(id: number) {
         const chat = await loadOneChatIDB(id)
 
         if (!chat) return
 
+        this.view = 'chat'
         this.incognitoMode = false
         this.chatId = chat.id
         this.messages = chat.messages

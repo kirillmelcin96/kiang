@@ -113,7 +113,7 @@ onMounted(resize)
         outline: none;
         border: none;
         background-color: transparent;
-        font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
         margin-top: 4px;
         margin-bottom: 36px;
 
