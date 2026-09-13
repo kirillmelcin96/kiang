@@ -38,8 +38,9 @@ function editTitle() {
     emit('edit-title')
 }
 
-function exportJSON() {
-
+async function exportJSON() {
+    await chatStore.exportChatAsJSON(props.id)
+    emit('close-context-menu')
 }
 
 async function deleteChat() {

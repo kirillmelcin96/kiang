@@ -10,6 +10,7 @@ import {
     updateChatIDB,
     updateChatTitleIDB,
 } from '../database'
+import { saveAs } from 'file-saver'
 
 let controller: AbortController;
 
@@ -230,6 +231,29 @@ export const useChatStore = defineStore('chat', {
     async updateChatTitle(id: number, newTitle: string) {
         await updateChatTitleIDB(id, newTitle)
         await this.updateChatsList()
+    },
+    async exportChatAsJSON(id: number) {
+        const chat = await loadOneChatIDB(id)
+
+        if (!chat) return
+
+        const date = new Date(chat.createdAt < 1e12 ? chat.createdAt * 1000 : chat.createdAt)
+        const dateFormatted = new Intl.DateTimeFormat('sv-SE', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        }).format(date)
+        const timeFormatted = new Intl.DateTimeFormat('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit'
+        }).format(date).replace(':', '-')
+
+        const fileName = `${chat.model}_${dateFormatted}_${timeFormatted}`
+        const jsonString = JSON.stringify(chat, null, 2);
+
+        const blob = new Blob([jsonString], { type: "application/json;charset=utf-8" });
+
+        saveAs(blob, fileName + ".json");
     },
     async getChatMetadata(id: number) {
         // if (id === null) return {}
