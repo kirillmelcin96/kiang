@@ -3,11 +3,17 @@ import EditPencilIcon from '../../icons/EditPencil.vue';
 import ExportFileIcon from '../../icons/ExportFile.vue';
 import DeleteIcon from '../../icons/Delete.vue';
 import type { ChatsBarContextMenuButton } from '../../types/menues.ts';
+import { useChatStore } from '../../stores/chatStore.ts'
+import { useConfirmStore } from '../../stores/ui/confirm.ts'
 
 const props = defineProps<{
-    id: number | null
+    id: number,
+    title: string,
 }>()
 const emit = defineEmits(['close-context-menu', 'edit-title'])
+
+const chatStore = useChatStore()
+const uiConfirm = useConfirmStore()
 
 const contextMenuButtons: ChatsBarContextMenuButton[] = [
     {
@@ -36,8 +42,18 @@ function exportJSON() {
 
 }
 
-function deleteChat() {
-    // store.deleteChat(id)
+async function deleteChat() {
+    const confirmed = await uiConfirm.confirm({
+        title: 'Delete Chat?',
+        message: `Chat <b>"${props.title}"</b> will be deleted forever`,
+        confirmText: 'Delete',
+    })
+
+    emit('close-context-menu')
+
+    if (!confirmed) return
+
+    chatStore.deleteChat(props.id)
 }
 </script>
 

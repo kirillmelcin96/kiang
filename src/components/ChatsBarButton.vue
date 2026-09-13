@@ -106,7 +106,8 @@ function saveEditTitle() {
         v-if="contextMenuOpened" 
         ref="floating" 
         :style="floatingStyles"
-        :id="contextMenuChatId"
+        :id="props.id"
+        :title="props.title"
         @close-context-menu="closeContextMenu"
         @edit-title="editTitle"
     />
