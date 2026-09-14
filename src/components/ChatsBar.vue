@@ -73,7 +73,7 @@ function openSettings() {
 
 .title {
     // text-align: center;
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: var(--font-ui);
     margin-top: 0;
     margin-left: 8px;
 }

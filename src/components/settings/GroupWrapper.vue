@@ -74,12 +74,12 @@ const props = defineProps<SettingsGroup>()
 }
 
 .settings-group-parameter {
-    padding: 12px 16px;
+    padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #3a3a3a;
-    min-height: 70px;
+    min-height: 62px;
 
     &__info {
         flex-grow: 1;

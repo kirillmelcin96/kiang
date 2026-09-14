@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@use 'fonts';
 
 :root {
-  font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-ui: 'Onest', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  font-family: var(--font-ui);
   line-height: 1.5;
   font-weight: 400;
 
@@ -42,11 +45,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto Condensed", sans-serif;
-  margin: 12px 0;
-  font-weight: 500;
+  font-family: var(--font-ui);
+  margin: 32px 0 12px;
+  font-weight: 600;
 
   code {
+    font-family: inherit;
     font-size: inherit;
   }
 }
@@ -76,7 +80,7 @@ h6 {
 }
 
 b, strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 u {
@@ -85,10 +89,7 @@ u {
 
 hr {
   color: #303030;
-}
-
-ul, ol {
-  padding-left: 20px;
+  margin-bottom: 32px;
 }
 
 //tables
@@ -127,6 +128,7 @@ pre {
 }
 
 code {
+  font-family: var(--font-mono);
   font-size: 15px;
   user-select: contain;
 }
@@ -137,7 +139,9 @@ code.hljs {
 }
 
 .code-block {
+  font-family: var(--font-mono);
   position: relative;
+  margin-bottom: 32px;
 }
 
 .code-header {
@@ -171,8 +175,18 @@ math {
   margin: 24px 0;
 }
 
+// Lists
+
+li {
+  margin: 12px 0;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
 li::marker {
-  content: "- ";
+  content: "• ";
   // color: #888888;
 }
 

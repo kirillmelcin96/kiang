@@ -187,7 +187,7 @@ function saveEditTitle() {
     padding: 0;
     background-color: transparent;
     border: none;
-    font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: var(--font-ui);
     width: 100%;
     outline: none;
     font-size: 15px;
