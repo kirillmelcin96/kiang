@@ -70,7 +70,7 @@ function saveSetting() {
     }
 
     input[type=text] {
-        font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-family: var(--font-ui);
         field-sizing: content;
         background-color: #00000030;
         border: 0;

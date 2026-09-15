@@ -1,7 +1,6 @@
-![Demo image](https://github.com/kirillmelcin96/webllama/blob/main/demo.png)
+![Preview image](https://github.com/kirillmelcin96/webllama/blob/main/preview.png)
 
-# Webllama
-**Webllama** - is a selfhosted offline AI platform providing access to ollama models using API. Written in Vue.js
+**webllama** - is a selfhosted AI platform providing access to Ollama models using API. Written in Vue.js. Runs in your browser.
 
 ## Key features
 
@@ -13,6 +12,22 @@
 - 🤫 **“Incognito Mode”:** This allows you to have private, temporary chats without saving your history.
 - 📄 **Rich output format:** Supports Markdown formatting, code, and complex LaTeX formulas for structured responses.
 - 💡 **“Thinking Mode”:** Enable this mode for more detailed and thoughtful responses from the AI.
+
+## Before start
+
+For **webllama** to work properly, you need to install and run **Ollama**. **Ollama** is a backend for downloading and interacting with local AI models.
+
+If you already have **Ollama** installed, proceed to the [installation](https://github.com/kirillmelcin96/webllama#installation).
+
+If you haven't installed it on your computer yet, follow these steps:
+
+[Download Ollama](https://ollama.com/download) from the official website, then run:
+
+```bash
+ollama pull gemma4:e2b
+```
+
+This command downloads the `gemma4:e2b` model by Google. You can choose other models to install, such as: Qwen, Llama, Mistral, DeepSeek, etc. See the full list of available models [here](https://ollama.com/search).
 
 ## Installation 
 

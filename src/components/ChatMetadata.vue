@@ -88,7 +88,7 @@ watch(
 
     h3 {
         margin-top: 0;
-        font-family: "Roboto Condensed", sans-serif;
+        font-family: var(--font-ui);
     }
 
     p {
