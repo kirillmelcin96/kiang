@@ -1,0 +1,56 @@
+name: ✨ Feature request
+description: Suggest an idea or improvement for webllama!
+title: "[Feature]: "
+labels:
+  - "feature"
+assignees:
+  - kirillmelcin96
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement!
+
+        Please describe the problem your idea would solve, rather than only describing the implementation.
+
+  - type: checkboxes
+    id: captchas
+    attributes:
+      label: Preliminary Checks
+      description: Please confirm the following before submitting a bug report.
+      options:
+        - label: I have searched existing feature requests and avoided creating duplicates.
+          required: true
+        - label: I am not filing a bug report.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the use case or limitation you're experiencing.
+      placeholder: I would like to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe how you think this could work.
+      placeholder: It would be useful if...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Are there other ways to solve this problem?
+      placeholder: I considered...
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: Add screenshots, examples, references, or anything else that may help.

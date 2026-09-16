@@ -1,0 +1,99 @@
+name: 🐛 Bug report
+description: Report a problem or unexpected behavior
+title: "[Bug]: "
+labels:
+  - "bug"
+assignees:
+  - kirillmelcin96
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug!
+
+        > [!IMPORTANT]
+        > - Please provide descriptive titles.
+        > - Please search existing issues to avoid creating duplicates.
+        > - Please provide as much information as possible. It will help us to better understand what's wrong.
+
+  - type: checkboxes
+    id: captchas
+    attributes:
+      label: Preliminary Checks
+      description: Please confirm the following before submitting a bug report.
+      options:
+        - label: I have searched existing issues and avoided creating duplicates.
+          required: true
+        - label: I am not filing a feature request.
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected to happen.
+      placeholder: Tell us what went wrong...
+    validations:
+      required: true
+
+  - type: upload
+    id: screenshots
+    attributes:
+      label: Upload screenshots
+      description: If applicable, add screenshots to help explain your problem.
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Tell us how to reproduce the problem.
+      placeholder: |
+        1. Open...
+        2. Select...
+        3. Click...
+        4. Unexpected behavior...
+    validations:
+      required: true
+
+
+  - type: input
+    id: webllama-version
+    attributes:
+      label: webllama version
+      placeholder: "e.g. 0.4.1"
+      description: You can check the app version in Settings > General > webllama version.
+    validations:
+      required: true
+
+  - type: input
+    id: ollama-version
+    attributes:
+      label: Ollama version
+      placeholder: "e.g. 0.32.4"
+      description: U can check the version of Ollama by typing 'ollama -v' into the terminal.
+    validations:
+      required: true
+
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      placeholder: "e.g. Firefox 155"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "e.g. Fedora 43"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: Add logs or anything else that may help.
+      render: shell
