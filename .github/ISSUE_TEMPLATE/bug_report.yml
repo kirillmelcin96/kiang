@@ -3,8 +3,6 @@ description: Report a problem or unexpected behavior
 title: "[Bug]: "
 labels:
   - "bug"
-assignees:
-  - kirillmelcin96
 body:
   - type: markdown
     attributes:
@@ -36,13 +34,11 @@ body:
     validations:
       required: true
 
-  - type: upload
+  - type: textarea
     id: screenshots
     attributes:
-      label: Upload screenshots
-      description: If applicable, add screenshots to help explain your problem.
-    validations:
-      required: false
+      label: Screenshots and videos
+      description: If applicable, add screenshots or videos to help explain your problem.
 
   - type: textarea
     id: reproduction
@@ -72,7 +68,7 @@ body:
     attributes:
       label: Ollama version
       placeholder: "e.g. 0.32.4"
-      description: U can check the version of Ollama by typing 'ollama -v' into the terminal.
+      description: You can check the version of Ollama by typing 'ollama -v' into the terminal.
     validations:
       required: true
 
@@ -82,6 +78,7 @@ body:
     attributes:
       label: Browser
       placeholder: "e.g. Firefox 155"
+      description: Browser you used to work with webllama.
     validations:
       required: true
 

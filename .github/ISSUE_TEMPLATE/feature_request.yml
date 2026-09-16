@@ -3,8 +3,6 @@ description: Suggest an idea or improvement for webllama!
 title: "[Feature]: "
 labels:
   - "feature"
-assignees:
-  - kirillmelcin96
 body:
   - type: markdown
     attributes:
@@ -17,7 +15,7 @@ body:
     id: captchas
     attributes:
       label: Preliminary Checks
-      description: Please confirm the following before submitting a bug report.
+      description: Please confirm the following before submitting a feature request.
       options:
         - label: I have searched existing feature requests and avoided creating duplicates.
           required: true
