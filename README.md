@@ -1,5 +1,19 @@
 # webllama
 
+<div align="center">
+
+![GitHub Repo stars](https://img.shields.io/github/stars/kirillmelcin96/webllama)
+![GitHub forks](https://img.shields.io/github/forks/kirillmelcin96/webllama)
+![GitHub watchers](https://img.shields.io/github/watchers/kirillmelcin96/webllama)
+
+![GitHub package.json version](https://img.shields.io/github/package-json/v/kirillmelcin96/webllama)
+![GitHub repo size](https://img.shields.io/github/repo-size/kirillmelcin96/webllama)
+
+![GitHub License](https://img.shields.io/github/license/kirillmelcin96/webllama)
+![GitHub last commit](https://img.shields.io/github/last-commit/kirillmelcin96/webllama)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/webllama)
+</div>
+
 **webllama** is a self-hosted web interface for local AI. 
 
 Written in Vue.js. 
