@@ -18,8 +18,8 @@ Free and open source.
 - [Features](#features)
     - [Getting Started](#-getting-started)
     - [Models and Chat](#-models-and-chat)
-    - [Settings](#-settings)
-- [⚠️ Before You Start](#-before-you-start)
+    - [Settings](#️-settings)
+- [⚠️ Before You Start](#️-before-you-start)
 - [Installation](#installation)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -42,7 +42,7 @@ Your chats are stored directly in your browser using IndexedDB, allowing **webll
 ### 🚀 Getting Started
 
 - **Simple setup:** Just clone the repository and run the app right in your browser. Click [here](#installation) to skip to the installation.
-- **Automatic models detection:** The app automatically finds and uses models already installed with your local Ollama instance. If you haven't installed Ollama yet, follow [these steps](#before-start).
+- **Automatic models detection:** The app automatically finds and uses models already installed with your local Ollama instance. If you haven't installed Ollama yet, follow [these steps](#️-before-you-start).
 
 ### 💬 Models and Chat
 
