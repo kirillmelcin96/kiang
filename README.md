@@ -159,6 +159,20 @@ Have a question/suggestion? Feel free to contact me:
 
 kerekerekerek@hotmail.com
 
+### Support
+
+If you find **webllama** useful and would like to support its development, you can send a donation:
+
+**BTC:** `bc1qmh3qkvsdze7rrdz3mk6nfrulsr9x8gr3mexgnk`
+
+**ETH:** `0x184a418975587bFc926961A71C0529919a3aeD7B`
+
+**USDT (TRC20):** `TR6uA8V8GKFfY4FZMJJ6tNy18drb2LK6wZ`
+
+**GRAM (ex TON):** `UQAlDlzMb59T80REEF_v_lYPkGdXnsU6bFbjFOhgTgySS623`
+
+> **webllama** is a free app. Donations are completely optional and are not required to use **webllama**.
+
 ## License
 
 **webllama** is licensed under the Apache License 2.0
