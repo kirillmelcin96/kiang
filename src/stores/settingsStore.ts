@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { httpFetch } from '../utils/http.ts'
 
 // State types
 export interface Settings {
@@ -23,7 +24,7 @@ export const useSettingsStore = defineStore('settings', {
     },
     async getOllamaStatus() {
         try {
-            const res = await fetch(this.ollamaApiUrl + '/', {
+            const res = await httpFetch(this.ollamaApiUrl + '/', {
                 method: 'GET',
             })
 
@@ -34,7 +35,7 @@ export const useSettingsStore = defineStore('settings', {
     },
     async requestOllamaApi(endpoint: string, method: 'GET' | 'POST') {
         try {
-            const res = await fetch(this.ollamaApiUrl + endpoint, {
+            const res = await httpFetch(this.ollamaApiUrl + endpoint, {
                 method,
             })
 

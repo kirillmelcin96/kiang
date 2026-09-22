@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^2.0.1",
+    "@tauri-apps/plugin-http": "~2.6.1",
     "@types/file-saver": "^2.0.7",
     "dexie": "^4.3.0",
     "file-saver": "^2.0.5",
