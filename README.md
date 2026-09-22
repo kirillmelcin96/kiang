@@ -43,7 +43,7 @@ Free and open source.
 
 ## Overview
 
-**webllama** is built with Vite + Vue 3. It runs right in your browser and doesn't require any advanced skills or knowledge to get started. **webllama** can automatically detect and connect to Ollama “right out of the box”.
+**webllama** is built with Vite + Vue 3. It runs right in your browser and doesn't require any advanced skills or knowledge to get started. **webllama** can automatically detect and connect to Ollama right out of the box.
 
 Your chats are stored directly in your browser using IndexedDB, allowing **webllama** to persist your conversation history locally without relying on a backend. User settings are stored in LocalStorage for quick and persistent access.
 
@@ -87,11 +87,16 @@ If you don't have Ollama yet:
 ollama pull gemma4:e2b
 ```
 
-This downloads Google's `Gemma 4 E2B` model. You can use any model supported by Ollama, including Qwen, Llama, Mistral, DeepSeek, and others.
+This downloads Google's `Gemma 4 E2B` model. You can instead pull any model supported by Ollama, including Qwen, Llama, Mistral, DeepSeek, and many others.
 
 See the full list of available models on the [Ollama library](https://ollama.com/search).
 
 ## Installation 
+
+### Requirements
+- Git
+- Node.js
+- pnpm
 
 1. Clone the repository
 ```bash
@@ -121,6 +126,7 @@ Some of the major planned features:
 - Multimodal (vision) models support
 - Export/Import chat history
 - Search in chats
+- Onboarding view for new users
 - Plugins?
 
 ## Contributing
@@ -129,15 +135,15 @@ Some of the major planned features:
 
 If you'd like to help implement a feature, feel free to do it! You can find currently planned and requested features in the [issues](https://github.com/kirillmelcin96/webllama/issues). I would really appreciate any help.
 
-I strongly encourage contributors to minimize the use of AI-generated code. Commits containing ONLY AI-generated code will not be accepted. If you’ve used AI to write any code snippets or functions, please mark them with a special comment. You can read more about this [here](#is-it-a-vibecoded-app).
+I strongly encourage contributors to minimize the use of AI-generated code. Commits containing ONLY AI-generated code will not be accepted. If you’ve used AI to write any code snippets or functions, please mark them with a [special comment](#is-it-a-vibecoded-app).
 
 ### New ideas / Requests
 
-If you have an idea for a feature, please create a new issue by clicking the “New Issue” button > ✨ Feature request.
+If you have an idea for a feature, please create a new [issue](https://github.com/kirillmelcin96/webllama/issues) by clicking the “New Issue” button > ✨ Feature request.
 
 ### Found a bug?
 
-If you want to report a bug, please create a new issue by clicking the “New Issue” button > 🐛 Bug report.
+If you want to report a bug, please create a new [issue](https://github.com/kirillmelcin96/webllama/issues) by clicking the “New Issue” button > 🐛 Bug report.
 
 ## Is it a vibecoded app?
 
@@ -151,7 +157,7 @@ However, a few small, non-critical functions were AI-assisted at this time. For 
 
 Contributors are also asked to mark AI-assisted code in this format.
 
-All images are human-made.
+All images are human-made in Figma.
 
 ## Feedback
 
@@ -161,7 +167,7 @@ kerekerekerek@hotmail.com
 
 ### Support
 
-If you find **webllama** useful and would like to support its development, you can send a donation:
+If you find **webllama** useful and would like to support its development, you can send a donation ❤️
 
 **BTC:** `bc1qmh3qkvsdze7rrdz3mk6nfrulsr9x8gr3mexgnk`
 
