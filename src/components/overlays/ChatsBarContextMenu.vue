@@ -5,6 +5,8 @@ import DeleteIcon from '../../icons/Delete.vue';
 import type { ChatsBarContextMenuButton } from '../../types/menues.ts';
 import { useChatStore } from '../../stores/chatStore.ts'
 import { useConfirmStore } from '../../stores/ui/confirm.ts'
+import { computed } from 'vue';
+import { IS_WEB } from '../../utils/runtime.ts';
 
 const props = defineProps<{
     id: number,
@@ -19,20 +21,28 @@ const contextMenuButtons: ChatsBarContextMenuButton[] = [
     {
         title: 'Edit Name',
         icon: EditPencilIcon,
-        handler: editTitle
+        handler: editTitle,
+        hideInTauri: false,
     },
     {
         title: 'Export as JSON',
         icon: ExportFileIcon,
-        handler: exportJSON
+        handler: exportJSON,
+        hideInTauri: true,
     },
     {
         title: 'Delete',
         icon: DeleteIcon,
         handler: deleteChat,
         isDelete: true,
+        hideInTauri: false,
     },
 ]
+
+const filteredContextMenuButtons = computed(() => {
+    if (IS_WEB) return contextMenuButtons
+    return contextMenuButtons.filter(item => !item.hideInTauri)
+})
 
 function editTitle() {
     emit('edit-title')
@@ -61,7 +71,7 @@ async function deleteChat() {
 <template>
     <div class="context-menu">
         <div 
-            v-for="button in contextMenuButtons" 
+            v-for="button in filteredContextMenuButtons" 
             class="context-menu-button"
             :class="{'context-menu-button--delete': button.isDelete}"
             @click="button.handler"

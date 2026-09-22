@@ -7,5 +7,6 @@ export interface ChatsBarMenuButton {
 }
 
 export interface ChatsBarContextMenuButton extends ChatsBarMenuButton {
-    isDelete?: boolean,
+    isDelete?: boolean, // For delete button. Allows to set custom styles
+    hideInTauri: boolean, // Hide unsupported actions in Tauri
 }
