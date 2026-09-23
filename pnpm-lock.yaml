@@ -33,8 +33,8 @@ importers:
         specifier: ^17.0.1
         version: 17.0.1
       marked-katex-extension:
-        specifier: ^5.1.12
-        version: 5.1.12(katex@0.18.7)(marked@17.0.1)
+        specifier: ^5.1.13
+        version: 5.1.13(katex@0.18.7)(marked@17.0.1)
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
@@ -709,8 +709,8 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  marked-katex-extension@5.1.12:
-    resolution: {integrity: sha512-DgfH0CFrOuVwVEXNJ+rTtYOtZZECpHhA0bu7xBiACAJI4geeaCZfDq+hiJ1yJx780fDh2HWHlr+NySxuc2DD1w==}
+  marked-katex-extension@5.1.13:
+    resolution: {integrity: sha512-+6gVygGg5at9g+YsuIQZk7XcAc6Pg1P0grEJKEWvF7DAwceZ7ZIvU0fhQe6auUqSbnPmSjJxZuICdSCdbGaFRw==}
     peerDependencies:
       katex: '>=0.16 <0.19'
       marked: '>=4 <19'
@@ -1361,7 +1361,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  marked-katex-extension@5.1.12(katex@0.18.7)(marked@17.0.1):
+  marked-katex-extension@5.1.13(katex@0.18.7)(marked@17.0.1):
     dependencies:
       katex: 0.18.7
       marked: 17.0.1
