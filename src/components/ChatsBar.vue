@@ -37,7 +37,7 @@ function openSettings() {
 <template>
     <div class="chats-bar">
         <div>
-            <h2 class="title">webllama</h2>
+            <h2 class="title">Kiang</h2>
             <div class="chat-bar-menu">
                 <div 
                     v-for="(button, index) in menuButtons"

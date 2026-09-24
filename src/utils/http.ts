@@ -2,7 +2,7 @@ import { fetch } from '@tauri-apps/plugin-http'
 import { IS_TAURI } from './runtime'
 
 /**
- * Use this feature for all HTTP requests in webllama. 
+ * Use this feature for all HTTP requests in kiang. 
  * - In a browser, it calls `window.fetch`; 
  * - in a Tauri environment, it uses the `http-tauri` plugin.
  * 

@@ -1,24 +1,24 @@
 <div align="center">
 
-<img src="./src-tauri/icons/128x128@2x.png" alt="webllama" width="112" height="112">
+<img src="./src-tauri/icons/128x128@2x.png" alt="Kiang" width="112" height="112">
 
-# webllama
+# Kiang
 
-![GitHub Repo stars](https://img.shields.io/github/stars/kirillmelcin96/webllama)
-![GitHub forks](https://img.shields.io/github/forks/kirillmelcin96/webllama)
-![GitHub watchers](https://img.shields.io/github/watchers/kirillmelcin96/webllama)
+![GitHub Repo stars](https://img.shields.io/github/stars/kirillmelcin96/kiang)
+![GitHub forks](https://img.shields.io/github/forks/kirillmelcin96/kiang)
+![GitHub watchers](https://img.shields.io/github/watchers/kirillmelcin96/kiang)
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/kirillmelcin96/webllama)
-![GitHub repo size](https://img.shields.io/github/repo-size/kirillmelcin96/webllama)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/kirillmelcin96/kiang)
+![GitHub repo size](https://img.shields.io/github/repo-size/kirillmelcin96/kiang)
 
-![GitHub License](https://img.shields.io/github/license/kirillmelcin96/webllama)
-![GitHub last commit](https://img.shields.io/github/last-commit/kirillmelcin96/webllama)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/webllama)
+![GitHub License](https://img.shields.io/github/license/kirillmelcin96/kiang)
+![GitHub last commit](https://img.shields.io/github/last-commit/kirillmelcin96/kiang)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/kiang)
 </div>
 
-**webllama** is a self-hosted web interface for Ollama local AI. Written in Vue.js. 
+**Kiang** - is a self-hosted web interface for Ollama local AI. Written in Vue.js. 
 
-You can run **webllama** in your browser or as a standalone app (for Windows, MacOS and Linux). See the [Installation](#installation) section for all available options.
+You can run **Kiang** in your browser or as a standalone app (for Windows, MacOS and Linux). See the [Installation](#installation) section for all available options.
 
 Free and open source.
 
@@ -43,11 +43,11 @@ Free and open source.
 
 ## Overview
 
-**webllama** is built with Vite + Vue 3. It runs right in your browser. **webllama** can automatically detect and connect to Ollama right out of the box.
+**Kiang** is built with Vite + Vue 3. It runs right in your browser. **Kiang** can automatically detect and connect to Ollama right out of the box.
 
-Your chats are stored directly in your browser using IndexedDB, allowing **webllama** to persist your conversation history locally without relying on a backend. User settings are stored in LocalStorage for quick and persistent access.
+Your chats are stored directly in your browser using IndexedDB, allowing **Kiang** to persist your conversation history locally without relying on a backend. User settings are stored in LocalStorage for quick and persistent access.
 
-Starting with **webllama v.1.0.0**, you can also install it as a standalone app for Windows, macOS, and Linux. Currently, this is an experimental feature. Standalone app is built with [Tauri](https://v2.tauri.app/) instead of Electron to ensure its security and minimize its size as much as possible.
+Starting with **Kiang v.1.0.0**, you can also install it as a standalone app for Windows, macOS, and Linux. Currently, this is an experimental feature. Standalone app is built with [Tauri](https://v2.tauri.app/) instead of Electron to ensure its security and minimize its size as much as possible.
 
 ## Features
 
@@ -63,7 +63,7 @@ Starting with **webllama v.1.0.0**, you can also install it as a standalone app 
 ### 💬 Models and Chat
 
 - **Works offline** - Run and interact with downloaded models through Ollama without an Internet connection.
-- **Private** - Your conversations stay on your device. We don't collect information about your device, conversations, or how you use the app. The only external request made by webllama is to this GitHub repository for checking app updates.
+- **Private** - Your conversations stay on your device. We don't collect information about your device, conversations, or how you use the app. The only external request made by **Kiang** is to this GitHub repository for checking app updates.
 - **Chat history storage** - All your conversations are stored directly in your browser (IndexedDB).
 - **“Incognito Mode”** - This allows you to have temporary chats without saving them to your history.
 - **“Thinking Mode”** - Enable thinking for models that support it. Thinking may improve reasoning on complex tasks but can increase response time.
@@ -75,7 +75,7 @@ Starting with **webllama v.1.0.0**, you can also install it as a standalone app 
 
 ## ⚠️ Before You Start
 
-**webllama** requires [Ollama](https://ollama.com) to be installed and running on your device.
+**Kiang** requires [Ollama](https://ollama.com) to be installed and running on your device.
 
 If you already have Ollama installed, you can skip this section and proceed to [installation](#installation).
 
@@ -99,11 +99,11 @@ See the full list of available models on the [Ollama library](https://ollama.com
 
 ![App preview](./images/app_preview.png)
 
-You can download and install the latest **webllama** release for your operating system from the [Releases Page](https://github.com/kirillmelcin96/webllama/releases).
+You can download and install the latest **Kiang** release for your operating system from the [Releases Page](https://github.com/kirillmelcin96/kiang/releases).
 
-> Note: Currently, **webllama** releases are not code-signed. Your operating system may display a security warning when you launch the application.
+> Note: Currently, **Kiang** releases are not code-signed. Your operating system may display a security warning when you launch the application.
 
-If you prefer not to use an unsigned application, you can run **webllama** directly in your browser:
+If you prefer not to use an unsigned application, you can run **Kiang** directly in your browser:
 
 ### As a webpage
 
@@ -120,8 +120,8 @@ You can run the frontend in your browser by building it from the source code.
 
 1. Clone the repository
 ```bash
-git clone https://github.com/kirillmelcin96/webllama.git
-cd webllama
+git clone https://github.com/kirillmelcin96/kiang.git
+cd kiang
 ```
 
 2. Install dependencies using `pnpm`
@@ -154,17 +154,17 @@ Some of the major planned features:
 
 ### Code
 
-If you'd like to help implement a feature, feel free to do it! You can find currently planned and requested features in the [issues](https://github.com/kirillmelcin96/webllama/issues). I would really appreciate any help.
+If you'd like to help implement a feature, feel free to do it! You can find currently planned and requested features in the [issues](https://github.com/kirillmelcin96/kiang/issues). I would really appreciate any help.
 
 I strongly encourage contributors to minimize the use of AI-generated code. Commits containing ONLY AI-generated code will not be accepted. If you’ve used AI to write any code snippets or functions, please mark them with a [special comment](#is-it-a-vibecoded-app).
 
 ### New ideas / Requests
 
-If you have an idea for a feature, please create a new [issue](https://github.com/kirillmelcin96/webllama/issues) by clicking the “New Issue” button > ✨ Feature request.
+If you have an idea for a feature, please create a new [issue](https://github.com/kirillmelcin96/kiang/issues) by clicking the “New Issue” button > ✨ Feature request.
 
 ### Found a bug?
 
-If you want to report a bug, please create a new [issue](https://github.com/kirillmelcin96/webllama/issues) by clicking the “New Issue” button > 🐛 Bug report.
+If you want to report a bug, please create a new [issue](https://github.com/kirillmelcin96/kiang/issues) by clicking the “New Issue” button > 🐛 Bug report.
 
 ## Is it a vibecoded app?
 
@@ -188,7 +188,7 @@ kerekerekerek@hotmail.com
 
 ### Support
 
-If you find **webllama** useful and would like to support its development, you can send a donation ❤️
+If you find **Kiang** useful and would like to support its development, you can send a donation ❤️
 
 **BTC:** `bc1qmh3qkvsdze7rrdz3mk6nfrulsr9x8gr3mexgnk`
 
@@ -198,17 +198,17 @@ If you find **webllama** useful and would like to support its development, you c
 
 **GRAM (ex TON):** `UQAlDlzMb59T80REEF_v_lYPkGdXnsU6bFbjFOhgTgySS623`
 
-> **webllama** is a free app. Donations are completely optional and are not required to use **webllama**.
+> **Kiang** is a free app. Donations are completely optional and are not required to use **Kiang**.
 
 ## License
 
-**webllama** is licensed under the Apache License 2.0
+**Kiang** is licensed under the Apache License 2.0
 
 Copyright 2026 Kirill Melcin
 
 ### Third-Party Dependencies
 
-**webllama** additionally contains code/libraries with the following licenses: MIT, ISC, 0BSD, CC0-1.0, Apache License 2.0, BSD-2-Clause, BSD 3-Clause.
+**Kiang** additionally contains code/libraries with the following licenses: MIT, ISC, 0BSD, CC0-1.0, Apache License 2.0, BSD-2-Clause, BSD 3-Clause.
 
 To see the complete list of dependencies, their licenses, and copyrights, please refer to the `THIRD-PARTY-NOTICES.txt` file.
 
