@@ -178,7 +178,7 @@ However, a few small, non-critical functions were AI-assisted at this time. For 
 
 Contributors are also asked to mark AI-assisted code in this format.
 
-All images are human-made in Figma.
+All images in this repository are human-made in Figma. Copyright 2026 Kirill Melcin
 
 ## Feedback
 
