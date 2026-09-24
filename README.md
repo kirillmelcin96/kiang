@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./src-tauri/icons/128x128@2x.png" alt="webllama" width="96" height="96">
+<img src="./src-tauri/icons/128x128@2x.png" alt="webllama" width="112" height="112">
 
 # webllama
 
