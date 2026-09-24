@@ -6,6 +6,5 @@ export const greetings = [
     'I\'ll help you with everything!',
     'Ask me. I know everything',
     'Do you trust AI?',
-    'I am your friend',
-    ''
+    'I am your friend'
 ]

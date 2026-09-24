@@ -11,6 +11,7 @@ import {
     updateChatTitleIDB,
 } from '../database'
 import { saveAs } from 'file-saver'
+import { httpFetch } from '../utils/http.ts'
 
 let controller: AbortController;
 
@@ -73,7 +74,7 @@ export const useChatStore = defineStore('chat', {
             let title = 'Untitled'
 
             try {
-                const res = await fetch(settingsStore.ollamaApiUrl + '/api/generate', {
+                const res = await httpFetch(settingsStore.ollamaApiUrl + '/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -112,7 +113,7 @@ export const useChatStore = defineStore('chat', {
             // Try to get response from apy
             this.isError = false
 
-            const res = await fetch(settingsStore.ollamaApiUrl + '/api/chat', {
+            const res = await httpFetch(settingsStore.ollamaApiUrl + '/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -177,7 +178,7 @@ export const useChatStore = defineStore('chat', {
         const settingsStore = useSettingsStore()
 
         try {
-            const res = await fetch(settingsStore.ollamaApiUrl + '/api/tags', {
+            const res = await httpFetch(settingsStore.ollamaApiUrl + '/api/tags', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             })
