@@ -1,6 +1,8 @@
-# webllama
-
 <div align="center">
+
+<img src="./src-tauri/icons/128x128@2x.png" alt="webllama" width="96" height="96">
+
+# webllama
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/kirillmelcin96/webllama)
 ![GitHub forks](https://img.shields.io/github/forks/kirillmelcin96/webllama)
@@ -14,13 +16,9 @@
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/webllama)
 </div>
 
-**webllama** is a self-hosted web interface for local AI. 
+**webllama** is a self-hosted web interface for Ollama local AI. Written in Vue.js. 
 
-Written in Vue.js. 
-
-Runs in your browser. 
-
-~1.5 MB production build.
+You can run **webllama** in your browser or as a standalone app (for Windows, MacOS and Linux). See the [Installation](#installation) section for all available options.
 
 Free and open source.
 
@@ -35,6 +33,8 @@ Free and open source.
     - [Settings](#️-settings)
 - [⚠️ Before You Start](#️-before-you-start)
 - [Installation](#installation)
+    - [As a standalone app](#as-a-standalone-app)
+    - [As a frontend](#as-a-webpage)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Is it vibecoded?](#is-it-a-vibecoded-app)
@@ -43,9 +43,11 @@ Free and open source.
 
 ## Overview
 
-**webllama** is built with Vite + Vue 3. It runs right in your browser and doesn't require any advanced skills or knowledge to get started. **webllama** can automatically detect and connect to Ollama right out of the box.
+**webllama** is built with Vite + Vue 3. It runs right in your browser. **webllama** can automatically detect and connect to Ollama right out of the box.
 
 Your chats are stored directly in your browser using IndexedDB, allowing **webllama** to persist your conversation history locally without relying on a backend. User settings are stored in LocalStorage for quick and persistent access.
+
+Starting with **webllama v.1.0.0**, you can also install it as a standalone app for Windows, macOS, and Linux. Currently, this is an experimental feature. Standalone app is built with [Tauri](https://v2.tauri.app/) instead of Electron to ensure its security and minimize its size as much as possible.
 
 ## Features
 
@@ -73,7 +75,7 @@ Your chats are stored directly in your browser using IndexedDB, allowing **webll
 
 ## ⚠️ Before You Start
 
-**webllama** requires [Ollama](https://ollama.com) to be installed and running on your computer.
+**webllama** requires [Ollama](https://ollama.com) to be installed and running on your device.
 
 If you already have Ollama installed, you can skip this section and proceed to [installation](#installation).
 
@@ -93,14 +95,33 @@ See the full list of available models on the [Ollama library](https://ollama.com
 
 ## Installation 
 
-### Requirements
+### As a standalone app
+
+![App preview](./images/app_preview.png)
+
+You can download and install the latest **webllama** release for your operating system from the [Releases Page](https://github.com/kirillmelcin96/webllama/releases).
+
+> Note: Currently, **webllama** releases are not code-signed. Your operating system may display a security warning when you launch the application.
+
+If you prefer not to use an unsigned application, you can run **webllama** directly in your browser:
+
+### As a webpage
+
+![Browser preview](./images/browser_preview.png)
+
+You can run the frontend in your browser by building it from the source code.
+
+#### Requirements
 - Git
 - Node.js
 - pnpm
 
+#### Setup
+
 1. Clone the repository
 ```bash
 git clone https://github.com/kirillmelcin96/webllama.git
+cd webllama
 ```
 
 2. Install dependencies using `pnpm`
@@ -108,26 +129,26 @@ git clone https://github.com/kirillmelcin96/webllama.git
 pnpm install
 ```
 
-3. Run the development server
+3. Build the frontend
 ```bash
-pnpm dev
+pnpm build
+pnpm preview
 ```
 
-4. Open [http://localhost:5173/](http://localhost:5173/) using your browser and start your first chat!
+4. Open [http://localhost:4173/](http://localhost:4173/) in your browser and start your first chat!
 
 ## Roadmap
 
 The project is actively developed. You can track planned features and progress on the [public roadmap](https://github.com/users/kirillmelcin96/projects/3).
 
 Some of the major planned features:
-- Ollama and Hugging Face models downloader
-- Folders (Projects)
-- Image generation support
-- Multimodal (vision) models support
-- Export/Import chat history
-- Search in chats
-- Onboarding view for new users
-- Plugins?
+- [ ] Ollama and Hugging Face models downloader
+- [ ] Folders (Projects)
+- [ ] Multimodal models support
+- [ ] Export/Import chat history
+- [ ] Search in chats
+- [ ] Onboarding view for new users
+- [ ] Plugins?
 
 ## Contributing
 
