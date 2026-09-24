@@ -51,8 +51,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseName: 'webllama v__VERSION__'
-          releaseBody: 'See the assets to download this version of webllama and install it.'
+          # tagName: ${{ github.ref_name }}
+          # releaseName: 'webllama v__VERSION__'
+          # releaseBody: 'See the assets to download this version of webllama and install it.'
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
