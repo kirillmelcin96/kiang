@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "webllama",
+  "productName": "kiang",
   "version": "1.0.0",
-  "identifier": "com.kirillmelcin96.webllama",
+  "identifier": "com.kirillmelcin96.kiang",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "webllama",
+        "title": "Kiang",
         "width": 1200,
         "height": 900,
         "resizable": true,

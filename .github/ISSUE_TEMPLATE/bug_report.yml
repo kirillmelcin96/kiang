@@ -55,11 +55,11 @@ body:
 
 
   - type: input
-    id: webllama-version
+    id: kiang-version
     attributes:
-      label: webllama version
+      label: kiang version
       placeholder: "e.g. 0.4.1"
-      description: You can check the app version in Settings > General > webllama version.
+      description: You can check the app version in Settings > General > kiang version.
     validations:
       required: true
 
@@ -78,7 +78,7 @@ body:
     attributes:
       label: Browser
       placeholder: "e.g. Firefox 155"
-      description: Browser you used to work with webllama.
+      description: Browser you used to work with kiang.
     validations:
       required: true
 

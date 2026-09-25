@@ -59,8 +59,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: 'webllama v__VERSION__'
-          releaseBody: 'See the assets to download this version of webllama and install it.'
+          releaseName: 'kiang v__VERSION__'
+          releaseBody: 'See the assets to download this version of kiang and install it.'
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
