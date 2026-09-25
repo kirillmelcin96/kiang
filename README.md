@@ -2,7 +2,7 @@
 
 <img src="./src-tauri/icons/128x128@2x.png" alt="Kiang" width="112" height="112">
 
-# Kiang
+# Kiang WebUI
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/kirillmelcin96/kiang)
 ![GitHub forks](https://img.shields.io/github/forks/kirillmelcin96/kiang)
@@ -13,10 +13,10 @@
 
 ![GitHub License](https://img.shields.io/github/license/kirillmelcin96/kiang)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kirillmelcin96/kiang)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/kiang)
+<!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/kiang) -->
 </div>
 
-**Kiang** - is a self-hosted web interface for Ollama local AI. Written in Vue.js. 
+**Kiang** is a user-friendly web interface for working with local models via the Ollama API. Written in Vue.js. 
 
 You can run **Kiang** in your browser or as a standalone app (for Windows, MacOS and Linux). See the [Installation](#installation) section for all available options.
 
@@ -40,10 +40,11 @@ Free and open source.
 - [Is it vibecoded?](#is-it-a-vibecoded-app)
 - [Feedback](#feedback)
 - [License](#license)
+- [Disclaimer](#disclaimer)
 
 ## Overview
 
-**Kiang** is built with Vite + Vue 3. It runs right in your browser. **Kiang** can automatically detect and connect to Ollama right out of the box.
+**Kiang** is built with Vite + Vue 3. It runs right in your browser. **Kiang** can automatically detect and connect to Ollama API right out of the box.
 
 Your chats are stored directly in your browser using IndexedDB, allowing **Kiang** to persist your conversation history locally without relying on a backend. User settings are stored in LocalStorage for quick and persistent access.
 
@@ -217,3 +218,7 @@ This file was automatically generated using the [@quantco/pnpm-licenses](https:/
 ```bash
 pnpm notices
 ```
+
+## Disclaimer
+
+Ollama is a registered trademark (or property) of its respective owners. The **Kiang** web UI is an independent open-source software that is not associated with, affiliated with, or sponsored by the creators of Ollama.
