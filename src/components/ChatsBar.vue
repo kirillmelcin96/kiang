@@ -6,6 +6,7 @@ import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
 import ChatsBarButton from './ChatsBarButton.vue'
 import { useAppUpdateStore } from '../stores/updateStore.ts'
+import AppUpdateNotification from './AppUpdateNotification.vue'
 
 const store = useChatStore()
 const updateStore = useAppUpdateStore()
@@ -40,6 +41,8 @@ function openSettings() {
     <div class="chats-bar">
         <div>
             <h2 class="title">Kiang</h2>
+
+            <!-- Menu Buttons -->
             <div class="chat-bar-menu">
                 <div 
                     v-for="(button, index) in menuButtons"
@@ -51,9 +54,11 @@ function openSettings() {
                     {{ button.title }}
                 </div>
             </div>
-            <div class="update-available">
-                {{ updateStore.updateAvailable }}
-            </div>
+
+            <!-- Update Notification -->
+            <AppUpdateNotification v-if="updateStore.updateAvailable" />
+
+            <!-- Chats List -->
             <p class="subtitle">Your chats</p>
             <ChatsBarButton 
                 v-for="chat in store.chatsList"
