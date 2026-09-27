@@ -5,8 +5,10 @@ import type { ChatsBarMenuButton } from '../types/menues.ts'
 import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
 import ChatsBarButton from './ChatsBarButton.vue'
+import { useAppUpdateStore } from '../stores/updateStore.ts'
 
 const store = useChatStore()
+const updateStore = useAppUpdateStore()
 
 const menuButtons = ref<ChatsBarMenuButton[]>([
     {
@@ -48,6 +50,9 @@ function openSettings() {
                     <component :is="button.icon" class="chats-bar-button__icon"></component>
                     {{ button.title }}
                 </div>
+            </div>
+            <div class="update-available">
+                {{ updateStore.updateAvailable }}
             </div>
             <p class="subtitle">Your chats</p>
             <ChatsBarButton 
