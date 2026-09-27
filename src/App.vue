@@ -8,6 +8,7 @@ import { useConfirmStore } from './stores/ui/confirm.ts'
 import { useAppUpdateStore } from './stores/updateStore.ts'
 import { onMounted } from 'vue';
 import { IS_TAURI } from './utils/runtime.ts';
+import UpdateModal from './components/overlays/UpdateModal.vue';
 
 const store = useChatStore()
 const uiConfirm = useConfirmStore()
@@ -42,6 +43,10 @@ async function checkForUpdates() {
 		:confirm-text="uiConfirm.confirmText"
 		@confirm="uiConfirm.resolve(true)"
 		@cancel="uiConfirm.resolve(false)"
+	/>
+
+	<UpdateModal 
+		v-if="updateStore.showUpdateModal"
 	/>
 </template>
 

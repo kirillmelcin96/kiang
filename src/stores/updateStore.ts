@@ -7,6 +7,7 @@ export interface AppUpdate {
     updateAvailable: boolean,
     updateVersion: string,
     updateDate: string,
+    showUpdateModal: boolean,
 }
 
 export const useAppUpdateStore = defineStore('appUpdate', {
@@ -14,6 +15,7 @@ export const useAppUpdateStore = defineStore('appUpdate', {
     updateAvailable: false,
     updateVersion: '',
     updateDate: '',
+    showUpdateModal: false,
   }),
   getters: {
     // Empty

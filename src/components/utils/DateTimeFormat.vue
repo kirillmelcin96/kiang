@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 const props = defineProps({
 	timestamp: {
-		type: [Number, String],
+		type: [Number, String, Date],
 		required: true
 	},
 	format: {
