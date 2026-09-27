@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "kiang",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "identifier": "com.kirillmelcin96.kiang",
   "build": {
     "frontendDist": "../dist",
@@ -37,6 +37,16 @@
     ],
     "android": {
       "debugApplicationIdSuffix": ".debug"
+    },
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY5Qzg0RDZENkE0Q0QyRTgKUldUbzBreHFiVTNJK1hoYytUYTBJU2lzcjY3S3hMWFFqQklPWitXeFU0YTVBQXZyNmNDQWRvS2gK",
+      "endpoints": [
+        "https://github.com/kirillmelcin96/kiang/releases/latest/download/latest.json"
+      ],
+      "requireSignedVersion": true
     }
   }
 }
