@@ -1,12 +1,34 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useAppUpdateStore } from '../../stores/updateStore'
-import DateTimeFormat from '../utils/DateTimeFormat.vue';
+import DateTimeFormat from '../utils/DateTimeFormat.vue'
+import { httpFetch } from '../../utils/http.ts'
+import { marked } from 'marked'
 
 const updateStore = useAppUpdateStore()
+const changelog = ref('')
+
+async function loadChangelog() {
+    const res = await httpFetch('https://raw.githubusercontent.com/kirillmelcin96/kiang/refs/heads/main/CHANGELOG.md', {
+        method: 'GET',
+    })
+
+    changelog.value = await res.text()
+
+    console.log(changelog.value)
+}
+
+onMounted(() => {
+    loadChangelog()
+})
 
 const timeFormatted = computed(() => {
     return new Date(updateStore.updateDate)
+})
+
+const parsedOutput = computed(() => {
+    if (!changelog.value.length) return 'Loading changelog...'
+    return marked.parse(changelog.value)
 })
 
 function closeModal() {
@@ -14,7 +36,7 @@ function closeModal() {
 }
 
 function startUpdate() {
-    // See: https://v2.tauri.app/plugin/updater/?utm_source=chatgpt.com#checking-for-updates
+    
 }
 </script>
 
@@ -25,10 +47,12 @@ function startUpdate() {
             class="update-modal-overlay"
         >
             <div class="update-modal">
-                <h3>Kiang v{{ updateStore.updateVersion }}</h3>
+                <h1 class="update-modal__header">Kiang v{{ updateStore.updateVersion }}</h1> <div class="update-modal__tag">Latest</div>
                 <p v-if="updateStore.updateDate" class="muted">
-                    <DateTimeFormat :timestamp="timeFormatted" />
+                    Release date: <DateTimeFormat :timestamp="timeFormatted" date-only />
                 </p>
+
+                <div v-html="parsedOutput" class="update-modal-changelog" />
 
                 <div class="update-modal-buttons-container">
                     <div @click="closeModal" class="update-modal-button update-modal-button__cancel">
@@ -43,7 +67,7 @@ function startUpdate() {
     </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .update-modal-overlay {
     position: absolute;
     top: 0;
@@ -63,14 +87,30 @@ function startUpdate() {
     border-radius: 16px;
     border: 1px solid #3a3a3a;
     background-color: #272727;
-    width: 380px;
+    margin: 0 12px;
+    min-width: 380px;
+    max-width: 600px;
     padding: 12px 16px;
     z-index: 9999;
     user-select: none;
 
-    h3 {
+    &__tag {
+        display: inline-block;
+        padding: 1px 6px;
+        border-radius: 8px;
+        color: #51ff4e;
+        border: 1px solid #27ff2450;
+        opacity: 70%; // TODO: change to normal colors later
+        margin-left: 4px;
+        font-size: 13px;
+        // font-weight: 500;
+        transform: translateY(-5px);
+    }
+
+    &__header {
         margin: 0;
         user-select: none;
+        display: inline;
     }
 
     p {
@@ -108,6 +148,49 @@ function startUpdate() {
         color: #51ff4e;
         background-color: #27ff2430;
         border-color: #27ff2430;
+    }
+}
+
+.update-modal-changelog {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background-color: #0e0e0e;
+    max-height: 430px;
+    overflow-y: auto;
+    font-family: var(--font-mono);
+
+    // Rewrite default styles so it look better
+    h1,
+    p {
+        font-family: var(--font-mono);
+        margin: 0 0 12px 0;
+    }
+
+    h2 {
+        margin: 32px 0 12px 0;
+    }
+
+    h1, h2 {
+        font-family: var(--font-mono);
+        padding: 0 0 12px 0;
+        border-bottom: 1px solid #ffffff20;
+    }
+
+    h3,
+    h4,
+    h5,
+    h6,
+    ol,
+    li {
+        font-family: var(--font-mono);
+        margin: 0 0 4px 0;
+    }
+
+    ul {
+        height: auto;
+        padding: 0 20px;
+        margin: 0 0 12px 0;
     }
 }
 </style>

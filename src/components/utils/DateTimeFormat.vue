@@ -6,9 +6,9 @@ const props = defineProps({
 		type: [Number, String, Date],
 		required: true
 	},
-	format: {
-		type: String,
-		default: 'DD.MM.YYYY HH:mm'
+	dateOnly: {
+		type: Boolean,
+		default: false,
 	}
 })
 
@@ -24,8 +24,8 @@ const formattedDate = computed(() => {
 		day: '2-digit',
 		month: '2-digit',
 		year: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit'
+		hour: props.dateOnly ? undefined : '2-digit',
+		minute: props.dateOnly ? undefined : '2-digit'
 	}).format(date)
 })
 </script>

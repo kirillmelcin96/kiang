@@ -23,6 +23,7 @@ onMounted(() => {
 })
 
 async function checkForUpdates() {
+	// TODO: test offline
 	await updateStore.checkForUpdates()
 }
 </script>
