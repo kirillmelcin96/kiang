@@ -6,16 +6,22 @@ import { httpFetch } from '../../utils/http.ts'
 import { marked } from 'marked'
 
 const updateStore = useAppUpdateStore()
+const isError = ref(false)
 const changelog = ref('')
 
 async function loadChangelog() {
-    const res = await httpFetch('https://raw.githubusercontent.com/kirillmelcin96/kiang/refs/heads/main/CHANGELOG.md', {
-        method: 'GET',
-    })
+    isError.value = false
+    changelog.value = ''
 
-    changelog.value = await res.text()
+    try {
+        const res = await httpFetch('https://raw.githubusercontent.com/kirillmelcin96/kiang/refs/heads/main/CHANGELOG.md', {
+            method: 'GET',
+        })
 
-    console.log(changelog.value)
+        changelog.value = await res.text()
+    } catch (e) {
+        isError.value = true
+    }
 }
 
 onMounted(() => {
@@ -32,11 +38,15 @@ const parsedOutput = computed(() => {
 })
 
 function closeModal() {
+    if (updateStore.updateStarted) return
+
     updateStore.showUpdateModal = false
 }
 
-function startUpdate() {
-    
+async function startUpdate() {
+    if (updateStore.updateStarted) return
+
+    await updateStore.installUpdate()
 }
 </script>
 
@@ -45,6 +55,7 @@ function startUpdate() {
         <div 
             @click.self="closeModal" 
             class="update-modal-overlay"
+            :class="{'update-modal-overlay--disabled': updateStore.updateStarted}"
         >
             <div class="update-modal">
                 <h1 class="update-modal__header">Kiang v{{ updateStore.updateVersion }}</h1> <div class="update-modal__tag">Latest</div>
@@ -52,14 +63,32 @@ function startUpdate() {
                     Release date: <DateTimeFormat :timestamp="timeFormatted" date-only />
                 </p>
 
-                <div v-html="parsedOutput" class="update-modal-changelog" />
+                <div v-if="!isError" v-html="parsedOutput" class="update-modal-changelog" />
+                <div v-else class="update-modal-changelog">
+                    Error loading the changelog. <br />
+                    <a @click="loadChangelog">Try again</a>
+                </div>
 
                 <div class="update-modal-buttons-container">
-                    <div @click="closeModal" class="update-modal-button update-modal-button__cancel">
-                        Skip
+                    <div 
+                        @click="closeModal" 
+                        class="update-modal-button update-modal-button__cancel"
+                        :class="{'update-modal-button--disabled': updateStore.updateStarted}"
+                    >
+                        Cancel
                     </div>
-                    <div @click="startUpdate" class="update-modal-button update-modal-button__confirm">
-                        Update
+                    <div 
+                        @click="startUpdate" 
+                        class="update-modal-button update-modal-button__confirm"
+                        :class="{'update-modal-button--disabled': updateStore.updateStarted}"
+                    >
+                        <template v-if="!updateStore.updateStarted">Update</template>
+                        <template v-if="updateStore.isInstalling">
+                            Downloading...
+                        </template>
+                        <template v-if="updateStore.isUpdating">
+                            Installing...
+                        </template>
                     </div>
                 </div>
             </div>
@@ -81,6 +110,10 @@ function startUpdate() {
     background-color: rgba(0,0,0,0.7);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+
+    &--disabled {
+        cursor: progress
+    }
 }
 
 .update-modal {
@@ -149,6 +182,15 @@ function startUpdate() {
         background-color: #27ff2430;
         border-color: #27ff2430;
     }
+
+    &--disabled {
+        opacity: .6;
+        cursor: not-allowed;
+
+        &:hover {
+            opacity: .6;
+        }
+    }
 }
 
 .update-modal-changelog {
@@ -160,7 +202,12 @@ function startUpdate() {
     overflow-y: auto;
     font-family: var(--font-mono);
 
-    // Rewrite default styles so it look better
+    // Rewrite default styles so it will look better in the changelog container
+    a {
+        cursor: pointer;
+        user-select: none;
+    }
+
     h1,
     p {
         font-family: var(--font-mono);
@@ -174,7 +221,7 @@ function startUpdate() {
     h1, h2 {
         font-family: var(--font-mono);
         padding: 0 0 12px 0;
-        border-bottom: 1px solid #ffffff20;
+        border-bottom: 1px solid #ffffff10;
     }
 
     h3,
@@ -191,6 +238,12 @@ function startUpdate() {
         height: auto;
         padding: 0 20px;
         margin: 0 0 12px 0;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .update-modal-changelog {
+        max-height: 360px;
     }
 }
 </style>

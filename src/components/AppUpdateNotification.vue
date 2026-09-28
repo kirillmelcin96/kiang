@@ -27,8 +27,10 @@ const updateStore = useAppUpdateStore()
     transition: .25s;
 
     &:hover {
-        transform: translateY(-2px);
-        background: #222222;
+        padding: 16px 8px;
+        // transform: translateY(-2px);
+        background: #335eb3;
+        box-shadow: 0 -1px 24px -8px #4578de;
     }
 
     &__version {
