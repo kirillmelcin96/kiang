@@ -5,9 +5,27 @@ import SettingsView from './views/SettingsView.vue';
 import ConfirmModal from './components/overlays/ConfirmModal.vue'
 import { useChatStore } from './stores/chatStore.ts'
 import { useConfirmStore } from './stores/ui/confirm.ts'
+import { useAppUpdateStore } from './stores/updateStore.ts'
+import { onMounted } from 'vue';
+import { IS_TAURI } from './utils/runtime.ts';
+import UpdateModal from './components/overlays/UpdateModal.vue';
 
 const store = useChatStore()
 const uiConfirm = useConfirmStore()
+const updateStore = useAppUpdateStore()
+
+onMounted(() => {
+	if (IS_TAURI) {
+		setTimeout(() => {
+			checkForUpdates()
+		}, 5000);
+	}
+})
+
+async function checkForUpdates() {
+	// TODO: test offline
+	await updateStore.checkForUpdates()
+}
 </script>
 
 <template>
@@ -26,6 +44,10 @@ const uiConfirm = useConfirmStore()
 		:confirm-text="uiConfirm.confirmText"
 		@confirm="uiConfirm.resolve(true)"
 		@cancel="uiConfirm.resolve(false)"
+	/>
+
+	<UpdateModal 
+		v-if="updateStore.showUpdateModal"
 	/>
 </template>
 

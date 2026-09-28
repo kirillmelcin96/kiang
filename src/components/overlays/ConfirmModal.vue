@@ -56,6 +56,7 @@ const emit = defineEmits(['confirm', 'cancel'])
 
     h3 {
         margin: 0;
+        user-select: none;
     }
 
     p {
@@ -77,6 +78,7 @@ const emit = defineEmits(['confirm', 'cancel'])
     border-style: solid;
     border-radius: 8px;
     font-size: 15px;
+    user-select: none;
     // transition: .25s;
 
     &:hover {

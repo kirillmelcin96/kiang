@@ -1,6 +1,6 @@
 [package]
 name = "kiang"
-version = "1.1.0"
+version = "1.2.0"
 description = "A self-hosted web interface for local AI"
 authors = ["kirillmelcin96"]
 license = "Apache License 2.0"
@@ -24,6 +24,7 @@ log = "0.4"
 tauri = { version = "2.11.6", features = [] }
 tauri-plugin-log = "2"
 tauri-plugin-http = "=2.6.1"
+tauri-plugin-process = "2"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-updater = "2"
