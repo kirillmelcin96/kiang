@@ -1,0 +1,79 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [1.1.0] - 2026-09-27
+
+### Added
+
+- Updater plugin
+
+## [1.0.0] - 2026-09-25
+
+### Added
+
+- Tauri for building Kiang as a desktop app
+- Github Actions workflow for building releases
+
+### Changed
+
+- Rename the entire project to Kiang
+
+## [0.3.0] - 2026-09-15
+
+### Added
+
+- New "Onest" font
+- New "JetBrains Mono" font for code snippets
+- New preview image
+
+### Changed
+
+- Minor improvements to the settings block styles
+
+## [0.2.1] - 2026-09-13
+
+### Added
+
+- Context menu for chats in the chat list
+- Confirmation of chat removal modal
+- Edit chat title
+- Export chat as JSON
+
+## [0.2.0] - 2026-09-13
+
+### Added
+
+- Incognito mode (temporary chats)
+- Deep Thinking mode
+- LaTeX support
+- Settings tab and view
+- Detailed info about Ollama instance (status, version, available models, active models)
+- Ability to change an Ollama API URL
+- System prompt
+
+### Fixed
+
+- Main input font style
+
+## [0.1.0] - 2026-02-06
+
+### Added
+
+- Initial release of the project
+- Chat section with local models
+- Chat list (history)
+- Global styles
+- Models selector component
+
+[1.1.0]: https://github.com/kirillmelcin96/kiang/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/kirillmelcin96/kiang/commits/v1.0.0
+[0.3.0]: https://github.com/kirillmelcin96/kiang/pull/3
+[0.2.1]: https://github.com/kirillmelcin96/kiang/pull/2
+[0.2.0]: https://github.com/kirillmelcin96/kiang/commit/066b0358e21ddf69fb0b1c0f820b0c491cfb5c6a
+[0.1.0]: https://github.com/kirillmelcin96/kiang/commit/2b0706c2787847dd002935a5fd2ee6dbf59c65c6
