@@ -161,11 +161,11 @@ I strongly encourage contributors to minimize the use of AI-generated code. Comm
 
 ### New ideas / Requests
 
-If you have an idea for a feature, please create a new [issue](https://github.com/kirillmelcin96/kiang/issues) by clicking the “New Issue” button > ✨ Feature request.
+If you have an idea for a feature, please create a new [Feature Request](https://github.com/kirillmelcin96/kiang/issues/new?template=feature_request.yml).
 
 ### Found a bug?
 
-If you want to report a bug, please create a new [issue](https://github.com/kirillmelcin96/kiang/issues) by clicking the “New Issue” button > 🐛 Bug report.
+If you want to report a bug, please create a new [Bug Report](https://github.com/kirillmelcin96/kiang/issues/new?template=bug_report.yml).
 
 ## Is it a vibecoded app?
 

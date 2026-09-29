@@ -31,7 +31,7 @@ const value = computed({
             autocorrect="off"
             autocapitalize="off" 
             spellcheck="false"
-            maxlength="2500"
+            maxlength="10000"
             :placeholder="title"
         ></textarea>
     </div>
