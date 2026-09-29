@@ -9,7 +9,7 @@ interface Parameter {
 
 export interface SettingsGroup {
     id: string,
-    title: string,
+    title?: string,
     type: 'group' | 'textarea'
     parameters: Parameter[],
     footer?: string,

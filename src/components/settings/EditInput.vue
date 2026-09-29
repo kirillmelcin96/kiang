@@ -77,7 +77,7 @@ function saveSetting() {
         // border-bottom: 2px solid #3a3a3a;
         border-radius: 8px;
         border: 1px solid #3a3a3a;
-        font-size: 16px;
+        font-size: inherit;
         margin: 0;
         padding: 4px 8px;
         margin-left: 4px;

@@ -6,7 +6,7 @@ const props = defineProps<SettingsGroup>()
 
 <template>
     <div class="settings-group">
-        <div class="settings-group__title muted">{{ props.title }}</div>
+        <div v-if="props.title" class="settings-group__title muted">{{ props.title }}</div>
         <div v-if="props.type === 'group'" class="settings-group-container">
             <div v-for="parameter in props.parameters" class="settings-group-parameter">
                 <div class="settings-group-parameter__info">
@@ -51,7 +51,8 @@ const props = defineProps<SettingsGroup>()
 
     &__title {
         padding-left: 16px;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 14px;
     }
 
     &__footer {
@@ -80,6 +81,8 @@ const props = defineProps<SettingsGroup>()
     justify-content: space-between;
     border-bottom: 1px solid #3a3a3a;
     min-height: 62px;
+    font-size: 15px;
+    gap: 8px;
 
     &__info {
         flex-grow: 1;
@@ -98,6 +101,19 @@ const props = defineProps<SettingsGroup>()
         justify-content: flex-end;
         gap: 4px;
         width: 280px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .settings-group-parameter {
+        flex-direction: column;
+        justify-content: left;
+        align-items: baseline;
+
+        &__control {
+            justify-content: flex-start;
+            width: 100%;
+        }
     }
 }
 </style>
