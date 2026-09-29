@@ -15,6 +15,20 @@
         { "url": "http://localhost:11434/**" },
         { "url": "https://raw.githubusercontent.com/kirillmelcin96/kiang/refs/heads/main/CHANGELOG.md" }
       ]
+    },
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [
+        {
+          "url": "https://github.com/kirillmelcin96/kiang"
+        },
+        {
+          "url": "https://github.com/kirillmelcin96/kiang/*"
+        },
+        {
+          "url": "mailto:*"
+        }
+      ]
     }
   ]
 }
