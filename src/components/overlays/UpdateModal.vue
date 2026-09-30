@@ -58,17 +58,28 @@ async function startUpdate() {
             :class="{'update-modal-overlay--disabled': updateStore.updateStarted}"
         >
             <div class="update-modal">
+                <!-- Header -->
                 <h1 class="update-modal__header">Kiang v{{ updateStore.updateVersion }}</h1> <div class="update-modal__tag">Latest</div>
                 <p v-if="updateStore.updateDate" class="muted">
                     Release date: <DateTimeFormat :timestamp="timeFormatted" date-only />
                 </p>
 
+                <!-- Changelog -->
                 <div v-if="!isError" v-html="parsedOutput" class="update-modal-changelog" />
                 <div v-else class="update-modal-changelog">
                     Error loading the changelog. <br />
                     <a @click="loadChangelog">Try again</a>
                 </div>
 
+                <!-- Update error -->
+                <div v-if="updateStore.isError" class="update-modal-error">
+                    <div class="update-modal-error__header">
+                        Error while updating the app:
+                    </div>
+                    {{ updateStore.errorText?.message || 'Unknown error' }}
+                </div>
+
+                <!-- Buttons -->
                 <div class="update-modal-buttons-container">
                     <div 
                         @click="closeModal" 
@@ -77,7 +88,7 @@ async function startUpdate() {
                     >
                         Cancel
                     </div>
-                    <div 
+                    <div
                         @click="startUpdate" 
                         class="update-modal-button update-modal-button__confirm"
                         :class="{'update-modal-button--disabled': updateStore.updateStarted}"
@@ -198,14 +209,13 @@ async function startUpdate() {
     padding: 12px 16px;
     border-radius: 12px;
     background-color: #0e0e0e;
-    max-height: 430px;
+    max-height: 370px;
     overflow-y: auto;
     font-family: var(--font-mono);
 
     // Rewrite default styles so it will look better in the changelog container
     a {
-        cursor: pointer;
-        user-select: none;
+        pointer-events: none;
     }
 
     h1,
@@ -244,6 +254,24 @@ async function startUpdate() {
 @media screen and (max-height: 600px) {
     .update-modal-changelog {
         max-height: 360px;
+    }
+}
+
+.update-modal-error {
+    margin-top: 12px;
+    border-radius: 12px;
+    color: #ff4e4e;
+    background-color: #ff202030;
+    border: 1px solid #ff202030;
+    padding: 8px 16px 12px 16px;
+    max-height: 114px;
+    overflow-y: auto;
+
+    &__header {
+        // font-size: 14px;
+        font-weight: 600;
+        user-select: none;
+        margin-bottom: 8px;
     }
 }
 </style>
