@@ -9,6 +9,8 @@
     "core:default",
     "updater:default",
     "process:default",
+    "log:default",
+    "log:allow-log",
     {
       "identifier": "http:default",
       "allow": [
