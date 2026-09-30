@@ -20,7 +20,7 @@ body:
       label: Preliminary Checks
       description: Please confirm the following before submitting a bug report.
       options:
-        - label: I have searched [existing issues](https://github.com/kirillmelcin96/kiang/issues) and avoided creating duplicates.
+        - label: I have searched existing issues (https://github.com/kirillmelcin96/kiang/issues) and avoided creating duplicates.
           required: true
         - label: I am not filing a feature request.
           required: true
@@ -87,6 +87,7 @@ body:
     attributes:
       label: Operating system
       placeholder: "e.g. Fedora 43"
+
 
   - type: textarea
     id: additional
