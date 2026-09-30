@@ -1,5 +1,5 @@
-import { Dexie, type EntityTable } from 'dexie';
-import type { Chat, chatMessage } from './types/messages';
+import { Dexie, type EntityTable } from 'dexie'
+import type { Chat, chatMessage } from './types/messages'
 
 const db = new Dexie('ChatStorage') as Dexie & {
   chats: EntityTable<
@@ -9,48 +9,48 @@ const db = new Dexie('ChatStorage') as Dexie & {
 }
 
 db.version(1).stores({
-  chats: '++id, title, messages, model, createdAt' // primary key "id"
+  chats: '++id, title, messages, model, createdAt', // primary key "id"
 })
 
 async function loadAllChatsIDB() {
-    return db.chats.reverse().toArray()
+  return db.chats.reverse().toArray()
 }
 
 async function loadOneChatIDB(id: number) {
-    return db.chats.get(id)
+  return db.chats.get(id)
 }
 
 async function saveChatIDB(title: string, messages: chatMessage[], model: string) {
-    const createdAt = Math.floor(Date.now() / 1000)
+  const createdAt = Math.floor(Date.now() / 1000)
 
-    const id = await db.chats.add({
-        title,
-        messages,
-        model,
-        createdAt,
-    })
+  const id = await db.chats.add({
+    title,
+    messages,
+    model,
+    createdAt,
+  })
 
-    return id
+  return id
 }
 
 async function updateChatIDB(id: number, messages: chatMessage[]) {
-    // Save new chat history
-    await db.chats.update(id, { messages })
+  // Save new chat history
+  await db.chats.update(id, { messages })
 }
 
 async function updateChatTitleIDB(id: number, title: string) {
-    await db.chats.update(id, { title })
+  await db.chats.update(id, { title })
 }
 
 async function deleteChatIDB(id: number) {
-    await db.chats.delete(id)
+  await db.chats.delete(id)
 }
 
-export { 
-    loadAllChatsIDB,
-    loadOneChatIDB,
-    saveChatIDB,
-    updateChatIDB,
-    deleteChatIDB,
-    updateChatTitleIDB,
-};
+export {
+  loadAllChatsIDB,
+  loadOneChatIDB,
+  saveChatIDB,
+  updateChatIDB,
+  deleteChatIDB,
+  updateChatTitleIDB,
+}

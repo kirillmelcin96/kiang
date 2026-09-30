@@ -79,7 +79,8 @@ h6 {
   font-size: 16px;
 }
 
-b, strong {
+b,
+strong {
   font-weight: 600;
 }
 
@@ -95,7 +96,7 @@ hr {
 //tables
 
 table {
-  border-collapse: collapse; 
+  border-collapse: collapse;
   border-spacing: 0;
   font-size: 14px;
 }
@@ -134,8 +135,8 @@ code {
 }
 
 code.hljs {
-  background-color: transparent!important;
-  padding: 0!important;
+  background-color: transparent !important;
+  padding: 0 !important;
 }
 
 .code-block {
@@ -146,7 +147,7 @@ code.hljs {
 
 .code-header {
   position: absolute;
-  top: 0; 
+  top: 0;
   right: 0;
   left: 0;
   padding: 12px 16px;
@@ -155,7 +156,8 @@ code.hljs {
   justify-content: space-between;
   // border-bottom: 1px solid #242424;
 
-  span, button {
+  span,
+  button {
     user-select: none;
   }
 
@@ -181,12 +183,13 @@ li {
   margin: 12px 0;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 20px;
 }
 
 li::marker {
-  content: "• ";
+  content: '• ';
   // color: #888888;
 }
 
@@ -229,16 +232,20 @@ button:focus-visible {
 
 // Common animations
 .loading-icon {
-    animation: loading-rotate 2s infinite linear;
-    margin-bottom: -1px;
+  animation: loading-rotate 2s infinite linear;
+  margin-bottom: -1px;
 
-    svg {
-        width: 17px;
-        height: 17px;
-    }
+  svg {
+    width: 17px;
+    height: 17px;
+  }
 }
 
 @keyframes loading-rotate {
-    from { transform: rotateZ(0deg); }
-    to { transform: rotateZ(360deg); }
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
 }

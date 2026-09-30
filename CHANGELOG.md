@@ -3,36 +3,43 @@
 ## [1.3.4] - 2026-10-01
 
 ### Fixed
+
 - Logs plugin is now working correctly
 
 ## [1.3.3] - 2026-09-30
 
 ### Fixed
+
 - Fixed the bug when updates were not installed due to incompatibility with the Pinia store variable
 
 ## [1.3.2] - 2026-09-30
 
 ### Changed
+
 - Some models list styles in the settings
 
 ## [1.3.1] - 2026-09-30
 
 ### Added
+
 - Added updater logs
 
 ## [1.3.0] - 2026-09-30
 
 ### Added
+
 - About section in settings
 - Tauri opener plugin for external links
 
 ### Fixed
+
 - Settings section font size
 - Settings section layout on small screens/window
 
 ## [1.2.0] - 2026-09-29
 
 ### Added
+
 - Notification about a new version being available
 - Install updates via a convenient modal window
 - Display the changelog for all previous versions
@@ -40,30 +47,36 @@
 ## [1.1.0] - 2026-09-27
 
 ### Added
+
 - Updater plugin
 
 ## [1.0.0] - 2026-09-25
 
 ### Added
+
 - Tauri for building Kiang as a desktop app
 - Github Actions workflow for building releases
 
 ### Changed
+
 - Rename the entire project to Kiang
 
 ## [0.3.0] - 2026-09-15
 
 ### Added
+
 - New "Onest" font
 - New "JetBrains Mono" font for code snippets
 - New preview image
 
 ### Changed
+
 - Minor improvements to the settings block styles
 
 ## [0.2.1] - 2026-09-13
 
 ### Added
+
 - Context menu for chats in the chat list
 - Confirmation of chat removal modal
 - Edit chat title
@@ -72,6 +85,7 @@
 ## [0.2.0] - 2026-09-13
 
 ### Added
+
 - Incognito mode (temporary chats)
 - Deep Thinking mode
 - LaTeX support
@@ -81,11 +95,13 @@
 - System prompt
 
 ### Fixed
+
 - Main input font style
 
 ## [0.1.0] - 2026-02-06
 
 ### Added
+
 - Initial release of the project
 - Chat section with local models
 - Chat list (history)

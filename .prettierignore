@@ -1,7 +1,10 @@
+# folders
 dist/
 images/
 node_modules/
 public/
+
+pnpm-lock.yaml
 
 # Tauri
 src-tauri/gen

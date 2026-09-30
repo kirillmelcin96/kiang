@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   server: {
     watch: {
-      ignored: ["**/src-tauri/**"],
+      ignored: ['**/src-tauri/**'],
     },
   },
   plugins: [vue()],
@@ -13,10 +13,7 @@ export default defineConfig({
   envPrefix: ['VITE_', 'TAURI_ENV_*'],
   build: {
     // Tauri uses Chromium on Windows and WebKit on macOS and Linux
-    target:
-      process.env.TAURI_ENV_PLATFORM == 'windows'
-        ? 'chrome105'
-        : 'safari13',
+    target: process.env.TAURI_ENV_PLATFORM == 'windows' ? 'chrome105' : 'safari13',
     // don't minify for debug builds
     minify: !process.env.TAURI_ENV_DEBUG,
     // produce sourcemaps for debug builds

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { check, Update } from '@tauri-apps/plugin-updater';
-import { relaunch } from '@tauri-apps/plugin-process';
+import { check, Update } from '@tauri-apps/plugin-updater'
+import { relaunch } from '@tauri-apps/plugin-process'
 import { error } from '@tauri-apps/plugin-log'
 
 /**
@@ -10,14 +10,14 @@ let update: Update | null = null
 
 // State types
 export interface AppUpdate {
-    updateAvailable: boolean,
-    updateVersion: string,
-    updateDate: string,
-    isInstalling: boolean,
-    isUpdating: boolean,
-    isError: boolean,
-    errorText: Error | null,
-    showUpdateModal: boolean,
+  updateAvailable: boolean
+  updateVersion: string
+  updateDate: string
+  isInstalling: boolean
+  isUpdating: boolean
+  isError: boolean
+  errorText: Error | null
+  showUpdateModal: boolean
 }
 
 export const useAppUpdateStore = defineStore('appUpdate', {
@@ -32,11 +32,11 @@ export const useAppUpdateStore = defineStore('appUpdate', {
     showUpdateModal: false,
   }),
   getters: {
-    updateStarted: (state) => state.isInstalling || state.isUpdating
+    updateStarted: (state) => state.isInstalling || state.isUpdating,
   },
   actions: {
     async checkForUpdates() {
-      update = await check();
+      update = await check()
 
       if (update) {
         this.updateAvailable = true
@@ -50,7 +50,7 @@ export const useAppUpdateStore = defineStore('appUpdate', {
       this.errorText = null
 
       if (!update) {
-        update = await check();
+        update = await check()
 
         if (!update) return
       }
@@ -61,18 +61,18 @@ export const useAppUpdateStore = defineStore('appUpdate', {
           switch (event.event) {
             case 'Started':
               this.isUpdating = true
-              break;
+              break
             case 'Progress':
               this.isUpdating = true
-              break;
+              break
             case 'Finished':
               this.isUpdating = false
               this.isInstalling = true
-              break;
+              break
           }
-        });
+        })
 
-        await relaunch();
+        await relaunch()
       } catch (err) {
         console.error(err)
         this.isError = true
@@ -88,6 +88,6 @@ export const useAppUpdateStore = defineStore('appUpdate', {
           error(JSON.stringify(err))
         }
       }
-    }
-  }
+    },
+  },
 })

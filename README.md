@@ -16,7 +16,7 @@
 <!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/kiang) -->
 </div>
 
-**Kiang** is a user-friendly web interface for working with local models via the Ollama API. Written in Vue.js. 
+**Kiang** is a user-friendly web interface for working with local models via the Ollama API. Written in Vue.js.
 
 You can run **Kiang** in your browser or as a standalone app (for Windows, MacOS and Linux). See the [Installation](#installation) section for all available options.
 
@@ -28,13 +28,13 @@ Free and open source.
 
 - [Overview](#overview)
 - [Features](#features)
-    - [Getting Started](#-getting-started)
-    - [Models and Chat](#-models-and-chat)
-    - [Settings](#️-settings)
+  - [Getting Started](#-getting-started)
+  - [Models and Chat](#-models-and-chat)
+  - [Settings](#️-settings)
 - [⚠️ Before You Start](#️-before-you-start)
 - [Installation](#installation)
-    - [As a standalone app](#as-a-standalone-app)
-    - [As a frontend](#as-a-webpage)
+  - [As a standalone app](#as-a-standalone-app)
+  - [As a frontend](#as-a-webpage)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Is it vibecoded?](#is-it-a-vibecoded-app)
@@ -54,7 +54,7 @@ Starting with **Kiang v.1.0.0**, you can also install it as a standalone app for
 
 ![Preview](./images/features.jpg)
 
-*Features marked with an asterisk (\*) in the image will be implemented soon*
+_Features marked with an asterisk (\*) in the image will be implemented soon_
 
 ### 🚀 Getting Started
 
@@ -71,6 +71,7 @@ Starting with **Kiang v.1.0.0**, you can also install it as a standalone app for
 - **Rich output format** - Supports Markdown, syntax-highlighted code blocks, and LaTeX formulas.
 
 ### ⚙️ Settings
+
 - **Ollama instance** - Check Ollama status, control installed and active models, change the default API URL.
 - **System prompt** - Use system prompt to define role, behavior, tone, constraints, and output format of your model.
 
@@ -94,7 +95,7 @@ This downloads Google's `Gemma 4 E2B` model. You can instead pull any model supp
 
 See the full list of available models on the [Ollama library](https://ollama.com/search).
 
-## Installation 
+## Installation
 
 ### As a standalone app
 
@@ -113,6 +114,7 @@ If you prefer not to use an unsigned application, you can run **Kiang** directly
 You can run the frontend in your browser by building it from the source code.
 
 #### Requirements
+
 - Git
 - Node.js
 - pnpm
@@ -120,17 +122,20 @@ You can run the frontend in your browser by building it from the source code.
 #### Setup
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/kirillmelcin96/kiang.git
 cd kiang
 ```
 
 2. Install dependencies using `pnpm`
+
 ```bash
 pnpm install
 ```
 
 3. Build the frontend
+
 ```bash
 pnpm build
 pnpm preview
@@ -143,6 +148,7 @@ pnpm preview
 The project is actively developed. You can track planned features and progress on the [public roadmap](https://github.com/users/kirillmelcin96/projects/3).
 
 Some of the major planned features:
+
 - [ ] Ollama and Hugging Face models downloader
 - [ ] Folders (Projects)
 - [ ] Multimodal models support

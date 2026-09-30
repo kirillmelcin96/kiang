@@ -1,8 +1,8 @@
 name: ✨ Feature request
 description: Suggest an idea or improvement for kiang!
-title: "[Feature]: "
+title: '[Feature]: '
 labels:
-  - "feature"
+  - 'feature'
 body:
   - type: markdown
     attributes:
