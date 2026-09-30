@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useSettingsStore } from '../../../stores/settingsStore.ts'
 import LoadingIcon from '../../../icons/Loading.vue'
 
@@ -39,10 +39,21 @@ watch(
 onMounted(() => {
     requestApi()
 })
+
+const alignContentLeft = computed(() => {
+    // TODO: rewrite this function to look better. Maybe the entire component, lol...
+    return ollamaResponse.value instanceof Array && props.targetKey === 'models' && ollamaResponse.value.length
+})
 </script>
 
 <template>
-    <div class="settings-ollama-info" :class="{ 'muted': isError || isLoading }">
+    <div 
+        class="settings-ollama-info" 
+        :class="{ 
+            'muted': isError || isLoading,
+            'settings-ollama-info--content-left': alignContentLeft,
+        }"
+    >
         <LoadingIcon v-if="isLoading" class="loading-icon" />
         <template v-else-if="ollamaResponse instanceof Array && props.targetKey === 'models'">
             <span v-if="!ollamaResponse.length" class="muted">
@@ -63,6 +74,10 @@ onMounted(() => {
     justify-content: flex-end;
     flex-wrap: wrap;
     gap: 8px;
+
+    &--content-left {
+        justify-content: left;
+    }
 }
 
 .model-name {

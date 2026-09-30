@@ -8,7 +8,11 @@ const props = defineProps<SettingsGroup>()
     <div class="settings-group">
         <div v-if="props.title" class="settings-group__title muted">{{ props.title }}</div>
         <div v-if="props.type === 'group'" class="settings-group-container">
-            <div v-for="parameter in props.parameters" class="settings-group-parameter">
+            <div 
+                v-for="parameter in props.parameters" 
+                class="settings-group-parameter"
+                :class="{'settings-group-parameter--fulsize': parameter?.fullsize}"
+            >
                 <div class="settings-group-parameter__info">
                     <div class="settings-group-parameter__title">
                         {{ parameter.title }}
@@ -102,6 +106,17 @@ const props = defineProps<SettingsGroup>()
         gap: 4px;
         width: 280px;
     }
+
+    &--fulsize {
+        flex-direction: column;
+        justify-content: left;
+        align-items: baseline;
+
+        .settings-group-parameter__control {
+            width: 100%;
+            justify-content: flex-start;
+        }
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -111,8 +126,8 @@ const props = defineProps<SettingsGroup>()
         align-items: baseline;
 
         &__control {
-            justify-content: flex-start;
             width: 100%;
+            justify-content: flex-start;
         }
     }
 }

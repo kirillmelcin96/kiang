@@ -41,6 +41,7 @@ const settingsGeneral = ref<SettingsGroup[]>([
             {
                 title: 'Available Models',
                 description: 'List of installed models on your PC',
+                fullsize: true,
                 component: OllamaInformation,
                 props: {
                     endpoint: '/api/tags',
@@ -50,7 +51,8 @@ const settingsGeneral = ref<SettingsGroup[]>([
             },
             {
                 title: 'Active Models',
-                description: 'Models that are currently loaded into RAM/vRAM',
+                description: 'Models that are currently loaded into memory',
+                fullsize: true,
                 component: OllamaInformation,
                 props: {
                     endpoint: '/api/ps',
@@ -158,6 +160,10 @@ const settingsAbout = ref<SettingsGroup[]>([
                 v-bind="group"
             />
         </template>
+
+        <div class="settings-footer">
+            Made by people for people
+        </div>
     </div>
 </template>
 
@@ -205,5 +211,16 @@ const settingsAbout = ref<SettingsGroup[]>([
             color: #ffffffde;
         }
     }
+}
+
+.settings-footer {
+    padding: 32px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #363636;
+    font-weight: 500;
+    user-select: none;
+    cursor: default;
 }
 </style>
