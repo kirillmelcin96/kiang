@@ -1,0 +1,10 @@
+dist/
+images/
+node_modules/
+public/
+
+# Tauri
+src-tauri/gen
+src-tauri/icons
+src-tauri/src
+src-tauri/target
