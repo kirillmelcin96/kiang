@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "notices": "npx @quantco/pnpm-licenses generate-disclaimer -o THIRD-PARTY-NOTICES.txt"
+    "notices": "npx @quantco/pnpm-licenses generate-disclaimer -o THIRD-PARTY-NOTICES.txt",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@floating-ui/vue": "^2.0.1",
@@ -28,11 +30,18 @@
     "vue": "^3.5.24"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tauri-apps/cli": "^2.11.5",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.9",
     "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.0",
     "vite": "^7.2.4",
     "vue-tsc": "^3.1.4"
   }
