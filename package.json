@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "notices": "npx @quantco/pnpm-licenses generate-disclaimer -o THIRD-PARTY-NOTICES.txt",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "dependencies": {
     "@floating-ui/vue": "^2.0.1",
