@@ -3,6 +3,7 @@ import type { Component } from "vue"
 interface Parameter {
     title: string,
     description?: string,
+    fullsize?: boolean,
     props?: object,
     component?: Component,
 }
