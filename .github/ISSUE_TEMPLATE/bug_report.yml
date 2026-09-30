@@ -12,7 +12,7 @@ body:
         > [!IMPORTANT]
         > - Please provide descriptive titles.
         > - Please search existing issues to avoid creating duplicates.
-        > - Please provide as much information as possible. It will help us to better understand what's wrong.
+        > - Please provide as much information as possible. It will help us to better understand what's wrong!
 
   - type: checkboxes
     id: captchas
@@ -20,7 +20,7 @@ body:
       label: Preliminary Checks
       description: Please confirm the following before submitting a bug report.
       options:
-        - label: I have searched existing issues and avoided creating duplicates.
+        - label: I have searched existing issues (https://github.com/kirillmelcin96/kiang/issues) and avoided creating duplicates.
           required: true
         - label: I am not filing a feature request.
           required: true
@@ -58,8 +58,8 @@ body:
     id: kiang-version
     attributes:
       label: kiang version
-      placeholder: "e.g. 0.4.1"
-      description: You can check the app version in Settings > General > kiang version.
+      placeholder: "e.g. 1.3.4"
+      description: You can check the app version in the `Settings` > `About`. Do NOT click to the Kiang icon!
     validations:
       required: true
 
@@ -78,9 +78,9 @@ body:
     attributes:
       label: Browser
       placeholder: "e.g. Firefox 155"
-      description: Browser you used to work with kiang.
+      description: Fill in if you opened Kiang as a web page. If you opened it as an app, leave this field blank.
     validations:
-      required: true
+      required: false
 
   - type: input
     id: os
@@ -88,9 +88,10 @@ body:
       label: Operating system
       placeholder: "e.g. Fedora 43"
 
+
   - type: textarea
     id: additional
     attributes:
       label: Additional information
-      description: Add logs or anything else that may help.
+      description: Add logs or anything else that may help. You can find out where the logs are located in your operating system by reading [the official Tauri documentation](https://v2.tauri.app/plugin/logging/#persisting-logs).
       render: shell

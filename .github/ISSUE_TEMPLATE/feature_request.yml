@@ -17,7 +17,7 @@ body:
       label: Preliminary Checks
       description: Please confirm the following before submitting a feature request.
       options:
-        - label: I have searched existing feature requests and avoided creating duplicates.
+        - label: I have searched existing feature requests (https://github.com/kirillmelcin96/kiang/issues) and avoided creating duplicates.
           required: true
         - label: I am not filing a bug report.
           required: true
