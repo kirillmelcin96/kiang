@@ -2,8 +2,14 @@
 import ArrowRightUp from '../../icons/ArrowRightUp.vue'
 
 const props = defineProps({
-  text: String,
-  link: String,
+  text: {
+    type: String,
+    default: 'Open',
+  },
+  link: {
+    type: String,
+    default: '',
+  },
 })
 </script>
 

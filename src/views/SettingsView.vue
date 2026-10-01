@@ -4,8 +4,8 @@ import type { SettingsGroup } from '../types/settings.ts'
 import { ref } from 'vue'
 
 // Settings components
-import OllamaStatus from '../components/settings/ollama/Status.vue'
-import OllamaInformation from '../components/settings/ollama/Information.vue'
+import OllamaStatus from '../components/settings/ollama/OllamaStatus.vue'
+import OllamaInformation from '../components/settings/ollama/OllamaInfo.vue'
 import EditInput from '../components/settings/EditInput.vue'
 import EditTextarea from '../components/settings/EditTextarea.vue'
 import AboutSection from '../components/settings/AboutSection.vue'
@@ -138,9 +138,10 @@ const settingsAbout = ref<SettingsGroup[]>([
       <div class="settings-nav">
         <div
           v-for="group in settingGroups"
-          @click="selectedGroupId = group.id"
+          :key="group.id"
           class="settings-nav__button"
           :class="{ 'settings-nav__button--active': selectedGroupId == group.id }"
+          @click="selectedGroupId = group.id"
         >
           {{ group.title }}
         </div>
@@ -148,12 +149,12 @@ const settingsAbout = ref<SettingsGroup[]>([
     </div>
 
     <template v-if="selectedGroupId == 'chat'">
-      <GroupWrapper v-for="group in settingsGeneral" v-bind="group" />
+      <GroupWrapper v-for="group in settingsGeneral" v-bind="group" :key="group.id" />
     </template>
 
     <template v-if="selectedGroupId == 'about'">
       <AboutSection />
-      <GroupWrapper v-for="group in settingsAbout" v-bind="group" />
+      <GroupWrapper v-for="group in settingsAbout" v-bind="group" :key="group.id" />
     </template>
 
     <div class="settings-footer">Made by people for people</div>

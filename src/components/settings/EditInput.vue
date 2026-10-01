@@ -40,6 +40,7 @@ function saveSetting() {
     <template v-else>
       <CheckIcon @click="saveSetting" />
       <input
+        ref="inputRef"
         v-model="newValue"
         type="text"
         maxlength="30"
@@ -49,7 +50,6 @@ function saveSetting() {
         spellcheck="false"
         @keyup.enter="saveSetting"
         @keyup.esc="isBeingEdited = false"
-        ref="inputRef"
       />
     </template>
   </div>

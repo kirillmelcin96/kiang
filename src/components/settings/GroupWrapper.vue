@@ -10,6 +10,7 @@ const props = defineProps<SettingsGroup>()
     <div v-if="props.type === 'group'" class="settings-group-container">
       <div
         v-for="parameter in props.parameters"
+        :key="parameter.title"
         class="settings-group-parameter"
         :class="{ 'settings-group-parameter--fulsize': parameter?.fullsize }"
       >
@@ -30,7 +31,7 @@ const props = defineProps<SettingsGroup>()
     </div>
 
     <div v-else-if="props.type === 'textarea'" class="settings-group-container">
-      <template v-for="parameter in props.parameters">
+      <template v-for="parameter in props.parameters" :key="parameter.title">
         <component :is="parameter.component" v-bind="parameter.props"></component>
       </template>
     </div>

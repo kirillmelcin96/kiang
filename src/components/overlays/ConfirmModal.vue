@@ -8,16 +8,17 @@ const emit = defineEmits(['confirm', 'cancel'])
 
 <template>
   <Teleport to="body">
-    <div @click.self="emit('cancel')" class="confirm-modal-overlay">
+    <div class="confirm-modal-overlay" @click.self="emit('cancel')">
       <div class="confirm-modal">
         <h3>{{ uiConfirm.title }}</h3>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <p v-html="uiConfirm.message"></p>
 
         <div class="confirm-modal-buttons-container">
-          <div @click="emit('cancel')" class="confirm-modal-button confirm-modal-button__cancel">
+          <div class="confirm-modal-button confirm-modal-button__cancel" @click="emit('cancel')">
             Cancel
           </div>
-          <div @click="emit('confirm')" class="confirm-modal-button confirm-modal-button__confirm">
+          <div class="confirm-modal-button confirm-modal-button__confirm" @click="emit('confirm')">
             {{ uiConfirm.confirmText }}
           </div>
         </div>

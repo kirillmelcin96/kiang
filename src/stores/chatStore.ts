@@ -184,6 +184,7 @@ export const useChatStore = defineStore('chat', {
         })
 
         const modelsList = await res.json()
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.availableModels = modelsList.models.map((m: any) => m.name).sort()
         // Set default model
         if (this.model && this.availableModels.includes(this.model)) {
@@ -197,6 +198,7 @@ export const useChatStore = defineStore('chat', {
         // No models were found
         this.model = ''
         this.availableModels = []
+        console.error('0 models found: ', e)
       }
     },
     newChat() {

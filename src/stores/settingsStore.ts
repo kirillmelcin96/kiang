@@ -30,6 +30,7 @@ export const useSettingsStore = defineStore('settings', {
 
         return res.ok
       } catch (e) {
+        console.error(e)
         return false
       }
     },
@@ -47,7 +48,7 @@ export const useSettingsStore = defineStore('settings', {
         // console.log(data)
         return data
       } catch (e) {
-        // console.error(e)
+        console.error(e)
       }
     },
     // AI-ASSISTED (ChatGPT): Helped with types for this function

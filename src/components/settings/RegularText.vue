@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 const props = defineProps({
-  text: String,
+  text: {
+    type: String,
+    default: 'No data',
+  },
 })
 </script>
 

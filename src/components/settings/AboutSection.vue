@@ -10,7 +10,7 @@ function shuffle(arr: Array<string>) {
   const shuffled = [...arr]
 
   for (let i = shuffled.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1))
+    const j = Math.floor(Math.random() * (i + 1))
     ;[shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!]
   }
 
@@ -57,7 +57,7 @@ function imgClicked() {
 
 <template>
   <div class="settings-about-section">
-    <img @click="imgClicked" src="/images/128x128@2x.png" />
+    <img src="/images/128x128@2x.png" @click="imgClicked" />
     <div class="settings-about-section__version">{{ appVersion }}</div>
     <div class="settings-about-section__links">
       <a href="https://github.com/kirillmelcin96/kiang" target="_blank">Github</a> •

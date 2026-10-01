@@ -5,7 +5,7 @@ const updateStore = useAppUpdateStore()
 </script>
 
 <template>
-  <div @click="updateStore.showUpdateModal = true" class="update-available">
+  <div class="update-available" @click="updateStore.showUpdateModal = true">
     Update is available
     <p class="muted update-available__version">v{{ updateStore.updateVersion }} · What's new?</p>
   </div>

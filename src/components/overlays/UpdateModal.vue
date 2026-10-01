@@ -4,6 +4,7 @@ import { useAppUpdateStore } from '../../stores/updateStore'
 import DateTimeFormat from '../utils/DateTimeFormat.vue'
 import { httpFetch } from '../../utils/http.ts'
 import { marked } from 'marked'
+import { error } from '@tauri-apps/plugin-log'
 
 const updateStore = useAppUpdateStore()
 const isError = ref(false)
@@ -23,6 +24,8 @@ async function loadChangelog() {
 
     changelog.value = await res.text()
   } catch (e) {
+    console.error(e)
+    error('failed to load the changelog')
     isError.value = true
   }
 }
@@ -56,9 +59,9 @@ async function startUpdate() {
 <template>
   <Teleport to="body">
     <div
-      @click.self="closeModal"
       class="update-modal-overlay"
       :class="{ 'update-modal-overlay--disabled': updateStore.updateStarted }"
+      @click.self="closeModal"
     >
       <div class="update-modal">
         <!-- Header -->
@@ -69,7 +72,7 @@ async function startUpdate() {
         </p>
 
         <!-- Changelog -->
-        <div v-if="!isError" v-html="parsedOutput" class="update-modal-changelog" />
+        <div v-if="!isError" class="update-modal-changelog" v-html="parsedOutput" />
         <div v-else class="update-modal-changelog">
           Error loading the changelog. <br />
           <a @click="loadChangelog">Try again</a>
@@ -84,16 +87,16 @@ async function startUpdate() {
         <!-- Buttons -->
         <div class="update-modal-buttons-container">
           <div
-            @click="closeModal"
             class="update-modal-button update-modal-button__cancel"
             :class="{ 'update-modal-button--disabled': updateStore.updateStarted }"
+            @click="closeModal"
           >
             Cancel
           </div>
           <div
-            @click="startUpdate"
             class="update-modal-button update-modal-button__confirm"
             :class="{ 'update-modal-button--disabled': updateStore.updateStarted }"
+            @click="startUpdate"
           >
             <template v-if="!updateStore.updateStarted">Update</template>
             <template v-if="updateStore.isInstalling"> Downloading... </template>

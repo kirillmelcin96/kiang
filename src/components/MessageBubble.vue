@@ -88,8 +88,8 @@ async function copyMessage() {
 <template>
   <!-- TODO: Create separate components for assistant and user messages -->
   <template v-if="role === 'assistant'">
-    <div v-html="parsedOutput" class="assistant-message" ref="messageContent" @click="copyCode" />
-    <div class="assistant-message__footer" v-show="!store.isLoading">
+    <div ref="messageContent" class="assistant-message" @click="copyCode" v-html="parsedOutput" />
+    <div v-show="!store.isLoading" class="assistant-message__footer">
       <div class="assistant-message__footer-button" @click="copyMessage">
         <CopyIcon v-show="!messageCopied" />
         <CheckIcon v-show="messageCopied" />

@@ -72,19 +72,20 @@ function saveEditTitle() {
 
 <template>
   <div
-    @click="selectChat(props.id)"
+    ref="reference"
     class="chats-bar-button"
     :class="{ 'chats-bar-button__active': isButtonActive }"
-    ref="reference"
+    @click="selectChat(props.id)"
   >
     <template v-if="!isEditTitle">
       <span class="chats-bar-button__text">{{ props.title }}</span>
-      <div @click.stop="openContextMenu(props.id)" class="chats-bar-button__dots">
+      <div class="chats-bar-button__dots" @click.stop="openContextMenu(props.id)">
         <DotsIcon />
       </div>
     </template>
     <template v-else>
       <input
+        ref="editTitleRef"
         v-model="newTitle"
         class="edit-title"
         type="text"
@@ -92,7 +93,6 @@ function saveEditTitle() {
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
-        ref="editTitleRef"
         @keydown.esc="cancelEditTitle"
         @focusout="cancelEditTitle"
         @keydown.enter="saveEditTitle"
@@ -101,9 +101,9 @@ function saveEditTitle() {
   </div>
   <ChatsBarContextMenu
     v-if="contextMenuOpened"
+    :id="props.id"
     ref="floating"
     :style="floatingStyles"
-    :id="props.id"
     :title="props.title"
     @close-context-menu="closeContextMenu"
     @edit-title="editTitle"

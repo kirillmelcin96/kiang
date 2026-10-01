@@ -45,10 +45,10 @@ function openSettings() {
       <!-- Menu Buttons -->
       <div class="chat-bar-menu">
         <div
-          v-for="(button, index) in menuButtons"
+          v-for="button in menuButtons"
+          :key="button.title"
           class="chats-bar-button"
           @click="button.handler"
-          :key="index"
         >
           <component :is="button.icon" class="chats-bar-button__icon"></component>
           {{ button.title }}
@@ -60,7 +60,12 @@ function openSettings() {
 
       <!-- Chats List -->
       <p class="subtitle">Your chats</p>
-      <ChatsBarButton v-for="chat in store.chatsList" :id="chat.id" :title="chat.title" />
+      <ChatsBarButton
+        v-for="chat in store.chatsList"
+        :id="chat.id"
+        :key="chat.id"
+        :title="chat.title"
+      />
     </div>
   </div>
 </template>

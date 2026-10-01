@@ -25,7 +25,12 @@ function incognitoButtonHandle() {
   </template>
   <template v-else>
     <ChatMetadata />
-    <MessageBubble v-for="msg in store.messages" :content="msg.content" :role="msg.role" />
+    <MessageBubble
+      v-for="(msg, index) in store.messages"
+      :key="`[${index}] ${msg.role}: ${msg.content}`"
+      :content="msg.content"
+      :role="msg.role"
+    />
     <div v-if="store.isLoading && store.streamingMessage == ''" class="muted">
       <!-- TODO: Add mini-games while waiting -->
       <LoadingIcon class="loading-icon" />

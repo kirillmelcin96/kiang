@@ -72,6 +72,7 @@ async function deleteChat() {
   <div class="context-menu">
     <div
       v-for="button in filteredContextMenuButtons"
+      :key="button.title"
       class="context-menu-button"
       :class="{ 'context-menu-button--delete': button.isDelete }"
       @click="button.handler"
@@ -81,7 +82,7 @@ async function deleteChat() {
     </div>
 
     <Teleport to="body">
-      <div @click="emit('close-context-menu')" class="context-menu-overlay"></div>
+      <div class="context-menu-overlay" @click="emit('close-context-menu')"></div>
     </Teleport>
   </div>
 </template>

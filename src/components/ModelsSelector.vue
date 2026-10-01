@@ -27,9 +27,10 @@ function switchSelector() {
       <span v-if="!store.model" class="muted">No models detected</span>
       <span v-else>{{ store.model }}<ChevronDown /></span>
     </div>
-    <div class="dropdown-list" v-if="isSelectorOpened">
+    <div v-if="isSelectorOpened" class="dropdown-list">
       <div
         v-for="model in store.availableModels"
+        :key="model"
         class="dropdown-list__item"
         @click="changeModel(model)"
       >

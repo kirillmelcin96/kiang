@@ -52,13 +52,13 @@ onMounted(resize)
       v-model="request"
       class="textarea"
       rows="1"
-      @input="resize"
-      @keyup.ctrl.enter="clearInputAndSend"
       placeholder="Type something..."
       autocomplete="off"
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
+      @input="resize"
+      @keyup.ctrl.enter="clearInputAndSend"
     ></textarea>
     <div class="main-input-group__bottom">
       <div v-if="store.model !== ''" class="main-input-group__model">

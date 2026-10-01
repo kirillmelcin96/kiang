@@ -35,6 +35,14 @@ export default typescriptEslint.config(
 
       // Naming
       camelcase: 'error',
+
+      // Html rendering (important for marked.js, modals)
+      'vue/no-v-html': [
+        'error',
+        {
+          ignorePattern: 'parsed*',
+        },
+      ],
     },
   },
   eslintConfigPrettier,
