@@ -12,153 +12,154 @@ const store = useChatStore()
 const updateStore = useAppUpdateStore()
 
 const menuButtons = ref<ChatsBarMenuButton[]>([
-    {
-        title: 'New chat',
-        icon: EditLine,
-        handler: newChat,
-    },
-    {
-        title: 'Settings',
-        icon: SettingsIcon,
-        handler: openSettings,
-    },
+  {
+    title: 'New chat',
+    icon: EditLine,
+    handler: newChat,
+  },
+  {
+    title: 'Settings',
+    icon: SettingsIcon,
+    handler: openSettings,
+  },
 ])
 
 onMounted(() => {
-    store.updateChatsList()
+  store.updateChatsList()
 })
 
 function newChat() {
-    store.newChat()
+  store.newChat()
 }
 
 function openSettings() {
-    store.openSettings()
+  store.openSettings()
 }
 </script>
 
 <template>
-    <div class="chats-bar">
-        <div>
-            <h2 class="title">Kiang</h2>
+  <div class="chats-bar">
+    <div>
+      <h2 class="title">Kiang</h2>
 
-            <!-- Menu Buttons -->
-            <div class="chat-bar-menu">
-                <div 
-                    v-for="(button, index) in menuButtons"
-                    class="chats-bar-button"
-                    @click="button.handler"
-                    :key="index"
-                >
-                    <component :is="button.icon" class="chats-bar-button__icon"></component>
-                    {{ button.title }}
-                </div>
-            </div>
-
-            <!-- Update Notification -->
-            <AppUpdateNotification v-if="updateStore.updateAvailable" />
-
-            <!-- Chats List -->
-            <p class="subtitle">Your chats</p>
-            <ChatsBarButton 
-                v-for="chat in store.chatsList"
-                :id="chat.id"
-                :title="chat.title"
-            />
+      <!-- Menu Buttons -->
+      <div class="chat-bar-menu">
+        <div
+          v-for="button in menuButtons"
+          :key="button.title"
+          class="chats-bar-button"
+          @click="button.handler"
+        >
+          <component :is="button.icon" class="chats-bar-button__icon"></component>
+          {{ button.title }}
         </div>
+      </div>
+
+      <!-- Update Notification -->
+      <AppUpdateNotification v-if="updateStore.updateAvailable" />
+
+      <!-- Chats List -->
+      <p class="subtitle">Your chats</p>
+      <ChatsBarButton
+        v-for="chat in store.chatsList"
+        :id="chat.id"
+        :key="chat.id"
+        :title="chat.title"
+      />
     </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .chats-bar {
-    padding: 16px 12px;
-    position: relative;
+  padding: 16px 12px;
+  position: relative;
 }
 
 @media screen and (max-width: 768px) {
-    .chats-bar {
-        display: none;
-    }
+  .chats-bar {
+    display: none;
+  }
 }
 
 .title {
-    // text-align: center;
-    font-family: var(--font-ui);
-    margin-top: 0;
-    margin-left: 8px;
+  // text-align: center;
+  font-family: var(--font-ui);
+  margin-top: 0;
+  margin-left: 8px;
 }
 
 .subtitle {
-    opacity: .6;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 0;
-    margin: 12px 0 4px 8px;
+  opacity: 0.6;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+  margin: 12px 0 4px 8px;
 }
 
 .chats-bar-button {
-    width: 100%;
-    display: flex;
-    gap: 4px;
-    padding: 6px 8px;
-    margin-bottom: 4px;
-    border-radius: 12px;
-    font-size: 15px;
-    background-color: #0e0e0e;
-    max-width: 100%;
+  width: 100%;
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: #0e0e0e;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  user-select: none;
+  cursor: pointer;
+
+  &__text {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    user-select: none;
-    cursor: pointer;
+    min-width: 0;
+    width: 100%;
+  }
 
-    &__text {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        min-width: 0;
-        width: 100%;
-    }
+  &__icon {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+  }
 
-    &__icon {
-        width: 18px;
-        height: 18px;
-        margin-top: 2px;
-    }
+  &:hover {
+    background-color: #272727;
+  }
 
-    &:hover {
-        background-color: #272727;
-    }
-
-    &__active {
-        cursor: default;
-        background-color: #272727;
-    }
+  &__active {
+    cursor: default;
+    background-color: #272727;
+  }
 }
 
 .chat-instance-input {
-    width: 234px;
-    position: fixed;
-    bottom: 16px;
-    border: 1px solid #454545;
-    background-color: transparent;
-    font-size: 15px;
-    padding: 8px 8px;
-    border-radius: 12px;
-    margin-bottom: 4px;
-    opacity: .6;
-    transition: opacity 0.25s ease;
+  width: 234px;
+  position: fixed;
+  bottom: 16px;
+  border: 1px solid #454545;
+  background-color: transparent;
+  font-size: 15px;
+  padding: 8px 8px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
 
-    &:hover,
-    &:focus {
-        outline: none;
-        opacity: 1;
-    }
+  &:hover,
+  &:focus {
+    outline: none;
+    opacity: 1;
+  }
 }
 
 .divide {
-    color: #454545;
-    opacity: .6;
-    margin: 0 0 12px 0;
+  color: #454545;
+  opacity: 0.6;
+  margin: 0 0 12px 0;
 }
 </style>

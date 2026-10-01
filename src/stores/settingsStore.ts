@@ -3,8 +3,8 @@ import { httpFetch } from '../utils/http.ts'
 
 // State types
 export interface Settings {
-    ollamaApiUrl: string,
-    systemPrompt: string,
+  ollamaApiUrl: string
+  systemPrompt: string
 }
 
 export type SettingsKey = keyof Settings
@@ -19,43 +19,44 @@ export const useSettingsStore = defineStore('settings', {
   },
   actions: {
     changeChatUrl(newUrl: string) {
-        localStorage.setItem('settings/ollamaApiUrl', newUrl)
-        this.ollamaApiUrl = newUrl
+      localStorage.setItem('settings/ollamaApiUrl', newUrl)
+      this.ollamaApiUrl = newUrl
     },
     async getOllamaStatus() {
-        try {
-            const res = await httpFetch(this.ollamaApiUrl + '/', {
-                method: 'GET',
-            })
+      try {
+        const res = await httpFetch(this.ollamaApiUrl + '/', {
+          method: 'GET',
+        })
 
-            return res.ok
-        } catch (e) {
-            return false
-        }
+        return res.ok
+      } catch (e) {
+        console.error(e)
+        return false
+      }
     },
     async requestOllamaApi(endpoint: string, method: 'GET' | 'POST') {
-        try {
-            const res = await httpFetch(this.ollamaApiUrl + endpoint, {
-                method,
-            })
+      try {
+        const res = await httpFetch(this.ollamaApiUrl + endpoint, {
+          method,
+        })
 
-            if (!res.ok) {
-                throw new Error(`Ошибка HTTP: ${res.status}`);
-            }
-
-            const data = await res.json()
-            // console.log(data)
-            return data
-        } catch (e) {
-            // console.error(e)
+        if (!res.ok) {
+          throw new Error(`Ошибка HTTP: ${res.status}`)
         }
+
+        const data = await res.json()
+        // console.log(data)
+        return data
+      } catch (e) {
+        console.error(e)
+      }
     },
     // AI-ASSISTED (ChatGPT): Helped with types for this function
     updateSetting<K extends SettingsKey>(key: K, value: Settings[K]) {
-        // Update state
-        this[key] = value
-        // Save setting's value in the localStorage
-        localStorage.setItem(`settings/${key}`, value)
+      // Update state
+      this[key] = value
+      // Save setting's value in the localStorage
+      localStorage.setItem(`settings/${key}`, value)
     },
-  }
+  },
 })

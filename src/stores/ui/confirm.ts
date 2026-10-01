@@ -2,17 +2,17 @@ import { defineStore } from 'pinia'
 
 // State types
 interface State {
-    isOpen: boolean,
-    title: string,
-    message: string,
-    confirmText: string,
-    promiseResolve: ((result: boolean) => void) | null,
+  isOpen: boolean
+  title: string
+  message: string
+  confirmText: string
+  promiseResolve: ((result: boolean) => void) | null
 }
 
 interface Options {
-    title?: string,
-    message: string,
-    confirmText: string,
+  title?: string
+  message: string
+  confirmText: string
 }
 
 export const useConfirmStore = defineStore('confirm', {

@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 const props = defineProps({
-    text: String,
+  text: {
+    type: String,
+    default: 'No data',
+  },
 })
 </script>
 
 <template>
-    <span>{{ props.text }}</span>
+  <span>{{ props.text }}</span>
 </template>

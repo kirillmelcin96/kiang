@@ -1,54 +1,52 @@
 <script lang="ts" setup>
-import ChatsBar from './components/ChatsBar.vue';
-import ChatView from './views/ChatView.vue';
-import SettingsView from './views/SettingsView.vue';
+import ChatsBar from './components/ChatsBar.vue'
+import ChatView from './views/ChatView.vue'
+import SettingsView from './views/SettingsView.vue'
 import ConfirmModal from './components/overlays/ConfirmModal.vue'
 import { useChatStore } from './stores/chatStore.ts'
 import { useConfirmStore } from './stores/ui/confirm.ts'
 import { useAppUpdateStore } from './stores/updateStore.ts'
-import { onMounted } from 'vue';
-import { IS_TAURI } from './utils/runtime.ts';
-import UpdateModal from './components/overlays/UpdateModal.vue';
+import { onMounted } from 'vue'
+import { IS_TAURI } from './utils/runtime.ts'
+import UpdateModal from './components/overlays/UpdateModal.vue'
 
 const store = useChatStore()
 const uiConfirm = useConfirmStore()
 const updateStore = useAppUpdateStore()
 
 onMounted(() => {
-	if (IS_TAURI) {
-		setTimeout(() => {
-			checkForUpdates()
-		}, 5000);
-	}
+  if (IS_TAURI) {
+    setTimeout(() => {
+      checkForUpdates()
+    }, 5000)
+  }
 })
 
 async function checkForUpdates() {
-	// TODO: test offline
-	await updateStore.checkForUpdates()
+  // TODO: test offline
+  await updateStore.checkForUpdates()
 }
 </script>
 
 <template>
-	<div class="main-layout">
-		<ChatsBar />
-		<div class="chat-layout">
-			<ChatView v-if="store.view === 'chat'" />
-			<SettingsView v-else-if="store.view === 'settings'" />
-		</div>
-	</div>
+  <div class="main-layout">
+    <ChatsBar />
+    <div class="chat-layout">
+      <ChatView v-if="store.view === 'chat'" />
+      <SettingsView v-else-if="store.view === 'settings'" />
+    </div>
+  </div>
 
-	<ConfirmModal
-		v-if="uiConfirm.isOpen"
-		:title="uiConfirm.title"
-		:message="uiConfirm.message"
-		:confirm-text="uiConfirm.confirmText"
-		@confirm="uiConfirm.resolve(true)"
-		@cancel="uiConfirm.resolve(false)"
-	/>
+  <ConfirmModal
+    v-if="uiConfirm.isOpen"
+    :title="uiConfirm.title"
+    :message="uiConfirm.message"
+    :confirm-text="uiConfirm.confirmText"
+    @confirm="uiConfirm.resolve(true)"
+    @cancel="uiConfirm.resolve(false)"
+  />
 
-	<UpdateModal 
-		v-if="updateStore.showUpdateModal"
-	/>
+  <UpdateModal v-if="updateStore.showUpdateModal" />
 </template>
 
 <style lang="scss">

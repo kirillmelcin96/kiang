@@ -1,0 +1,13 @@
+# folders
+dist/
+images/
+node_modules/
+public/
+
+pnpm-lock.yaml
+
+# Tauri
+src-tauri/gen
+src-tauri/icons
+src-tauri/src
+src-tauri/target
