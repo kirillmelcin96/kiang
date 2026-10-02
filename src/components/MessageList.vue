@@ -6,7 +6,8 @@ import RandomGreeting from './RandomGreeting.vue'
 import IncognitoIcon from '../icons/Incognito.vue'
 import IncognitoFillIcon from '../icons/IncognitoFill.vue'
 import LoadingIcon from '../icons/Loading.vue'
-import 'highlight.js/styles/github-dark.css' // любой стиль
+// TODO: transfer these styles to global scss imports
+import 'highlight.js/styles/github-dark.css'
 
 const store = useChatStore()
 
@@ -50,7 +51,7 @@ function incognitoButtonHandle() {
 
 <style lang="scss" scoped>
 .error-text {
-  color: #f57474;
+  color: var(--error-color);
 }
 
 .scroll-spacer {

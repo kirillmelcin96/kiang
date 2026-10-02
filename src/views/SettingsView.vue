@@ -185,24 +185,24 @@ const settingsAbout = ref<SettingsGroup[]>([
   gap: 4px;
   border-radius: 24px;
   padding: 4px;
-  background-color: #0e0e0e;
+  background-color: var(--body-background);
 
   &__button {
     padding: 6px 32px;
     border-radius: 20px;
     cursor: pointer;
-    transition: 0.25s;
-    font-weight: 600;
-    font-size: 15px;
-    color: #ffffff60;
+    transition: var(--transition-speed-default);
+    font-weight: var(--font-bold);
+    font-size: var(--font-sm);
+    color: var(--muted-color);
 
     &:hover {
-      color: #ffffffde;
+      color: var(--body-text-color);
     }
 
     &--active {
-      background-color: #212121;
-      color: #ffffffde;
+      background-color: var(--button-default-background);
+      color: var(--body-text-color);
     }
   }
 }
@@ -212,8 +212,8 @@ const settingsAbout = ref<SettingsGroup[]>([
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #363636;
-  font-weight: 500;
+  color: var(--settings-footer-color);
+  font-weight: var(--font-bold);
   user-select: none;
   cursor: default;
 }

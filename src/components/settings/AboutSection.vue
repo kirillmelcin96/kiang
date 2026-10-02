@@ -93,7 +93,7 @@ function imgClicked() {
     width: 128px;
     height: 128px;
     margin-bottom: 12px;
-    transition: 0.25s;
+    transition: var(--transition-speed-default);
     animation: logo-load 0.6s ease;
     cursor: not-allowed;
 

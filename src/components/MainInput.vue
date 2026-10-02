@@ -87,6 +87,8 @@ onMounted(resize)
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/styles/breakpoints' as *; // Instead of media queries
+
 .main-input-group {
   position: fixed;
   bottom: 24px;
@@ -94,10 +96,10 @@ onMounted(resize)
   max-width: 776px;
   z-index: 10;
   border-radius: 22px;
-  border: 1px solid #3a3a3a;
+  border: var(--card-border);
   padding: 8px 16px;
-  background-color: #272727;
-  box-shadow: 0 -1px 24px -8px rgba(0, 0, 0, 0.7);
+  background-color: var(--card-background);
+  box-shadow: var(--card-shadow);
 
   textarea {
     resize: none;
@@ -111,7 +113,7 @@ onMounted(resize)
     margin-bottom: 36px;
 
     &::placeholder {
-      color: #8d8d8d;
+      color: var(--textarea-placeholder);
     }
   }
 
@@ -130,8 +132,8 @@ onMounted(resize)
   &__model {
     height: 32px;
     border-radius: 32px;
-    font-size: 14px;
-    color: #ffffff90;
+    font-size: var(--font-sm);
+    color: var(--muted-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,21 +143,21 @@ onMounted(resize)
     height: 32px;
     border-radius: 32px;
     padding: 0 12px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    color: #ffffff80;
-    background-color: #ffffff20;
-    transition: 0.25s;
+    color: var(--think-color);
+    background-color: var(--think-background);
+    transition: var(--transition-speed-default);
     user-select: none;
 
     &--on {
-      color: #20ff3a;
-      background-color: #20ff3a30;
+      color: var(--think-color-hover);
+      background-color: var(--think-background-color-hover);
     }
 
     &:hover {
@@ -175,14 +177,14 @@ onMounted(resize)
     border-radius: 50%;
     width: 32px;
     height: 32px;
-    color: white;
-    background-color: #4578de;
+    color: var(--button-primary-color);
+    background-color: var(--button-primary-background);
     cursor: pointer;
-    transition: 0.25s;
+    transition: var(--transition-speed-default);
 
     &--break {
-      color: #ff4e4e;
-      background-color: #ff202030;
+      color: var(--button-error-color);
+      background-color: var(--button-error-background);
     }
 
     &:hover {
@@ -203,7 +205,7 @@ onMounted(resize)
   }
 }
 
-@media screen and (max-width: 768px) {
+@include media('max', 'md') {
   .main-input-group {
     left: 12px;
     width: calc(100% - 24px);

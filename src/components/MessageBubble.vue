@@ -107,13 +107,13 @@ async function copyMessage() {
   border-radius: 16px 16px 4px 16px;
   max-width: 450px;
   padding: 10px 16px;
-  background-color: #224998;
+  background-color: var(--chat-bubble-background);
   margin: 32px 0 0 auto;
   white-space: pre-wrap;
 
   &--incognito {
-    background-color: transparent;
-    border: 2px dashed #ffffff30;
+    background-color: var(--chat-bubble-incognito-background);
+    border: var(--chat-bubble-incognito-border);
   }
 }
 

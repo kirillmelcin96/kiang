@@ -48,11 +48,10 @@ const value = computed({
     border: none;
     background-color: transparent;
     font-family: var(--font-ui);
-  }
 
-  textarea::placeholder {
-    opacity: 1;
-    color: #ffffff60;
+    &::placeholder {
+      color: var(--textarea-placeholder);
+    }
   }
 }
 </style>

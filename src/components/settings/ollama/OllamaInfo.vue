@@ -87,13 +87,13 @@ const alignContentLeft = computed(() => {
 }
 
 .model-name {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-sm);
+  font-weight: var(--font-bold);
   padding: 3px 8px;
   cursor: default;
-  background-color: #ffffff15;
+  background-color: var(--model-name-background);
   // border: 1px solid #3a3a3a;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   overflow-wrap: break-all;
   word-break: break-word;
 }

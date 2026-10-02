@@ -33,12 +33,12 @@ const store = useChatStore()
 .incognito-instruction {
   // background-color: #ffffff10;
   margin-top: 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 12px;
-  border: 1px dashed #ffffff50;
+  border: var(--chat-bubble-incognito-border);
 
   &__title {
-    color: #ffc72c;
+    color: var(--incognito-color);
   }
 
   svg {

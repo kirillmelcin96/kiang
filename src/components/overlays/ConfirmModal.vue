@@ -38,17 +38,17 @@ const emit = defineEmits(['confirm', 'cancel'])
   justify-content: center;
   align-items: center;
   z-index: 9998;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: var(--overlay-background);
+  backdrop-filter: var(--overlay-blur);
+  -webkit-backdrop-filter: var(--overlay-blur);
 }
 
 .confirm-modal {
-  border-radius: 16px;
-  border: 1px solid #3a3a3a;
-  background-color: #272727;
+  border-radius: var(--radius-md);
+  border: var(--card-border);
+  background-color: var(--card-background);
   width: 380px;
-  padding: 12px 16px;
+  padding: 12px;
   z-index: 9999;
   user-select: none;
 
@@ -74,7 +74,7 @@ const emit = defineEmits(['confirm', 'cancel'])
   padding: 4px 12px;
   border-width: 1px;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   user-select: none;
   // transition: .25s;
@@ -84,14 +84,14 @@ const emit = defineEmits(['confirm', 'cancel'])
   }
 
   &__cancel {
-    color: white;
-    border-color: #ffffff20;
+    color: var(--button-cancel-color);
+    border-color: var(--button-cancel-border);
   }
 
   &__confirm {
-    color: #ff4e4e;
-    background-color: #ff202030;
-    border-color: #ff202030;
+    color: var(--button-error-color);
+    background-color: var(--button-error-background);
+    border-color: var(--button-error-background);
   }
 }
 </style>

@@ -23,7 +23,6 @@ onMounted(() => {
 })
 
 async function checkForUpdates() {
-  // TODO: test offline
   await updateStore.checkForUpdates()
 }
 </script>
@@ -57,16 +56,7 @@ async function checkForUpdates() {
   justify-content: center;
   max-height: 100dvh;
   overflow-y: auto;
-  background-color: #131313;
-  border-left: 1px solid #242424;
-}
-
-@media screen and (max-width: 768px) {
-  .chat-layout {
-    width: 100%;
-    height: 100dvh;
-    margin: 0;
-    border-radius: 0;
-  }
+  background-color: var(--chat-background);
+  border-left: var(--border);
 }
 </style>
