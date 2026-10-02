@@ -100,9 +100,9 @@ async function deleteChat() {
 .context-menu {
   padding: 8px;
   border-radius: 16px;
-  border: 1px solid #3a3a3a;
-  background-color: #272727;
-  box-shadow: 0 -1px 24px -8px rgba(0, 0, 0, 0.7);
+  border: var(--card-border);
+  background-color: var(--card-background);
+  box-shadow: var(--card-shadow);
   min-width: 220px;
   z-index: 99;
 }
@@ -113,7 +113,7 @@ async function deleteChat() {
   gap: 4px;
   padding: 6px 8px;
   margin-bottom: 1px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 15px;
   max-width: 100%;
   overflow: hidden;
@@ -129,14 +129,14 @@ async function deleteChat() {
   }
 
   &:hover {
-    background-color: #ffffff10;
+    background-color: var(--button-context-background-hover);
   }
 
   &--delete {
-    color: #ff4e4e;
+    color: var(--button-error-color);
 
     &:hover {
-      background-color: #ff202030;
+      background-color: var(--button-error-background);
     }
   }
 }

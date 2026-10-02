@@ -119,9 +119,9 @@ async function startUpdate() {
   justify-content: center;
   align-items: center;
   z-index: 9998;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: var(--overlay-background);
+  backdrop-filter: var(--overlay-blur);
+  -webkit-backdrop-filter: var(--overlay-blur);
 
   &--disabled {
     cursor: progress;
@@ -129,23 +129,22 @@ async function startUpdate() {
 }
 
 .update-modal {
-  border-radius: 16px;
-  border: 1px solid #3a3a3a;
-  background-color: #272727;
+  border-radius: var(--radius-md);
+  border: var(--card-border);
+  background-color: var(--card-background);
   margin: 0 12px;
   min-width: 380px;
   max-width: 600px;
-  padding: 12px 16px;
+  padding: 12px;
   z-index: 9999;
   user-select: none;
 
   &__tag {
     display: inline-block;
     padding: 1px 6px;
-    border-radius: 8px;
-    color: #51ff4e;
-    border: 1px solid #27ff2450;
-    opacity: 70%; // TODO: change to normal colors later
+    border-radius: var(--radius-sm);
+    color: var(--tag-green-color);
+    border: 1px solid var(--tag-green-border);
     margin-left: 4px;
     font-size: 13px;
     // font-weight: 500;
@@ -175,7 +174,7 @@ async function startUpdate() {
   padding: 4px 12px;
   border-width: 1px;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   user-select: none;
   // transition: .25s;
@@ -185,14 +184,14 @@ async function startUpdate() {
   }
 
   &__cancel {
-    color: white;
-    border-color: #ffffff20;
+    color: var(--button-cancel-color);
+    border-color: var(--button-cancel-border);
   }
 
   &__confirm {
-    color: #51ff4e;
-    background-color: #27ff2430;
-    border-color: #27ff2430;
+    color: var(--button-success-color);
+    background-color: var(--button-success-background);
+    border-color: var(--button-success-background);
   }
 
   &--disabled {
@@ -208,8 +207,8 @@ async function startUpdate() {
 .update-modal-changelog {
   margin-top: 12px;
   padding: 12px 16px;
-  border-radius: 12px;
-  background-color: #0e0e0e;
+  border-radius: var(--radius-md);
+  background-color: var(--code-background);
   max-height: 370px;
   overflow-y: auto;
   font-family: var(--font-mono);
@@ -233,7 +232,7 @@ async function startUpdate() {
   h2 {
     font-family: var(--font-mono);
     padding: 0 0 12px 0;
-    border-bottom: 1px solid #ffffff10;
+    border-bottom: 1px solid var(--border-color);
   }
 
   h3,
@@ -261,16 +260,16 @@ async function startUpdate() {
 
 .update-modal-error {
   margin-top: 12px;
-  border-radius: 12px;
-  color: #ff4e4e;
-  background-color: #ff202030;
-  border: 1px solid #ff202030;
+  border-radius: var(--radius-md);
+  color: var(--button-error-color);
+  background-color: var(--button-error-background);
+  border: 1px solid var(--button-error-background);
   padding: 8px 16px 12px 16px;
   max-height: 114px;
   overflow-y: auto;
 
   &__header {
-    // font-size: 14px;
+    // font-size: var(--font-sm);
     font-weight: 600;
     user-select: none;
     margin-bottom: 8px;

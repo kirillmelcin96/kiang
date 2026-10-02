@@ -117,9 +117,9 @@ function saveEditTitle() {
   gap: 4px;
   padding: 6px 8px;
   margin-bottom: 1px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 15px;
-  background-color: #0e0e0e;
+  background-color: var(--button-chatsbar-background);
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -155,7 +155,7 @@ function saveEditTitle() {
     cursor: pointer;
 
     &:hover {
-      background-color: #ffffff15;
+      background-color: var(--button-chatsbar-background-dots);
     }
 
     svg {
@@ -165,7 +165,7 @@ function saveEditTitle() {
   }
 
   &:hover {
-    background-color: #272727;
+    background-color: var(--button-chatsbar-background-hover);
 
     .chats-bar-button__dots {
       width: 25px;
@@ -175,7 +175,7 @@ function saveEditTitle() {
 
   &__active {
     cursor: default;
-    background-color: #272727;
+    background-color: var(--button-chatsbar-background-hover);
   }
 }
 

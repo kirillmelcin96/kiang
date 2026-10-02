@@ -6,7 +6,7 @@ const props = defineProps<SettingsGroup>()
 
 <template>
   <div class="settings-group">
-    <div v-if="props.title" class="settings-group__title muted">{{ props.title }}</div>
+    <div v-if="props.title" class="settings-group__title dimmer-muted">{{ props.title }}</div>
     <div v-if="props.type === 'group'" class="settings-group-container">
       <div
         v-for="parameter in props.parameters"
@@ -36,7 +36,7 @@ const props = defineProps<SettingsGroup>()
       </template>
     </div>
 
-    <div v-if="props.footer" class="settings-group__footer muted">
+    <div v-if="props.footer" class="settings-group__footer dimmer-muted">
       {{ props.footer }}
     </div>
   </div>
@@ -55,24 +55,26 @@ const props = defineProps<SettingsGroup>()
   }
 
   &__title {
-    padding-left: 16px;
+    padding-left: 12px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: var(--font-sm);
+    user-select: none;
   }
 
   &__footer {
-    padding: 0 16px;
-    font-size: 14px;
+    padding: 0 12px;
+    font-size: var(--font-sm);
+    user-select: none;
   }
 }
 
 .settings-group-container {
   width: 100%;
-  margin: 4px 0 12px;
-  border-radius: 16px;
-  border: 1px solid #3a3a3a;
-  background-color: #272727;
-  box-shadow: 0 -1px 24px -8px rgba(0, 0, 0, 0.7);
+  margin: 4px 0 8px;
+  border-radius: var(--radius-md);
+  border: var(--card-border);
+  background-color: var(--card-background);
+  box-shadow: var(--card-shadow);
 
   .settings-group-parameter:last-child {
     border-bottom: 0;
@@ -80,11 +82,11 @@ const props = defineProps<SettingsGroup>()
 }
 
 .settings-group-parameter {
-  padding: 8px 16px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #3a3a3a;
+  border-bottom: var(--card-border);
   min-height: 62px;
   font-size: 15px;
   gap: 8px;
@@ -94,11 +96,13 @@ const props = defineProps<SettingsGroup>()
   }
 
   &__title {
-    font-weight: 500;
+    font-weight: var(--font-bold);
+    user-select: none;
   }
 
   &__description {
-    font-size: 14px;
+    font-size: var(--font-sm);
+    user-select: none;
   }
 
   &__control {

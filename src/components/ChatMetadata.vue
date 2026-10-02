@@ -29,7 +29,7 @@ watch([() => store.chatId, () => store.isLoading], () => requestMetadata())
     </div> -->
   <div v-if="metadata && metadata.messages.length !== 1" class="timestamp">
     <DateTimeFormat class="muted" :timestamp="metadata.createdAt" style="user-select: all" />
-    <div class="model-bubble">{{ metadata.model }}</div>
+    <div class="model-badge">{{ metadata.model }}</div>
   </div>
   <div v-if="store.incognitoMode" class="incognito-mode-warning">
     <b><IncognitoFillIcon />Incognito Mode Enabled</b>
@@ -51,7 +51,7 @@ watch([() => store.chatId, () => store.isLoading], () => requestMetadata())
 }
 
 .incognito-mode-warning {
-  color: #ffc72c;
+  color: var(--incognito-color);
 
   svg {
     width: 17px;
@@ -61,14 +61,14 @@ watch([() => store.chatId, () => store.isLoading], () => requestMetadata())
   }
 }
 
-.model-bubble {
+.model-badge {
   display: inline-block;
   padding: 2px 8px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   margin-left: 8px;
-  // border: 1px solid #ffffff10;
-  background-color: #272727;
-  font-weight: 500;
+  // border: var(--border);
+  background-color: var(--model-badge-background);
+  font-weight: var(--font-bold);
   user-select: all;
   // color: #e4e4e4;
 }

@@ -39,11 +39,15 @@ onMounted(() => {
 <style lang="scss" scoped>
 .settings-ollama-status {
   display: inline-block;
-  // font-weight: 500;
-  // font-size: 15px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-bold);
+  user-select: none;
 
   &--ok {
-    color: #20ff3a;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--main-color-green);
+    background-color: var(--main-color-green-background);
 
     &:before {
       display: inline-block;
@@ -53,12 +57,15 @@ onMounted(() => {
       content: '';
       margin-right: 2px;
       margin-bottom: 1px;
-      background-color: #20ff3a;
+      background-color: var(--main-color-green);
     }
   }
 
   &--error {
-    color: #ff4e4e;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--main-color-red);
+    background-color: var(--main-color-red-background);
 
     &:before {
       display: inline-block;
@@ -68,7 +75,7 @@ onMounted(() => {
       content: '';
       margin-right: 2px;
       margin-bottom: 1px;
-      background-color: #ff4e4e;
+      background-color: var(--button-error-color);
     }
   }
 }

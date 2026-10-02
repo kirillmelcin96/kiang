@@ -71,12 +71,14 @@ function openSettings() {
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/styles/breakpoints' as *; // Instead of media queries
+
 .chats-bar {
   padding: 16px 12px;
   position: relative;
 }
 
-@media screen and (max-width: 768px) {
+@include media('max', 'md') {
   .chats-bar {
     display: none;
   }
@@ -90,11 +92,12 @@ function openSettings() {
 }
 
 .subtitle {
-  opacity: 0.6;
-  font-size: 13px;
-  font-weight: 500;
+  color: var(--dimmer-muted-color);
+  font-size: var(--font-xs);
+  font-weight: var(--font-bold);
   padding: 0;
   margin: 12px 0 4px 8px;
+  user-select: none;
 }
 
 .chats-bar-button {
@@ -103,9 +106,9 @@ function openSettings() {
   gap: 4px;
   padding: 6px 8px;
   margin-bottom: 4px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 15px;
-  background-color: #0e0e0e;
+  background-color: var(--button-chatsbar-background);
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -128,38 +131,12 @@ function openSettings() {
   }
 
   &:hover {
-    background-color: #272727;
+    background-color: var(--button-chatsbar-background-hover);
   }
 
   &__active {
     cursor: default;
-    background-color: #272727;
+    background-color: var(--button-chatsbar-background-hover);
   }
-}
-
-.chat-instance-input {
-  width: 234px;
-  position: fixed;
-  bottom: 16px;
-  border: 1px solid #454545;
-  background-color: transparent;
-  font-size: 15px;
-  padding: 8px 8px;
-  border-radius: 12px;
-  margin-bottom: 4px;
-  opacity: 0.6;
-  transition: opacity 0.25s ease;
-
-  &:hover,
-  &:focus {
-    outline: none;
-    opacity: 1;
-  }
-}
-
-.divide {
-  color: #454545;
-  opacity: 0.6;
-  margin: 0 0 12px 0;
 }
 </style>

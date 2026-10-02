@@ -1,0 +1,94 @@
+:root {
+  --body-background: #0e0e0e;
+  --body-text-color: #e5e5e5;
+
+  --muted-color: #8a8a8a;
+  --dimmer-muted-color: #525252;
+
+  // Main colors
+  --main-color-blue: #2575ed;
+  --main-color-green: #58f87d;
+  --main-color-green-background: #58f87d20;
+  --main-color-red: #f85858;
+  --main-color-red-background: #f8585820;
+
+  --link-color: var(--main-color-blue);
+  --link-color-hover: #296cd0;
+
+  --divider-color: #303030;
+
+  // Cards
+  --card-border: 1px solid #2f2f2f;
+  --card-background: #212121;
+  --card-shadow: 0 -1px 16px -8px rgba(15, 15, 15, 0.7);
+
+  // Borders
+  --border-color: #242424;
+  --border: 1px solid var(--border-color);
+
+  // Tables
+  --table-header-border-color: var(--border-color);
+  --table-cell-border-color: #ffffff08;
+
+  // Code
+  --code-background: var(--body-background);
+
+  // Buttons
+  --button-default-background: #212121;
+  // Button:primary
+  --button-primary-color: #ffffff;
+  --button-primary-background: var(--main-color-blue);
+  // Button:success
+  --button-success-color: var(--main-color-green);
+  --button-success-background: var(--main-color-green-background);
+  // Button:error
+  --button-error-color: var(--main-color-red);
+  --button-error-background: var(--main-color-red-background);
+  // Button:cancel
+  --button-cancel-color: #ffffff;
+  --button-cancel-border: #ffffff20;
+  // Buttons:chats-bar
+  --button-chatsbar-background: var(--body-background);
+  --button-chatsbar-background-hover: #272727;
+  --button-chatsbar-background-dots: #ffffff15;
+  // Buttons:context-menu
+  --button-context-background-hover: #ffffff10;
+  // Buttons:update
+  --button-update-color: white;
+  --button-version-color: #ffffff60;
+  --button-update-background: var(--button-default-background);
+  --button-update-color-hover: white;
+  --button-version-color-hover: #ffffff80;
+  --button-update-background-hover: var(--main-color-blue);
+  --button-update-shadow: 0 -1px 24px -8px #4578de;
+
+  // Chat related
+  --chat-background: #131313;
+  --model-badge-background: #313131;
+  --textarea-placeholder: var(--dimmer-muted-color);
+  --chat-bubble-background: #224998;
+  --error-color: var(--main-color-red);
+  // Chat related:incognito-mode
+  --incognito-color: #ffc72c;
+  --chat-bubble-incognito-background: transparent;
+  --chat-bubble-incognito-border: 2px dashed #ffffff30;
+  // Chat related:think-button
+  --think-color: #ffffff80;
+  --think-background: #ffffff15;
+  --think-color-hover: var(--main-color-green);
+  --think-background-color-hover: var(--main-color-green-background);
+
+  // Overlays
+  --overlay-background: rgba(0, 0, 0, 0.7);
+  --overlay-blur: blur(4px);
+
+  // Tags
+  --tag-green-color: var(--main-color-green);
+  --tag-green-border: var(--main-color-green-background);
+
+  // Settings
+  --model-name-background: #ffffff15;
+  --input-text-background: #00000030;
+  --input-text-border-color: #3a3a3a;
+  --settings-footer-color: #363636;
+}

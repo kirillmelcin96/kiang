@@ -1,0 +1,21 @@
+@use 'fonts';
+
+:root {
+  // Font families
+  --font-ui: 'Onest', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  // Font size
+  --font-xs: 13px;
+  --font-sm: 14px;
+
+  // Font weight
+  --font-bold: 500;
+
+  // Transitions
+  --transition-speed-default: 0.25s ease;
+
+  // Border radius
+  --radius-sm: 8px;
+  --radius-md: 12px;
+}

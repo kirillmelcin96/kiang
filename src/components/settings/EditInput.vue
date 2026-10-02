@@ -62,7 +62,7 @@ function saveSetting() {
     margin-bottom: -2px;
     margin-right: 2px;
     opacity: 0.6;
-    transition: 0.25s;
+    transition: var(--transition-speed-default);
 
     &:hover {
       opacity: 1;
@@ -72,11 +72,11 @@ function saveSetting() {
   input[type='text'] {
     font-family: var(--font-ui);
     field-sizing: content;
-    background-color: #00000030;
+    background-color: var(--input-text-background);
     border: 0;
-    // border-bottom: 2px solid #3a3a3a;
-    border-radius: 8px;
-    border: 1px solid #3a3a3a;
+    // border-bottom: 2px solid var(--input-text-border-color);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--input-text-border-color);
     font-size: inherit;
     margin: 0;
     padding: 4px 8px;
