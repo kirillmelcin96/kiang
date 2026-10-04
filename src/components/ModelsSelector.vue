@@ -72,6 +72,7 @@ function switchSelector() {
 }
 
 .dropdown-list {
+  z-index: 11;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -81,7 +82,7 @@ function switchSelector() {
   background-color: var(--button-chatsbar-background);
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
-  min-width: 420px;
+  width: 420px;
 }
 
 .no-models {
