@@ -4,6 +4,7 @@ import IconArrowUp from '../icons/ArrowUp.vue'
 import IconStop from '../icons/Stop.vue'
 import IconBrain from '../icons/Brain.vue'
 import { useChatStore } from '../stores/chatStore'
+import { shortModelName } from '../utils/general'
 
 const store = useChatStore()
 const request = ref('')
@@ -20,10 +21,12 @@ const resize = async () => {
 }
 
 const getModelName = computed(() => {
-  if (store.model.includes(':')) {
-    return `${store.model.split(':')[0]} (${store.model.split(':')[1]})`
+  const modelName = shortModelName(store.model, true)
+
+  if (modelName.includes(':')) {
+    return `${modelName.split(':')[0]} (${modelName.split(':')[1]})`
   }
-  return store.model
+  return modelName
 })
 
 function clearInputAndSend() {

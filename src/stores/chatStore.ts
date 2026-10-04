@@ -2,6 +2,7 @@ import { toRaw } from 'vue'
 import { defineStore } from 'pinia'
 import { useSettingsStore } from './settingsStore.ts'
 import type { chatMessage, roles, Chat } from '../types/messages'
+import type { OllamaModel } from '../types/api'
 import {
   deleteChatIDB,
   loadAllChatsIDB,
@@ -21,7 +22,7 @@ interface State {
   chatsList: Chat[]
   chatId: null | number
   model: string
-  availableModels: string[]
+  availableModels: OllamaModel[]
   messages: chatMessage[]
   streamingMessage: string
   isLoading: boolean
@@ -184,13 +185,15 @@ export const useChatStore = defineStore('chat', {
         })
 
         const modelsList = await res.json()
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this.availableModels = modelsList.models.map((m: any) => m.name).sort()
+
+        this.availableModels = modelsList.models
+
         // Set default model
-        if (this.model && this.availableModels.includes(this.model)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if (this.model && this.availableModels.map((m: any) => m.name).includes(this.model)) {
           // Don't change the last model if the model is available
-        } else if (this.availableModels.length) {
-          this.model = this.availableModels[0]!
+        } else if (this.availableModels && this.availableModels.length) {
+          this.model = this.availableModels[0]?.name || ''
         } else {
           this.model = ''
         }
