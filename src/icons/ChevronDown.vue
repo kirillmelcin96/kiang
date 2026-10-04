@@ -7,7 +7,7 @@
       />
       <path
         fill="currentColor"
-        d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z"
       />
     </g>
   </svg>
@@ -15,6 +15,6 @@
 
 <script lang="ts">
 export default {
-  name: 'ChevronDown',
+  name: 'MingcuteDownLine',
 }
 </script>

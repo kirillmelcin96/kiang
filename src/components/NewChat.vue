@@ -1,23 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { greetings } from '../greetings'
 import ModelsSelector from './ModelsSelector.vue'
-import { useChatStore } from '../stores/chatStore'
+import { useChatStore } from '../stores/chatStore.ts'
 import IncognitoFillIcon from '../icons/IncognitoFill.vue'
-
-const randomGreeting = ref('')
-
-onMounted(() => {
-  const randomIndex = Math.floor(Math.random() * greetings.length)
-  randomGreeting.value = greetings[randomIndex]!
-})
 
 const store = useChatStore()
 </script>
 
 <template>
-  <div class="greeting-block">
-    <h1>{{ randomGreeting }}</h1>
+  <div class="new-chat-block">
+    <h1 v-if="!store.incognitoMode">New Chat</h1>
+    <h1 v-else>New Temporary Chat</h1>
     <ModelsSelector />
     <div v-if="store.incognitoMode" class="incognito-instruction">
       <div class="incognito-instruction__title">
@@ -30,12 +22,28 @@ const store = useChatStore()
 </template>
 
 <style lang="scss" scoped>
+.new-chat-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    user-select: none;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
 .incognito-instruction {
   // background-color: #ffffff10;
   margin-top: 20px;
   border-radius: var(--radius-md);
   padding: 12px;
   border: var(--chat-bubble-incognito-border);
+  user-select: none;
 
   &__title {
     color: var(--incognito-color);
@@ -46,19 +54,6 @@ const store = useChatStore()
     height: 17px;
     margin-bottom: -3px;
     margin-right: 2px;
-  }
-}
-
-.greeting-block {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  h1 {
-    text-align: center;
   }
 }
 </style>

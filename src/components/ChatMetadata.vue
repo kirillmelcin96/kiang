@@ -4,6 +4,7 @@ import { useChatStore } from '../stores/chatStore'
 import DateTimeFormat from './utils/DateTimeFormat.vue'
 import IncognitoFillIcon from '../icons/IncognitoFill.vue'
 import type { Chat } from '../types/messages'
+import { shortModelName } from '../utils/general'
 
 const store = useChatStore()
 const metadata = ref<Chat>()
@@ -22,14 +23,9 @@ watch([() => store.chatId, () => store.isLoading], () => requestMetadata())
 </script>
 
 <template>
-  <!-- <div v-if="metadata && metadata.messages.length !== 1" class="chat-metadata-bubble">
-        <h3>{{ metadata.title }}</h3>
-        <p><span class="muted">Model</span> {{ metadata.model }}</p>
-        <p><span class="muted">Created </span> {{ metadata.createdAt }}</p>
-    </div> -->
   <div v-if="metadata && metadata.messages.length !== 1" class="timestamp">
     <DateTimeFormat class="muted" :timestamp="metadata.createdAt" style="user-select: all" />
-    <div class="model-badge">{{ metadata.model }}</div>
+    <div class="model-badge">{{ shortModelName(metadata.model, true) }}</div>
   </div>
   <div v-if="store.incognitoMode" class="incognito-mode-warning">
     <b><IncognitoFillIcon />Incognito Mode Enabled</b>
@@ -71,26 +67,5 @@ watch([() => store.chatId, () => store.isLoading], () => requestMetadata())
   font-weight: var(--font-bold);
   user-select: all;
   // color: #e4e4e4;
-}
-
-.chat-metadata-bubble {
-  background-color: #ffffff10;
-  padding: 20px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 350px;
-  margin: 0 auto 48px;
-  text-align: center;
-  border: 1px solid #ffffff15;
-
-  h3 {
-    margin-top: 0;
-    font-family: var(--font-ui);
-  }
-
-  p {
-    margin: 4px;
-    font-size: 14px;
-  }
 }
 </style>

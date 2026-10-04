@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useChatStore } from '../stores/chatStore'
-import ChevronDown from '../icons/ChevronDown.vue'
+import ChevronDown from '../icons/SelectorVertical.vue'
+import ModelsSelectorItem from './ModelsSelectorItem.vue'
+import { shortModelName } from '../utils/general'
 
 const store = useChatStore()
 const isSelectorOpened = ref(false)
@@ -23,19 +25,21 @@ function switchSelector() {
 
 <template>
   <div class="dropdown">
-    <div class="dropdown-button" @click="switchSelector">
-      <span v-if="!store.model" class="muted">No models detected</span>
-      <span v-else>{{ store.model }}<ChevronDown /></span>
+    <div v-if="store.model" class="dropdown-button" @click="switchSelector">
+      <span>{{ shortModelName(store.model) }}<ChevronDown /></span>
+    </div>
+    <div v-else class="no-models muted">
+      <p>No models detected</p>
+      <p>Please, check <a @click="store.openSettings">Ollama Instance settings</a></p>
     </div>
     <div v-if="isSelectorOpened" class="dropdown-list">
-      <div
+      <ModelsSelectorItem
         v-for="model in store.availableModels"
-        :key="model"
+        :key="model.name"
         class="dropdown-list__item"
-        @click="changeModel(model)"
-      >
-        {{ model }}
-      </div>
+        :model="model"
+        @change-model="changeModel"
+      />
     </div>
   </div>
 </template>
@@ -46,37 +50,50 @@ function switchSelector() {
 }
 
 .dropdown-button {
-  padding: 8px 12px;
-  color: #3d7eff;
-  background-color: #262f40;
-  border-radius: 12px;
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
   cursor: pointer;
-  user-select: none;
-  font-weight: 500;
+  transform: translateX(11px);
+  color: var(--muted-color);
+  font-size: 18px;
+  transition: var(--transition-speed-default);
+  text-align: center;
+
+  &:hover {
+    color: var(--button-modelselector-hover);
+  }
 
   svg {
-    margin-bottom: -3px;
-    margin-left: 4px;
+    width: 22px;
+    height: 22px;
+    margin-bottom: -5px;
+    margin-left: -1px;
   }
 }
 
 .dropdown-list {
   position: absolute;
-  margin-top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 10px);
   padding: 4px 4px;
   border-radius: 12px;
-  background-color: #1a1a1a;
-  border: 1px solid #ffffff10;
-  box-shadow: 0 -1px 24px -8px rgba(0, 0, 0, 0.7);
+  background-color: var(--button-chatsbar-background);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  min-width: 420px;
+}
 
-  &__item {
+.no-models {
+  font-size: 18px;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  a {
     cursor: pointer;
-    padding: 8px 10px;
-    border-radius: 8px;
-
-    &:hover {
-      background-color: #212121;
-    }
   }
 }
 </style>

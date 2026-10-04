@@ -2,7 +2,7 @@
 import { useChatStore } from '../stores/chatStore'
 import MessageBubble from './MessageBubble.vue'
 import ChatMetadata from './ChatMetadata.vue'
-import RandomGreeting from './RandomGreeting.vue'
+import NewChat from './NewChat.vue'
 import IncognitoIcon from '../icons/Incognito.vue'
 import IncognitoFillIcon from '../icons/IncognitoFill.vue'
 import LoadingIcon from '../icons/Loading.vue'
@@ -17,13 +17,16 @@ function incognitoButtonHandle() {
 </script>
 
 <template>
+  <!-- Show this when it's a new chat -->
   <template v-if="store.messages.length === 0">
     <div class="incognito-button" @click="incognitoButtonHandle">
       <IncognitoIcon v-show="!store.incognitoMode" />
       <IncognitoFillIcon v-show="store.incognitoMode" />
     </div>
-    <RandomGreeting />
+    <NewChat />
   </template>
+
+  <!-- Show this if chat has messages -->
   <template v-else>
     <ChatMetadata />
     <MessageBubble
