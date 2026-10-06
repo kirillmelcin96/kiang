@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.5.0] - 2026-10-06
+
+### Added
+
+- Onboarding for new users
+
+### Fixed
+
+- Chat list scrolling when the number of chats exceeds the screen height
+
+### Changed
+
+- Some css styles
+
 ## [1.4.0] - 2026-10-04
 
 ### Changed
@@ -114,6 +128,7 @@
 - Global styles
 - Models selector component
 
+[1.5.0]: https://github.com/kirillmelcin96/kiang/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/kirillmelcin96/kiang/compare/v1.3.4...v1.4.0
 [1.3.4]: https://github.com/kirillmelcin96/kiang/compare/v1.3.3...v1.3.4
 [1.3.3]: https://github.com/kirillmelcin96/kiang/compare/v1.3.2...v1.3.3
