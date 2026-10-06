@@ -206,19 +206,44 @@ li::marker {
   // color: #888888;
 }
 
+// Button
 button {
-  border: 1px solid transparent;
-  padding: 8px 12px;
-  font-size: 1em;
-  font-weight: var(--font-bold);
-  font-family: inherit;
-  background-color: var(--button-default-background);
   cursor: pointer;
-  transition: var(--transition-speed-default);
+  padding: 4px 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  user-select: none;
+  color: var(--button-cancel-color);
+  border-color: var(--button-cancel-border);
+  background-color: transparent;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 1px auto -webkit-focus-ring-color;
+}
+
+.button-link {
+  cursor: pointer;
+  padding: 4px 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  user-select: none;
+  color: var(--button-cancel-color);
+  border-color: var(--button-cancel-border);
+  background-color: transparent;
+
+  &:hover {
+    opacity: 0.8;
+    color: var(--button-cancel-color);
+  }
 }
 
 // Basic classes
@@ -234,12 +259,25 @@ button:focus-visible {
   }
 }
 
+// Colors
 .muted {
   color: var(--muted-color);
 }
 
 .dimmer-muted {
   color: var(--dimmer-muted-color);
+}
+
+.green-text {
+  color: var(--main-color-green);
+}
+
+.red-text {
+  color: var(--main-color-red);
+}
+
+.yellow-text {
+  color: var(--incognito-color);
 }
 
 // Common animations
@@ -259,5 +297,86 @@ button:focus-visible {
   }
   to {
     transform: rotateZ(360deg);
+  }
+}
+
+// Onboarding components
+.onboarding-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 24px 12px 24px 12px;
+  text-align: center;
+
+  h1,
+  h2,
+  p {
+    margin: 0;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  &__icon {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.onboarding-features {
+  text-align: left;
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background-color: var(--code-background);
+  font-family: var(--font-mono);
+  min-width: 300px;
+
+  &__header {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-sm);
+    margin-bottom: 8px;
+    font-weight: var(--font-bold);
+
+    &--refresh {
+      cursor: pointer;
+
+      svg {
+        margin-bottom: -2px !important;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  svg {
+    margin-bottom: -3px;
+    margin-right: -4px;
+  }
+}
+
+.onboarding-continue-button {
+  margin-top: 12px;
+  padding: 4px 8px 4px 12px;
+
+  color: var(--button-success-color);
+  background-color: var(--button-success-background);
+  border-color: var(--button-success-background);
+
+  svg {
+    margin-bottom: -3px;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }
