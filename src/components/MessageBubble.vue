@@ -32,14 +32,14 @@ marked.use(
         }).value
 
         return `
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class=muted>${language}</span>
-                            <button data-copy-code type="button">Copy</button>
-                        </div>
+          <div class="code-block">
+              <div class="code-header">
+                  <span class=muted>${language}</span>
+                  <button data-copy-code type="button">Copy</button>
+              </div>
 
-                        <pre><code class="hljs language-${language}">${highlighted}</code></pre>
-                    </div>`
+              <pre><code class="hljs language-${language}">${highlighted}</code></pre>
+          </div>`
       },
     },
   },
@@ -107,13 +107,26 @@ async function copyMessage() {
   border-radius: 16px 16px 4px 16px;
   max-width: 450px;
   padding: 10px 16px;
+  color: var(--chat-bubble-color);
   background-color: var(--chat-bubble-background);
   margin: 32px 0 0 auto;
   white-space: pre-wrap;
 
+  &::selection {
+    // Revert colors
+    color: var(--chat-bubble-background);
+    background-color: var(--chat-bubble-color);
+  }
+
   &--incognito {
     background-color: var(--chat-bubble-incognito-background);
     border: var(--chat-bubble-incognito-border);
+
+    &::selection {
+      // Revert colors
+      color: var(--chat-bubble-incognito-background);
+      background-color: var(--chat-bubble-color);
+    }
   }
 }
 

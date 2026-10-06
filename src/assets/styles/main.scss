@@ -179,9 +179,16 @@ code.hljs {
     margin: 0;
     padding: 0;
     background-color: transparent;
+    border: none;
+    background-color: transparent;
 
     &:hover {
       opacity: 0.9;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
     }
   }
 }

@@ -69,11 +69,12 @@
   --chat-background: #131313;
   --model-badge-background: #313131;
   --textarea-placeholder: var(--dimmer-muted-color);
+  --chat-bubble-color: #fff;
   --chat-bubble-background: #224998;
   --error-color: var(--main-color-red);
   // Chat:incognito-mode
   --incognito-color: #ffc72c;
-  --chat-bubble-incognito-background: transparent;
+  --chat-bubble-incognito-background: var(--chat-background);
   --chat-bubble-incognito-border: 2px dashed #ffffff30;
   // Chat:think-button
   --think-color: #ffffff80;
