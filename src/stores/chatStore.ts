@@ -18,6 +18,7 @@ let controller: AbortController
 
 // State types
 interface State {
+  onboardingViewed: boolean
   view: 'chat' | 'settings'
   chatsList: Chat[]
   chatId: null | number
@@ -33,6 +34,7 @@ interface State {
 
 export const useChatStore = defineStore('chat', {
   state: (): State => ({
+    onboardingViewed: !!localStorage.getItem('chat/onboardingViewed'),
     view: 'chat',
     chatsList: [],
     chatId: null,
@@ -49,6 +51,10 @@ export const useChatStore = defineStore('chat', {
     // Empty
   },
   actions: {
+    updateOnboardingViewed() {
+      localStorage.setItem('chat/onboardingViewed', 'yup!')
+      this.onboardingViewed = true
+    },
     async updateChatsList() {
       this.chatsList = await loadAllChatsIDB()
     },

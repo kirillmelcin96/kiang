@@ -39,34 +39,32 @@ function openSettings() {
 
 <template>
   <div class="chats-bar">
-    <div>
-      <h2 class="title">Kiang</h2>
+    <h2 class="title">Kiang</h2>
 
-      <!-- Menu Buttons -->
-      <div class="chat-bar-menu">
-        <div
-          v-for="button in menuButtons"
-          :key="button.title"
-          class="chats-bar-button"
-          @click="button.handler"
-        >
-          <component :is="button.icon" class="chats-bar-button__icon"></component>
-          {{ button.title }}
-        </div>
+    <!-- Menu Buttons -->
+    <div class="chat-bar-menu">
+      <div
+        v-for="button in menuButtons"
+        :key="button.title"
+        class="chats-bar-button"
+        @click="button.handler"
+      >
+        <component :is="button.icon" class="chats-bar-button__icon"></component>
+        {{ button.title }}
       </div>
-
-      <!-- Update Notification -->
-      <AppUpdateNotification v-if="updateStore.updateAvailable" />
-
-      <!-- Chats List -->
-      <p class="subtitle">Your chats</p>
-      <ChatsBarButton
-        v-for="chat in store.chatsList"
-        :id="chat.id"
-        :key="chat.id"
-        :title="chat.title"
-      />
     </div>
+
+    <!-- Update Notification -->
+    <AppUpdateNotification v-if="updateStore.updateAvailable" />
+
+    <!-- Chats List -->
+    <p class="subtitle">Your chats</p>
+    <ChatsBarButton
+      v-for="chat in store.chatsList"
+      :id="chat.id"
+      :key="chat.id"
+      :title="chat.title"
+    />
   </div>
 </template>
 
@@ -75,7 +73,8 @@ function openSettings() {
 
 .chats-bar {
   padding: 16px 12px;
-  position: relative;
+  height: 100dvh;
+  overflow-y: auto;
 }
 
 @include media('max', 'md') {

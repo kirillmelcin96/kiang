@@ -9,6 +9,7 @@ import { useAppUpdateStore } from './stores/updateStore.ts'
 import { onMounted } from 'vue'
 import { IS_TAURI } from './utils/runtime.ts'
 import UpdateModal from './components/overlays/UpdateModal.vue'
+import OnboardingView from './views/OnboardingView.vue'
 
 const store = useChatStore()
 const uiConfirm = useConfirmStore()
@@ -31,7 +32,8 @@ async function checkForUpdates() {
   <div class="main-layout">
     <ChatsBar />
     <div class="chat-layout">
-      <ChatView v-if="store.view === 'chat'" />
+      <OnboardingView v-if="!store.onboardingViewed" />
+      <ChatView v-else-if="store.view === 'chat'" />
       <SettingsView v-else-if="store.view === 'settings'" />
     </div>
   </div>

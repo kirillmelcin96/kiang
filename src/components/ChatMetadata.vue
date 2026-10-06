@@ -48,6 +48,7 @@ watch([() => store.chatId, () => store.isLoading], () => requestMetadata())
 
 .incognito-mode-warning {
   color: var(--incognito-color);
+  user-select: none;
 
   svg {
     width: 17px;
