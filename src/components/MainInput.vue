@@ -61,7 +61,7 @@ onMounted(resize)
       autocapitalize="off"
       spellcheck="false"
       @input="resize"
-      @keyup.ctrl.enter="clearInputAndSend"
+      @keyup.enter="clearInputAndSend"
     ></textarea>
     <div class="main-input-group__bottom">
       <div v-if="store.model !== ''" class="main-input-group__model">
