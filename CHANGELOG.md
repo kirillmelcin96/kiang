@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.1] - 2026-10-07
+
+### Changed
+
+- Send message on Enter key press (previously ctrl+Enter)
+
 ## [1.5.0] - 2026-10-06
 
 ### Added
@@ -128,6 +134,7 @@
 - Global styles
 - Models selector component
 
+[1.5.1]: https://github.com/kirillmelcin96/kiang/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/kirillmelcin96/kiang/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/kirillmelcin96/kiang/compare/v1.3.4...v1.4.0
 [1.3.4]: https://github.com/kirillmelcin96/kiang/compare/v1.3.3...v1.3.4
