@@ -4,12 +4,12 @@
 
 # Kiang
 
-[Download](#installation) | [Release notes](/CHANGELOG.md) | [Roadmap](#roadmap) | [Support](#feedback)
-
 ![GitHub Stars](https://www.shieldcn.dev/github/stars/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&labelColor=58f87d&color=ffffff)
 ![Last commit](https://www.shieldcn.dev/github/last-commit/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&labelColor=58f87d&color=ffffff)
 ![Release](https://www.shieldcn.dev/github/release/kirillmelcin96/kiang.svg?size=xs&font=jetbrains-mono&color=4578de)
 ![License](https://www.shieldcn.dev/github/license/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&color=4578de)
+
+[Download](#installation) | [Release notes](/CHANGELOG.md) | [Roadmap](#roadmap) | [Support](#feedback)
 </div>
 
 **Kiang** is a lightweight user-friendly web interface for working with local models via the Ollama API. Written in Vue.js.
