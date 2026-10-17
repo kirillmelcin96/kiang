@@ -8,8 +8,8 @@
 
 ![GitHub Stars](https://www.shieldcn.dev/github/stars/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&labelColor=58f87d&color=ffffff)
 ![Last commit](https://www.shieldcn.dev/github/last-commit/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&labelColor=58f87d&color=ffffff)
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/release/kirillmelcin96/kiang.svg?size=xs&amp;mode=dark&amp;font=jetbrains-mono"><img alt="Release" src="https://www.shieldcn.dev/github/release/kirillmelcin96/kiang.svg?size=xs&amp;mode=light&amp;font=jetbrains-mono"></picture>
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/kirillmelcin96/kiang.svg?variant=ghost&amp;size=xs&amp;mode=dark&amp;font=jetbrains-mono"><img alt="License" src="https://www.shieldcn.dev/github/license/kirillmelcin96/kiang.svg?variant=ghost&amp;size=xs&amp;mode=light&amp;font=jetbrains-mono"></picture>
+![Release](https://www.shieldcn.dev/github/release/kirillmelcin96/kiang.svg?size=xs&font=jetbrains-mono&color=4578de)
+![License](https://www.shieldcn.dev/github/license/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&color=4578de)
 </div>
 
 **Kiang** is a lightweight user-friendly web interface for working with local models via the Ollama API. Written in Vue.js.
