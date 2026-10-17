@@ -2,11 +2,9 @@
 
 <img src="./src-tauri/icons/128x128@2x.png" alt="Kiang" width="112" height="112">
 
-# Kiang WebUI
+# Kiang
 
-![GitHub Repo stars](https://img.shields.io/github/stars/kirillmelcin96/kiang)
-![GitHub forks](https://img.shields.io/github/forks/kirillmelcin96/kiang)
-![GitHub watchers](https://img.shields.io/github/watchers/kirillmelcin96/kiang)
+[Download](#installation) | [Release notes](/CHANGELOG.md) | [Roadmap](#roadmap) | [Support](#feedback)
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/kirillmelcin96/kiang)
 ![GitHub repo size](https://img.shields.io/github/repo-size/kirillmelcin96/kiang)
@@ -16,11 +14,11 @@
 <!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/kiang) -->
 </div>
 
-**Kiang** is a user-friendly web interface for working with local models via the Ollama API. Written in Vue.js.
+**Kiang** is a lightweight user-friendly web interface for working with local models via the Ollama API. Written in Vue.js.
 
-You can run **Kiang** in your browser or as a standalone app (for Windows, MacOS and Linux). See the [Installation](#installation) section for all available options.
+You can run **Kiang** in your browser or as an app for Windows, MacOS or Linux. See the [Installation](#installation) section for all available options.
 
-Free and open source.
+Free and open source (Apache-2.0)
 
 ![Preview](./images/preview.jpg)
 
@@ -46,9 +44,9 @@ Free and open source.
 
 **Kiang** is built with Vite + Vue 3. It runs right in your browser. **Kiang** can automatically detect and connect to Ollama API right out of the box.
 
-Your chats are stored directly in your browser using IndexedDB, allowing **Kiang** to persist your conversation history locally without relying on a backend. User settings are stored in LocalStorage for quick and persistent access.
+Starting with **Kiang v.1.0.0**, you can also install it as a standalone app for Windows, macOS, and Linux. The app is built with [Tauri v2](https://v2.tauri.app/) instead of Electron to ensure its security and minimize its size as much as possible.
 
-Starting with **Kiang v.1.0.0**, you can also install it as a standalone app for Windows, macOS, and Linux. Currently, this is an experimental feature. Standalone app is built with [Tauri](https://v2.tauri.app/) instead of Electron to ensure its security and minimize its size as much as possible.
+Your chats are stored directly in your browser using IndexedDB, allowing **Kiang** to persist your conversation history locally. User settings are stored in LocalStorage.
 
 ## Features
 
@@ -58,14 +56,14 @@ _Features marked with an asterisk (\*) in the image will be implemented soon_
 
 ### 🚀 Getting Started
 
-- **Simple setup:** Just clone the repository and run the app right in your browser. Click [here](#installation) to skip to the installation.
-- **Automatic models detection:** The app automatically finds and uses models already installed with your local Ollama instance. If you haven't installed Ollama yet, follow [these steps](#️-before-you-start).
+- **Simple setup:** [Download](#installation) the app for your operating system or just clone the repository and run the frontend right in your browser.
+- **First launch:** The app automatically detects Ollama and installed models on your computer.
 
 ### 💬 Models and Chat
 
-- **Works offline** - Run and interact with downloaded models through Ollama without an Internet connection.
-- **Private** - Your conversations stay on your device. We don't collect information about your device, conversations, or how you use the app. The only external request made by **Kiang** is to this GitHub repository for checking app updates.
-- **Chat history storage** - All your conversations are stored directly in your browser (IndexedDB).
+- **Private** - Your chats stay on your device. We don't collect information about your device, chats, or how you use the app. The only external request made by **Kiang** is to this GitHub repository for checking app updates.
+- **Chat history storage** - All your chats are stored directly in your browser (IndexedDB).
+- **Works offline** - Run and interact with downloaded models without an Internet connection.
 - **“Incognito Mode”** - This allows you to have temporary chats without saving them to your history.
 - **“Thinking Mode”** - Enable thinking for models that support it. Thinking may improve reasoning on complex tasks but can increase response time.
 - **Rich output format** - Supports Markdown, syntax-highlighted code blocks, and LaTeX formulas.
@@ -97,13 +95,13 @@ See the full list of available models on the [Ollama library](https://ollama.com
 
 ## Installation
 
-### As a standalone app
+### As an app
 
 ![App preview](./images/app_preview.png)
 
 You can download and install the latest **Kiang** release for your operating system from the [Releases Page](https://github.com/kirillmelcin96/kiang/releases).
 
-> Note: Currently, **Kiang** releases are not code-signed. Your operating system may display a security warning when you launch the application.
+> Note: Currently, **Kiang** releases are not code-signed, so your operating system may display a security warning when you launch the application.
 
 If you prefer not to use an unsigned application, you can run **Kiang** directly in your browser:
 
@@ -111,7 +109,7 @@ If you prefer not to use an unsigned application, you can run **Kiang** directly
 
 ![Browser preview](./images/browser_preview.png)
 
-You can run the frontend in your browser by building it from the source code.
+You can run the frontend in your browser by building it from the source code:
 
 #### Requirements
 
@@ -227,4 +225,4 @@ pnpm notices
 
 ## Disclaimer
 
-Ollama is a registered trademark (or property) of its respective owners. The **Kiang** web UI is an independent open-source software that is not associated with, affiliated with, or sponsored by the creators of Ollama.
+Ollama is a registered trademark (or property) of its respective owners. **Kiang** is an independent open-source software that is not associated with, affiliated with, or sponsored by the creators of Ollama.
