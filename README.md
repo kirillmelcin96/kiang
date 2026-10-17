@@ -6,19 +6,17 @@
 
 [Download](#installation) | [Release notes](/CHANGELOG.md) | [Roadmap](#roadmap) | [Support](#feedback)
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/kirillmelcin96/kiang)
-![GitHub repo size](https://img.shields.io/github/repo-size/kirillmelcin96/kiang)
-
-![GitHub License](https://img.shields.io/github/license/kirillmelcin96/kiang)
-![GitHub last commit](https://img.shields.io/github/last-commit/kirillmelcin96/kiang)
-<!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kirillmelcin96/kiang) -->
+![GitHub Stars](https://www.shieldcn.dev/github/stars/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&labelColor=58f87d&color=ffffff)
+![Last commit](https://www.shieldcn.dev/github/last-commit/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&labelColor=58f87d&color=ffffff)
+![Release](https://www.shieldcn.dev/github/release/kirillmelcin96/kiang.svg?size=xs&font=jetbrains-mono&color=4578de)
+![License](https://www.shieldcn.dev/github/license/kirillmelcin96/kiang.svg?variant=secondary&size=xs&font=jetbrains-mono&color=4578de)
 </div>
 
 **Kiang** is a lightweight user-friendly web interface for working with local models via the Ollama API. Written in Vue.js.
 
 You can run **Kiang** in your browser or as an app for Windows, MacOS or Linux. See the [Installation](#installation) section for all available options.
 
-Free and open source (Apache-2.0)
+Free and open source.
 
 ![Preview](./images/preview.jpg)
 
