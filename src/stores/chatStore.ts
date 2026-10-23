@@ -83,7 +83,10 @@ export const useChatStore = defineStore('chat', {
         try {
           const res = await httpFetch(settingsStore.ollamaApiUrl + '/api/generate', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              Origin: '', // Fixes bug on Windows when Ollama API returns 403
+              'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
               model: this.model,
               prompt: `Write a one-sentence title for the next user message: "${content}". Response without quotation marks. Max sentence length is 30 symbols. Try to be as concise as possible. Use the same language as in the message`,
@@ -122,7 +125,10 @@ export const useChatStore = defineStore('chat', {
 
         const res = await httpFetch(settingsStore.ollamaApiUrl + '/api/chat', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            Origin: '', // Fixes bug on Windows when Ollama API returns 403
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             model: this.model,
             messages: history,
@@ -187,7 +193,10 @@ export const useChatStore = defineStore('chat', {
       try {
         const res = await httpFetch(settingsStore.ollamaApiUrl + '/api/tags', {
           method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            Origin: '', // Fixes bug on Windows when Ollama API returns 403
+            'Content-Type': 'application/json',
+          },
         })
 
         const modelsList = await res.json()
