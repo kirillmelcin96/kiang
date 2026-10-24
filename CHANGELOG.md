@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2] - 2026-10-24
+
+### Fixed
+
+- (Critical) A bug when requests to Ollama Local API failed with 403 error on Windows
+- A bug when external links wouldn't open
+
 ## [1.5.1] - 2026-10-07
 
 ### Changed
@@ -134,6 +141,7 @@
 - Global styles
 - Models selector component
 
+[1.5.2]: https://github.com/kirillmelcin96/kiang/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/kirillmelcin96/kiang/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/kirillmelcin96/kiang/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/kirillmelcin96/kiang/compare/v1.3.4...v1.4.0
