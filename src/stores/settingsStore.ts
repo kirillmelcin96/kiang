@@ -26,6 +26,10 @@ export const useSettingsStore = defineStore('settings', {
       try {
         const res = await httpFetch(this.ollamaApiUrl + '/', {
           method: 'GET',
+          headers: {
+            Origin: '', // Fixes bug on Windows when Ollama API returns 403
+            'Content-Type': 'application/json',
+          },
         })
 
         return res.ok
@@ -38,10 +42,14 @@ export const useSettingsStore = defineStore('settings', {
       try {
         const res = await httpFetch(this.ollamaApiUrl + endpoint, {
           method,
+          headers: {
+            Origin: '', // Fixes bug on Windows when Ollama API returns 403
+            'Content-Type': 'application/json',
+          },
         })
 
         if (!res.ok) {
-          throw new Error(`Ошибка HTTP: ${res.status}`)
+          throw new Error(`${res.status}`)
         }
 
         const data = await res.json()
