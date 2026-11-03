@@ -19,7 +19,7 @@ let controller: AbortController
 // State types
 interface State {
   onboardingViewed: boolean
-  view: 'chat' | 'settings'
+  view: 'chat' | 'settings' | 'models' | 'models:new'
   chatsList: Chat[]
   chatId: null | number
   model: string
@@ -221,6 +221,12 @@ export const useChatStore = defineStore('chat', {
     },
     openSettings() {
       this.view = 'settings'
+    },
+    openModels() {
+      this.view = 'models'
+    },
+    openAddModel() {
+      this.view = 'models:new'
     },
     async selectChat(id: number) {
       const chat = await loadOneChatIDB(id)

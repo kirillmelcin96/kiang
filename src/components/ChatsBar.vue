@@ -4,6 +4,7 @@ import { useChatStore } from '../stores/chatStore'
 import type { ChatsBarMenuButton } from '../types/menues.ts'
 import EditLine from '../icons/EditLine.vue'
 import SettingsIcon from '../icons/Settings.vue'
+import BoxIcon from '../icons/Box.vue'
 import ChatsBarButton from './ChatsBarButton.vue'
 import { useAppUpdateStore } from '../stores/updateStore.ts'
 import AppUpdateNotification from './AppUpdateNotification.vue'
@@ -16,6 +17,11 @@ const menuButtons = ref<ChatsBarMenuButton[]>([
     title: 'New chat',
     icon: EditLine,
     handler: newChat,
+  },
+  {
+    title: 'Models',
+    icon: BoxIcon,
+    handler: openModels,
   },
   {
     title: 'Settings',
@@ -34,6 +40,10 @@ function newChat() {
 
 function openSettings() {
   store.openSettings()
+}
+
+function openModels() {
+  store.openModels()
 }
 </script>
 

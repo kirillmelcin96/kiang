@@ -1,3 +1,8 @@
+/**
+ * Default info about Ollama model
+ *
+ * See: https://docs.ollama.com/api/tags
+ */
 export interface OllamaModel {
   name: string
   model: string
@@ -7,5 +12,30 @@ export interface OllamaModel {
     quantization_level: string
     context_length?: number
   }
-  capabilities: string[]
+  capabilities?: string[]
+}
+
+/**
+ * Special case - model, that is loaded into memory (running)
+ *
+ * Additional fields:
+ * - expires_at
+ * - size_vram
+ * - context_length
+ *
+ * See: https://docs.ollama.com/api/ps
+ */
+export interface OllamaModelRunning extends OllamaModel {
+  expires_at: string
+  size_vram: number
+  context_length: number
+}
+
+export type ModelsProvider = 'hf' | 'ollama'
+
+export interface SearchModel {
+  name: string
+  author: string
+  downloads?: number
+  likes?: number
 }

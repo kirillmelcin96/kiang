@@ -215,6 +215,7 @@ li::marker {
 
 // Button
 button {
+  display: inline-flex;
   cursor: pointer;
   padding: 4px 12px;
   border-width: 1px;
