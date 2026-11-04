@@ -39,28 +39,6 @@ const settingsGeneral = ref<SettingsGroup[]>([
         },
       },
       {
-        title: 'Available Models',
-        description: 'List of installed models on your PC',
-        fullsize: true,
-        component: OllamaInformation,
-        props: {
-          endpoint: '/api/tags',
-          method: 'GET',
-          targetKey: 'models',
-        },
-      },
-      {
-        title: 'Active Models',
-        description: 'Models that are currently loaded into memory',
-        fullsize: true,
-        component: OllamaInformation,
-        props: {
-          endpoint: '/api/ps',
-          method: 'GET',
-          targetKey: 'models',
-        },
-      },
-      {
         title: 'Ollama API URL',
         description: 'URL where Ollama is running. Default: http://localhost:11434',
         component: EditInput,

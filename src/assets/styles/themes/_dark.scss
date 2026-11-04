@@ -11,6 +11,8 @@
   --main-color-green-background: #58f87d20;
   --main-color-red: #f85858;
   --main-color-red-background: #f8585820;
+  --main-color-yellow: #ffc72c;
+  --main-color-yellow-background: #ffc72c20;
 
   --link-color: var(--main-color-blue);
   --link-color-hover: #296cd0;
@@ -73,7 +75,7 @@
   --chat-bubble-background: #224998;
   --error-color: var(--main-color-red);
   // Chat:incognito-mode
-  --incognito-color: #ffc72c;
+  --incognito-color: var(--main-color-yellow);
   --chat-bubble-incognito-background: var(--chat-background);
   --chat-bubble-incognito-border: 2px dashed #ffffff30;
   // Chat:think-button

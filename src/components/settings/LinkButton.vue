@@ -22,7 +22,9 @@ const props = defineProps({
 <style lang="scss" scoped>
 .settings-link-button {
   &__arrow {
-    margin-bottom: -3px;
+    width: 13px;
+    height: 13px;
+    margin-bottom: -2.3px;
   }
 }
 </style>

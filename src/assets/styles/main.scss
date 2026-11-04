@@ -215,6 +215,7 @@ li::marker {
 
 // Button
 button {
+  display: inline-flex;
   cursor: pointer;
   padding: 4px 12px;
   border-width: 1px;
@@ -290,11 +291,11 @@ button:focus-visible {
 // Common animations
 .loading-icon {
   animation: loading-rotate 2s infinite linear;
-  margin-bottom: -1px;
+  margin-bottom: -2px;
 
   svg {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
   }
 }
 

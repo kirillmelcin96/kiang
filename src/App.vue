@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import ChatsBar from './components/ChatsBar.vue'
+import ModelsView from './views/ModelsView.vue'
 import ChatView from './views/ChatView.vue'
 import SettingsView from './views/SettingsView.vue'
 import ConfirmModal from './components/overlays/ConfirmModal.vue'
@@ -10,10 +11,14 @@ import { onMounted } from 'vue'
 import { IS_TAURI } from './utils/runtime.ts'
 import UpdateModal from './components/overlays/UpdateModal.vue'
 import OnboardingView from './views/OnboardingView.vue'
+import AddModel from './views/AddModelView.vue'
+import ProviderModelDetails from './components/overlays/ProviderModelDetails.vue'
+import { useModelsStore } from './stores/modelsStore.ts'
 
 const store = useChatStore()
 const uiConfirm = useConfirmStore()
 const updateStore = useAppUpdateStore()
+const modelsStore = useModelsStore()
 
 onMounted(() => {
   if (IS_TAURI) {
@@ -35,6 +40,8 @@ async function checkForUpdates() {
       <OnboardingView v-if="!store.onboardingViewed" />
       <ChatView v-else-if="store.view === 'chat'" />
       <SettingsView v-else-if="store.view === 'settings'" />
+      <ModelsView v-else-if="store.view === 'models'" />
+      <AddModel v-else-if="store.view === 'models:new'" />
     </div>
   </div>
 
@@ -46,6 +53,8 @@ async function checkForUpdates() {
     @confirm="uiConfirm.resolve(true)"
     @cancel="uiConfirm.resolve(false)"
   />
+
+  <ProviderModelDetails v-if="modelsStore.showDetailsModal" />
 
   <UpdateModal v-if="updateStore.showUpdateModal" />
 </template>

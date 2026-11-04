@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useSettingsStore } from '../../../stores/settingsStore.ts'
 import LoadingIcon from '../../../icons/Loading.vue'
 
@@ -39,37 +39,11 @@ watch(
 onMounted(() => {
   requestApi()
 })
-
-const alignContentLeft = computed(() => {
-  // TODO: rewrite this function to look better. Maybe the entire component, lol...
-  return (
-    ollamaResponse.value instanceof Array &&
-    props.targetKey === 'models' &&
-    ollamaResponse.value.length
-  )
-})
 </script>
 
 <template>
-  <div
-    class="settings-ollama-info"
-    :class="{
-      muted: isError || isLoading,
-      'settings-ollama-info--content-left': alignContentLeft,
-    }"
-  >
+  <div class="settings-ollama-info">
     <LoadingIcon v-if="isLoading" class="loading-icon" />
-    <template v-else-if="ollamaResponse instanceof Array && props.targetKey === 'models'">
-      <!-- Ollama response is empty, meaning no models were found -->
-      <span v-if="!ollamaResponse.length" class="muted"> No models </span>
-
-      <!-- TODO: Create a button to unload model from memory -->
-      <!-- Models were found, display them in separated blocks -->
-      <div v-for="model in ollamaResponse as Object" v-else :key="model.name" class="model-name">
-        {{ model.name }}
-      </div>
-    </template>
-    <!-- Regular text response like Ollama's version -->
     <span v-else>{{ ollamaResponse }}</span>
   </div>
 </template>
@@ -84,17 +58,5 @@ const alignContentLeft = computed(() => {
   &--content-left {
     justify-content: left;
   }
-}
-
-.model-name {
-  font-size: var(--font-sm);
-  font-weight: var(--font-bold);
-  padding: 3px 8px;
-  cursor: default;
-  background-color: var(--model-name-background);
-  // border: 1px solid #3a3a3a;
-  border-radius: var(--radius-sm);
-  overflow-wrap: break-all;
-  word-break: break-word;
 }
 </style>

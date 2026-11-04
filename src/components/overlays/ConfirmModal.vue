@@ -10,16 +10,24 @@ const emit = defineEmits(['confirm', 'cancel'])
   <Teleport to="body">
     <div class="confirm-modal-overlay" @click.self="emit('cancel')">
       <div class="confirm-modal">
-        <h3>{{ uiConfirm.title }}</h3>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <p v-html="uiConfirm.message"></p>
+        <div class="confirm-modal__header">
+          <h3>{{ uiConfirm.title }}</h3>
+        </div>
 
-        <div class="confirm-modal-buttons-container">
-          <div class="confirm-modal-button confirm-modal-button__cancel" @click="emit('cancel')">
-            Cancel
-          </div>
-          <div class="confirm-modal-button confirm-modal-button__confirm" @click="emit('confirm')">
-            {{ uiConfirm.confirmText }}
+        <div class="confirm-modal__body">
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <p v-html="uiConfirm.message"></p>
+
+          <div class="confirm-modal-buttons-container">
+            <div class="confirm-modal-button confirm-modal-button__cancel" @click="emit('cancel')">
+              Cancel
+            </div>
+            <div
+              class="confirm-modal-button confirm-modal-button__confirm"
+              @click="emit('confirm')"
+            >
+              {{ uiConfirm.confirmText }}
+            </div>
           </div>
         </div>
       </div>
@@ -48,9 +56,17 @@ const emit = defineEmits(['confirm', 'cancel'])
   border: var(--card-border);
   background-color: var(--card-background);
   width: 380px;
-  padding: 12px;
   z-index: 9999;
   user-select: none;
+
+  &__header {
+    padding: 12px;
+    border-bottom: var(--card-border);
+  }
+
+  &__body {
+    padding: 12px;
+  }
 
   h3 {
     margin: 0;
