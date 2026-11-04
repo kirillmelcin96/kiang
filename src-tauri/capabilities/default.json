@@ -15,6 +15,9 @@
         { "url": "http://localhost:11434/**" },
         {
           "url": "https://raw.githubusercontent.com/kirillmelcin96/kiang/refs/heads/main/CHANGELOG.md"
+        },
+        {
+          "url": "https://huggingface.co/api*"
         }
       ]
     },
@@ -29,6 +32,12 @@
         },
         {
           "url": "mailto:*"
+        },
+        {
+          "url": "https://ollama.com/library*"
+        },
+        {
+          "url": "https://huggingface.co*"
         }
       ]
     }
