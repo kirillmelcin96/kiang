@@ -11,13 +11,13 @@ const props = defineProps<SearchModel>()
   <div class="provider-model-item">
     <div class="provider-model-item__title">
       <b>{{ props.name }}</b>
-      <div>
-        <span v-if="props?.downloads" class="muted provider-model-item__stats">
+      <div style="text-align: right">
+        <div v-if="props?.downloads" class="muted provider-model-item__stats">
           <DownloadIcon /> {{ formatBigNumbers(props.downloads) }}
-        </span>
-        <span v-if="props?.likes" class="muted provider-model-item__stats">
+        </div>
+        <div v-if="props?.likes" class="muted provider-model-item__stats">
           <LikeIcon /> {{ formatBigNumbers(props.likes) }}
-        </span>
+        </div>
       </div>
     </div>
     <div class="provider-model-item__author">by {{ props.author }}</div>
@@ -43,9 +43,14 @@ const props = defineProps<SearchModel>()
   &__title {
     display: flex;
     justify-content: space-between;
+
+    b {
+      max-width: calc(100% - 135px);
+    }
   }
 
   &__stats {
+    display: inline-block;
     font-size: var(--font-sm);
     margin: 0 0 0 12px;
   }

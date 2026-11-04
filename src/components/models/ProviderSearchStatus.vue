@@ -2,10 +2,11 @@
 import { computed } from 'vue'
 import TrendingArrowIcon from '../../icons/TrendingArrow.vue'
 import SearchIcon from '../../icons/Search.vue'
-import LoadingIcon from '../common/RotatingLoading.vue'
+import SearchNoneIcon from '../../icons/SearchNone.vue'
+import RotatingLoadingIcon from '../common/RotatingLoading.vue'
 
 const props = defineProps<{
-  status: 'loading' | 'results' | 'trending'
+  status: 'loading' | 'results' | 'trending' | 'no-results'
 }>()
 
 const statuses = {
@@ -14,12 +15,16 @@ const statuses = {
     text: 'Trending models',
   },
   loading: {
-    icon: LoadingIcon,
+    icon: RotatingLoadingIcon,
     text: 'Searching...',
   },
   results: {
     icon: SearchIcon,
-    text: 'Found models',
+    text: 'Search results',
+  },
+  'no-results': {
+    icon: SearchNoneIcon,
+    text: 'No models found',
   },
 }
 
@@ -41,6 +46,7 @@ const currentStatus = computed(() => {
 
   svg {
     margin-bottom: -6px;
+    margin-right: 4px;
     width: 22px;
     height: 22px;
   }

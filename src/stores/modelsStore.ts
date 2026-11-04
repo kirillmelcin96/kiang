@@ -71,5 +71,37 @@ export const useModelsStore = defineStore('models', {
         console.error(e)
       }
     },
+    async searchHF(q: string) {
+      try {
+        const res = await httpFetch(
+          HUGGING_FACE_API_ENDPOINT + `/models?search=${q}&filter=gguf&sort=downloads&limit=50`,
+          {
+            method: 'GET',
+          },
+        )
+
+        const data = await res.json()
+
+        interface HFSearchModelResponse {
+          id: string
+          downloads: number
+          likes: number
+        }
+
+        const formatted: SearchModel[] = data.map((i: HFSearchModelResponse) => {
+          const id = i.id.split('/')
+          return {
+            author: id[0],
+            name: id[1],
+            downloads: i.downloads,
+            likes: i.likes,
+          }
+        })
+
+        return formatted
+      } catch (e) {
+        console.error(e)
+      }
+    },
   },
 })

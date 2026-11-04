@@ -17,25 +17,31 @@ const provider = ref<ModelsProvider>('hf')
 const searchField = ref<string>('')
 const isSearching = ref<boolean>(true)
 const searchResults = ref<SearchModel[]>()
-const trendingResults = ref<SearchModel[]>()
+const trendingResults = ref<SearchModel[]>() // For cache
 
 function changeProvider(newProvider: ModelsProvider) {
   provider.value = newProvider
 }
 
+const fetchingSearch = debounce(async () => {
+  searchResults.value = await modelsStore.searchHF(searchField.value)
+  isSearching.value = false
+}, 1100)
+
 async function startSearch() {
-  if (!searchField.value) {
+  // In case when user clears the search field
+  if (searchField.value === '') {
     isSearching.value = false
-    searchResults.value = trendingResults.value
+    searchResults.value = trendingResults.value // Cached value
+
+    fetchingSearch.cancel() // Canceling debounce
     return
   }
 
   isSearching.value = true
-  searchResults.value = []
+  // searchResults.value = []
 
-  debounce(() => {
-    // todo
-  }, 1000)
+  fetchingSearch()
 }
 
 async function fetchTrending() {
@@ -46,8 +52,11 @@ async function fetchTrending() {
 
 const searchingStatus = computed(() => {
   if (isSearching.value) return 'loading'
-  else if (searchField.value && !isSearching.value) return 'results'
-  else return 'trending'
+  else if (searchField.value && !isSearching.value) {
+    if (!searchResults.value?.length) return 'no-results' // 0 models found
+    return 'results'
+  }
+  return 'trending'
 })
 
 onMounted(() => {
@@ -69,14 +78,16 @@ onMounted(() => {
       @update:model-value="startSearch"
     />
     <ProviderSearchStatus :status="searchingStatus" />
-    <ProviderModelItem
-      v-for="res in searchResults"
-      :key="res.name + '/' + res.author"
-      :name="res.name"
-      :author="res.author"
-      :downloads="res.downloads"
-      :likes="res.likes"
-    />
+    <div :class="{ 'active-search-item': isSearching }">
+      <ProviderModelItem
+        v-for="res in searchResults"
+        :key="res.name + '/' + res.author"
+        :name="res.name"
+        :author="res.author"
+        :downloads="res.downloads"
+        :likes="res.likes"
+      />
+    </div>
   </div>
 </template>
 
@@ -111,5 +122,12 @@ onMounted(() => {
       color: var(--body-text-color);
     }
   }
+}
+
+.active-search-item {
+  transition: var(--transition-speed-default);
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 </style>
