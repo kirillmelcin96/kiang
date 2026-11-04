@@ -3,12 +3,23 @@ import { formatBigNumbers } from '../../utils/units.ts'
 import type { SearchModel } from '../../types/api'
 import DownloadIcon from '../../icons/Download.vue'
 import LikeIcon from '../../icons/Like.vue'
+import { useModelsStore } from '../../stores/modelsStore.ts'
+
+const modelsStore = useModelsStore()
 
 const props = defineProps<SearchModel>()
+
+function selectModel() {
+  modelsStore.modal = {
+    id: props.id,
+    provider: props.provider,
+  }
+  modelsStore.showDetailsModal = true
+}
 </script>
 
 <template>
-  <div class="provider-model-item">
+  <div class="provider-model-item" @click="selectModel">
     <div class="provider-model-item__title">
       <b>{{ props.name }}</b>
       <div style="text-align: right">

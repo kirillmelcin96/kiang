@@ -12,7 +12,7 @@ const props = defineProps<{
 const statuses = {
   trending: {
     icon: TrendingArrowIcon,
-    text: 'Trending models',
+    text: 'Popular models',
   },
   loading: {
     icon: RotatingLoadingIcon,

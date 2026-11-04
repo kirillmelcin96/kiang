@@ -12,10 +12,13 @@ import { IS_TAURI } from './utils/runtime.ts'
 import UpdateModal from './components/overlays/UpdateModal.vue'
 import OnboardingView from './views/OnboardingView.vue'
 import AddModel from './views/AddModelView.vue'
+import ProviderModelDetails from './components/overlays/ProviderModelDetails.vue'
+import { useModelsStore } from './stores/modelsStore.ts'
 
 const store = useChatStore()
 const uiConfirm = useConfirmStore()
 const updateStore = useAppUpdateStore()
+const modelsStore = useModelsStore()
 
 onMounted(() => {
   if (IS_TAURI) {
@@ -50,6 +53,8 @@ async function checkForUpdates() {
     @confirm="uiConfirm.resolve(true)"
     @cancel="uiConfirm.resolve(false)"
   />
+
+  <ProviderModelDetails v-if="modelsStore.showDetailsModal" />
 
   <UpdateModal v-if="updateStore.showUpdateModal" />
 </template>

@@ -81,7 +81,9 @@ onMounted(() => {
     <div :class="{ 'active-search-item': isSearching }">
       <ProviderModelItem
         v-for="res in searchResults"
+        :id="res.id"
         :key="res.name + '/' + res.author"
+        :provider="provider"
         :name="res.name"
         :author="res.author"
         :downloads="res.downloads"

@@ -34,8 +34,23 @@ export interface OllamaModelRunning extends OllamaModel {
 export type ModelsProvider = 'hf' | 'ollama'
 
 export interface SearchModel {
+  id: string
   name: string
   author: string
   downloads?: number
   likes?: number
+  provider: ModelsProvider
+}
+
+export interface ModelDetails extends SearchModel {
+  pipelineTag: string
+  lastModified?: string
+  createdAt?: string
+  language?: Array<string>
+  license?: string
+}
+
+export interface ModelQuantization {
+  name: string
+  size: number
 }

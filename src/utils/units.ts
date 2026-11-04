@@ -6,7 +6,7 @@ const k = 1024 // kilo
 export function bytesToGb(b: number, fixed: number = 1) {
   if (b === 0) return '0'
 
-  return (b / (k * k * k)).toFixed(fixed) + 'GB'
+  return (b / (k * k * k)).toFixed(fixed) + ' GB'
 }
 
 /**

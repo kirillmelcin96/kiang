@@ -1,18 +1,28 @@
 import { defineStore } from 'pinia'
 import { httpFetch } from '../utils/http.ts'
 import { useSettingsStore } from './settingsStore.ts'
-import type { SearchModel } from '../types/api.ts'
+import type { SearchModel, ModelsProvider, ModelDetails, ModelQuantization } from '../types/api.ts'
 
 const HUGGING_FACE_API_ENDPOINT = 'https://huggingface.co/api'
 
 // State types
 export interface Models {
   searchField: string
+  showDetailsModal: boolean
+  modal: {
+    id: string
+    provider: ModelsProvider
+  }
 }
 
 export const useModelsStore = defineStore('models', {
   state: (): Models => ({
     searchField: '',
+    showDetailsModal: false,
+    modal: {
+      id: '',
+      provider: 'hf',
+    },
   }),
   getters: {
     // Empty
@@ -39,30 +49,30 @@ export const useModelsStore = defineStore('models', {
     },
     async getTrendingHF() {
       try {
-        const res = await httpFetch(HUGGING_FACE_API_ENDPOINT + '/trending?type=model&limit=10', {
-          method: 'GET',
-        })
+        const res = await httpFetch(
+          HUGGING_FACE_API_ENDPOINT + `/models?search=&filter=gguf&limit=10`,
+          {
+            method: 'GET',
+          },
+        )
 
         const data = await res.json()
 
-        const recentlyTrending = data.recentlyTrending
-
-        interface HFTrendingModelResponse {
-          repoData: {
-            author: string
-            id: string
-            downloads: number
-            likes: number
-          }
+        interface HFSearchModelResponse {
+          id: string
+          downloads: number
+          likes: number
         }
 
-        const formatted: SearchModel[] = recentlyTrending.map((i: HFTrendingModelResponse) => {
-          const rd = i.repoData
+        const formatted: SearchModel[] = data.map((i: HFSearchModelResponse) => {
+          const id = i.id.split('/')
           return {
-            author: rd.author,
-            name: rd.id.split('/')[1],
-            downloads: rd.downloads,
-            likes: rd.likes,
+            id: i.id,
+            author: id[0],
+            name: id[1],
+            downloads: i.downloads,
+            likes: i.likes,
+            provider: 'hf',
           }
         })
 
@@ -91,14 +101,73 @@ export const useModelsStore = defineStore('models', {
         const formatted: SearchModel[] = data.map((i: HFSearchModelResponse) => {
           const id = i.id.split('/')
           return {
+            id: i.id,
             author: id[0],
             name: id[1],
             downloads: i.downloads,
             likes: i.likes,
+            provider: 'hf',
           }
         })
 
         return formatted
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    async fetchDetailsHF(id: string): Promise<ModelDetails | undefined> {
+      try {
+        const res = await httpFetch(HUGGING_FACE_API_ENDPOINT + `/models/${id}`, {
+          method: 'GET',
+        })
+
+        const data = await res.json()
+
+        return {
+          author: data.author,
+          id: data.id,
+          name: data.id.split('/')[1],
+          pipelineTag: data.pipeline_tag || 'Unknown',
+          provider: 'hf',
+          createdAt: data.createdAt,
+          likes: data.likes,
+          downloads: data.downloads,
+          language: data?.cardData?.language || [],
+          lastModified: data.lastModified,
+          license: data?.cardData?.license || 'Unknown',
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    async fetchGgufFilesHF(id: string): Promise<ModelQuantization[] | undefined> {
+      try {
+        const res = await httpFetch(
+          HUGGING_FACE_API_ENDPOINT + `/models/${id}/tree/main?recursive=true`,
+          {
+            method: 'GET',
+          },
+        )
+
+        const files = await res.json()
+
+        const quantizations: ModelQuantization[] = files
+          .filter(
+            (file) =>
+              file.path.endsWith('.gguf') &&
+              !file.path.toLowerCase().includes('mtp') &&
+              !file.path.toLowerCase().includes('mmproj'),
+          )
+          .map((file) => {
+            const filename: string = file.path.split('/').pop()!
+
+            return {
+              name: filename.replace('.gguf', ''),
+              size: file.lfs?.size ?? file.size ?? 0,
+            }
+          })
+
+        return quantizations
       } catch (e) {
         console.error(e)
       }
