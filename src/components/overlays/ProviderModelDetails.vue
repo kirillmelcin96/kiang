@@ -125,13 +125,13 @@ function showSizeWarning(size: number) {
 
             <!-- Labels -->
             <div class="model-details-modal-labels">
-              <BasicTooltip text="Downloads">
-                <div v-if="details?.downloads" class="model-details-modal-label">
+              <BasicTooltip v-if="details?.downloads" text="Downloads">
+                <div class="model-details-modal-label">
                   <DownloadIcon /> {{ formatBigNumbers(details.downloads) }}
                 </div>
               </BasicTooltip>
-              <BasicTooltip text="Likes">
-                <div v-if="details?.likes" class="model-details-modal-label">
+              <BasicTooltip v-if="details?.likes" text="Likes">
+                <div class="model-details-modal-label">
                   <LikeIcon /> {{ formatBigNumbers(details.likes) }}
                 </div>
               </BasicTooltip>
@@ -140,7 +140,7 @@ function showSizeWarning(size: number) {
                   {{ details.pipelineTag }}
                 </div>
               </BasicTooltip>
-              <BasicTooltip v-if="details.language?.length" :text="details.language.join(', ')">
+              <BasicTooltip v-if="details?.language?.length" :text="details.language.join(', ')">
                 <div class="model-details-modal-label">
                   <template v-if="details.language?.length > 1">
                     <GlobeIcon /> {{ details.language.length }} languages
