@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import debounce from 'lodash.debounce'
 import ChevronLeft from '../icons/ChevronLeft.vue'
 import { useChatStore } from '../stores/chatStore.ts'
@@ -8,6 +8,7 @@ import type { ModelsProvider, SearchModel } from '../types/api.ts'
 import ModelsSearch from '../components/models/ModelsSearch.vue'
 import { useModelsStore } from '../stores/modelsStore.ts'
 import ProviderModelItem from '../components/models/ProviderModelItem.vue'
+import ProviderSearchStatus from '../components/models/ProviderSearchStatus.vue'
 
 const store = useChatStore()
 const modelsStore = useModelsStore()
@@ -16,17 +17,38 @@ const provider = ref<ModelsProvider>('hf')
 const searchField = ref<string>('')
 const isSearching = ref<boolean>(true)
 const searchResults = ref<SearchModel[]>()
+const trendingResults = ref<SearchModel[]>()
 
 function changeProvider(newProvider: ModelsProvider) {
   provider.value = newProvider
 }
 
-const startSearch = debounce(() => {}, 1000)
+async function startSearch() {
+  if (!searchField.value) {
+    isSearching.value = false
+    searchResults.value = trendingResults.value
+    return
+  }
+
+  isSearching.value = true
+  searchResults.value = []
+
+  debounce(() => {
+    // todo
+  }, 1000)
+}
 
 async function fetchTrending() {
   searchResults.value = await modelsStore.getTrendingHF()
+  trendingResults.value = searchResults.value
   isSearching.value = false
 }
+
+const searchingStatus = computed(() => {
+  if (isSearching.value) return 'loading'
+  else if (searchField.value && !isSearching.value) return 'results'
+  else return 'trending'
+})
 
 onMounted(() => {
   fetchTrending()
@@ -46,6 +68,7 @@ onMounted(() => {
       style="margin-bottom: 20px"
       @update:model-value="startSearch"
     />
+    <ProviderSearchStatus :status="searchingStatus" />
     <ProviderModelItem
       v-for="res in searchResults"
       :key="res.name + '/' + res.author"
