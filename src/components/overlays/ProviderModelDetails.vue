@@ -7,8 +7,10 @@ import ArrowRightUpIcon from '../../icons/ArrowRightUp.vue'
 import GlobeIcon from '../../icons/Globe.vue'
 import BalanceIcon from '../../icons/Balance.vue'
 import BasicTooltip from '../common/BasicTooltip.vue'
-import { bytesToGb } from '../../utils/units.ts'
+import { bytesToGb, formatBigNumbers } from '../../utils/units.ts'
 import WarningTriangleIcon from '../../icons/WarningTriangle.vue'
+import LikeIcon from '../../icons/Like.vue'
+import DownloadIcon from '../../icons/Download.vue'
 
 const modelsStore = useModelsStore()
 
@@ -123,6 +125,16 @@ function showSizeWarning(size: number) {
 
             <!-- Labels -->
             <div class="model-details-modal-labels">
+              <BasicTooltip text="Downloads">
+                <div v-if="details?.downloads" class="model-details-modal-label">
+                  <DownloadIcon /> {{ formatBigNumbers(details.downloads) }}
+                </div>
+              </BasicTooltip>
+              <BasicTooltip text="Likes">
+                <div v-if="details?.likes" class="model-details-modal-label">
+                  <LikeIcon /> {{ formatBigNumbers(details.likes) }}
+                </div>
+              </BasicTooltip>
               <BasicTooltip text="Supported tasks">
                 <div class="model-details-modal-label">
                   {{ details.pipelineTag }}
@@ -151,7 +163,7 @@ function showSizeWarning(size: number) {
             </div> -->
 
             <!-- .gguf Files -->
-            <b>Choose quantization to download:</b>
+            <b>Select the quantization for download:</b>
             <div class="gguf-container">
               <div
                 v-for="(gguf, index) in ggufList"
@@ -231,6 +243,7 @@ function showSizeWarning(size: number) {
   max-width: 680px;
   z-index: 9999;
   user-select: none;
+  margin: 12px;
 
   &__header {
     padding: 12px;
@@ -278,7 +291,7 @@ function showSizeWarning(size: number) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 12px 0;
+  margin: 12px 0 20px;
 }
 
 .model-details-modal-label {
@@ -306,7 +319,7 @@ function showSizeWarning(size: number) {
 }
 
 .gguf-container {
-  margin-top: 12px;
+  margin-top: 8px;
   padding: 12px;
   border-radius: var(--radius-md);
   background-color: var(--code-background);

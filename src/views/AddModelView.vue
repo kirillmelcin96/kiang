@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import debounce from 'lodash.debounce'
 import ChevronLeft from '../icons/ChevronLeft.vue'
 import { useChatStore } from '../stores/chatStore.ts'
@@ -35,6 +35,21 @@ async function startSearch() {
     searchResults.value = trendingResults.value // Cached value
 
     fetchingSearch.cancel() // Canceling debounce
+    return
+  }
+
+  // Auto-detect Hugging Face links
+  if (searchField.value.includes('hf.co/') || searchField.value.includes('huggingface.co/')) {
+    const id = searchField.value
+      .replace(/^(?:https?:\/\/)?(?:www\.)?(?:hf\.co|huggingface\.co)\//, '')
+      .replace(/:[^/]+$/, '')
+
+    modelsStore.openModal(id, 'hf')
+
+    nextTick(() => {
+      searchField.value = ''
+    })
+
     return
   }
 

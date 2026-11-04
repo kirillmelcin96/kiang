@@ -115,6 +115,13 @@ export const useModelsStore = defineStore('models', {
         console.error(e)
       }
     },
+    openModal(id: string, provider: ModelsProvider) {
+      this.modal = {
+        id,
+        provider,
+      }
+      this.showDetailsModal = true
+    },
     async fetchDetailsHF(id: string): Promise<ModelDetails | undefined> {
       try {
         const res = await httpFetch(HUGGING_FACE_API_ENDPOINT + `/models/${id}`, {

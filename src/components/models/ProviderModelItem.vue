@@ -10,11 +10,7 @@ const modelsStore = useModelsStore()
 const props = defineProps<SearchModel>()
 
 function selectModel() {
-  modelsStore.modal = {
-    id: props.id,
-    provider: props.provider,
-  }
-  modelsStore.showDetailsModal = true
+  modelsStore.openModal(props.id, props.provider)
 }
 </script>
 

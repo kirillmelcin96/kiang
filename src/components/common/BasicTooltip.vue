@@ -103,7 +103,7 @@ function onBlur(event: FocusEvent) {
 
 .tooltip-enter-active,
 .tooltip-leave-active {
-  transition: opacity var(--transition-speed-default);
+  transition: opacity 0.18s;
 }
 
 .tooltip-enter-from,
